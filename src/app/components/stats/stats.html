@@ -1,0 +1,8 @@
+<div class="stats-band">
+  @for (s of stats; track s.label) {
+    <div class="stat-block">
+      <b>{{ s.value }}</b>
+      <span>{{ s.label }}</span>
+    </div>
+  }
+</div>

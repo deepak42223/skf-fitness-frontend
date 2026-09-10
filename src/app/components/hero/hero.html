@@ -1,0 +1,62 @@
+<section class="hero" id="home">
+
+  <!-- ── Background Video + Neon Ribbon Canvas ── -->
+  <div class="hero-bg">
+    <!-- Video layer (bottom) -->
+    <video #videoPlayer autoplay muted loop playsinline preload="auto"
+      class="hero-video" (ended)="nextVideo()">
+      <source [src]="getCurrentVideoSrc()" type="video/mp4">
+    </video>
+    <!-- Dark overlay on video -->
+    <div class="hero-video-overlay"></div>
+    <!-- Neon ribbon canvas (top, blends over video) -->
+    <canvas #ribbonCanvas class="ribbon-canvas"></canvas>
+    <!-- Final readability overlay -->
+    <div class="hero-bg-overlay"></div>
+  </div>
+
+  <!-- ── Hero Grid ── -->
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- LEFT: Text -->
+        <div class="hero-left">
+
+          <!-- Teal eyebrow label -->
+          <span class="hero-eyebrow">
+            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#12E0C4"/></svg>
+            HYDERABAD'S PREMIER GYM
+          </span>
+
+          <!-- Headline -->
+          <h1 class="hero-headline">
+            TRAIN HARDER,<br>
+            <span class="headline-teal">GET STRONGER</span>
+          </h1>
+
+
+
+          <!-- CTA row -->
+          <div class="hero-actions">
+            <a href="#membership" class="btn-teal-pill">
+              JOIN NOW
+            </a>
+            <a href="#about" class="btn-text-link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+

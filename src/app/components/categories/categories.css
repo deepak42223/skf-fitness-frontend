@@ -1,0 +1,244 @@
+/* ════════════════════════════
+   PROGRAMS - SKF HORIZONTAL CARD STRIP
+   ════════════════════════════ */
+#programs {
+  background: #06080f;
+  padding: 5rem 0 4rem;
+}
+
+/* ── Header ── */
+.programs-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.programs-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #3498DB;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 0 16px rgba(52, 152, 219, 0.5);
+}
+
+.programs-title {
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.title-blue {
+  background: linear-gradient(135deg, #3498DB 0%, #64B5F6 60%, #1565C0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(52,152,219,0.45));
+}
+
+/* Decorative lines flanking title */
+.title-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3498DB);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.title-line:last-child {
+  background: linear-gradient(90deg, #3498DB, transparent);
+}
+
+/* ── 4-Card Grid ── */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Individual Card ── */
+.program-card {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardReveal 0.7s ease-out forwards;
+}
+
+@keyframes cardReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Divider between cards */
+.program-card + .program-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(52,152,219,0.3), transparent);
+  z-index: 3;
+}
+
+/* ── Image ── */
+.program-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.program-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.7) contrast(1.15) saturate(1.1);
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.program-card:hover .program-img {
+  transform: scale(1.08);
+  filter: brightness(0.55) contrast(1.2) saturate(1.2);
+}
+
+/* Dark gradient overlay — heavier at bottom */
+.program-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 6, 14, 0.1) 0%,
+    rgba(4, 6, 14, 0.15) 50%,
+    rgba(4, 6, 14, 0.85) 100%
+  );
+  transition: background 0.4s ease;
+}
+
+.program-card:hover .program-img-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 6, 14, 0.2) 0%,
+    rgba(4, 6, 14, 0.3) 50%,
+    rgba(4, 6, 14, 0.9) 100%
+  );
+}
+
+/* Blue side-glow on hover */
+.program-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(52,152,219,0.12) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.program-card:hover::after { opacity: 1; }
+
+/* ── Bottom Label ── */
+.program-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1.4rem;
+  background: linear-gradient(to top, rgba(4,6,14,0.95) 0%, transparent 100%);
+  transition: padding 0.3s ease;
+}
+
+.program-card:hover .program-label { padding-bottom: 1.75rem; }
+
+.program-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.15);
+  border: 1.5px solid rgba(52, 152, 219, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(52,152,219,0.2);
+}
+
+.program-card:hover .program-icon-badge {
+  background: rgba(52, 152, 219, 0.3);
+  border-color: #3498DB;
+  box-shadow: 0 0 20px rgba(52,152,219,0.5);
+}
+
+.prog-icon {
+  width: 18px;
+  height: 18px;
+  color: #3498DB;
+  transition: color 0.3s ease;
+}
+
+.program-card:hover .prog-icon { color: #64B5F6; }
+
+.program-name {
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  transition: color 0.3s ease;
+  line-height: 1.1;
+}
+
+.program-card:hover .program-name { color: #64B5F6; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 12px;
+  }
+
+  .program-card { height: 280px; }
+}
+
+@media (max-width: 576px) {
+  #programs { padding: 3rem 0; }
+
+  .programs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .program-card { height: 220px; }
+
+  .program-name { font-size: 0.8rem; }
+
+  .title-line { width: 30px; }
+}
+
+@media (max-width: 400px) {
+  .programs-grid { grid-template-columns: 1fr; }
+  .program-card { height: 200px; }
+  .program-card + .program-card::before { display: none; }
+}

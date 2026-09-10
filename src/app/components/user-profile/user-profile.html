@@ -1,0 +1,347 @@
+@if (loading()) {
+  <div class="profile-loading">
+    <div class="spinner"></div>
+    <p>Loading profile...</p>
+  </div>
+} @else if (user()) {
+<div class="profile-page">
+
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <div class="container">
+      <div class="profile-hero">
+
+        <!-- Avatar -->
+        <div class="avatar-wrap">
+          <div class="avatar-circle">
+            {{ user().name.charAt(0).toUpperCase() }}
+          </div>
+          <div class="avatar-status active"></div>
+        </div>
+
+        <!-- User Info -->
+        <div class="profile-info">
+          <h1 class="profile-name">{{ user().name }}</h1>
+          <p class="profile-email">{{ user().email }}</p>
+          <p class="profile-phone">{{ user().phone }}</p>
+          <div class="profile-badges">
+            <span class="plan-badge" [style.background]="getPlanBadgeColor() + '22'" [style.borderColor]="getPlanBadgeColor()" [style.color]="getPlanBadgeColor()">
+              ● {{ user().membershipPlan | uppercase }} PLAN
+            </span>
+            <span class="active-badge">✓ ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="qs-item">
+            <span class="qs-number">{{ stats()?.totalSessions ?? 0 }}</span>
+            <span class="qs-label">Total Sessions</span>
+          </div>
+          <div class="qs-item">
+            <span class="qs-number">{{ stats()?.sessionsThisMonth ?? 0 }}</span>
+            <span class="qs-label">This Month</span>
+          </div>
+          <div class="qs-item">
+            <span class="qs-number">{{ getMembershipDaysLeft() }}</span>
+            <span class="qs-label">Days Left</span>
+          </div>
+        </div>
+
+        <!-- Logout -->
+        <button class="logout-btn" (click)="logout()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="profile-tabs">
+    <div class="container">
+      <div class="tabs-nav">
+        <button class="tab-btn" [class.active]="activeTab() === 'overview'"   (click)="setTab('overview')">Overview</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'progress'"   (click)="setTab('progress')">Progress</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'attendance'" (click)="setTab('attendance')">Attendance</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'membership'" (click)="setTab('membership')">Membership</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="profile-content">
+    <div class="container">
+
+      <!-- OVERVIEW TAB -->
+      @if (activeTab() === 'overview') {
+        <div class="tab-panel">
+          <div class="overview-grid">
+
+            <!-- Fitness Info Card -->
+            <div class="info-card">
+              <h3 class="card-title">🏋️ Fitness Profile</h3>
+
+              @if (!editingProfile()) {
+                <!-- View Mode -->
+                <div class="info-rows">
+                  <div class="info-row">
+                    <span class="info-key">Goal</span>
+                    <span class="info-val">{{ profile()?.fitness_goal ?? '—' }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-key">Experience</span>
+                    <span class="info-val">{{ profile()?.experience ?? '—' }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-key">Height</span>
+                    <span class="info-val">{{ profile()?.height_cm ? profile()?.height_cm + ' cm' : '—' }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-key">Weight</span>
+                    <span class="info-val">{{ profile()?.weight_kg ? profile()?.weight_kg + ' kg' : '—' }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-key">Age</span>
+                    <span class="info-val">{{ profile()?.age ?? '—' }}</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-key">Gender</span>
+                    <span class="info-val">{{ profile()?.gender ?? '—' }}</span>
+                  </div>
+                </div>
+                <button class="edit-profile-btn" (click)="startEditProfile()">✏️ Edit Profile</button>
+              } @else {
+                <!-- Edit Mode -->
+                <form class="edit-form" (ngSubmit)="saveProfile()">
+                  <div class="edit-row">
+                    <div class="edit-field">
+                      <label>Height (cm)</label>
+                      <input type="number" [(ngModel)]="editData.height_cm" name="height_cm" placeholder="e.g. 175" />
+                    </div>
+                    <div class="edit-field">
+                      <label>Weight (kg)</label>
+                      <input type="number" [(ngModel)]="editData.weight_kg" name="weight_kg" placeholder="e.g. 70" />
+                    </div>
+                  </div>
+                  <div class="edit-row">
+                    <div class="edit-field">
+                      <label>Age</label>
+                      <input type="number" [(ngModel)]="editData.age" name="age" placeholder="e.g. 25" />
+                    </div>
+                    <div class="edit-field">
+                      <label>Gender</label>
+                      <select [(ngModel)]="editData.gender" name="gender">
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="edit-field">
+                    <label>Fitness Goal</label>
+                    <select [(ngModel)]="editData.fitness_goal" name="fitness_goal">
+                      <option value="">Select goal</option>
+                      <option value="Weight Loss">Weight Loss</option>
+                      <option value="Muscle Gain">Muscle Gain</option>
+                      <option value="General Fitness">General Fitness</option>
+                      <option value="Endurance">Endurance</option>
+                      <option value="Flexibility">Flexibility</option>
+                    </select>
+                  </div>
+                  <div class="edit-field">
+                    <label>Experience Level</label>
+                    <select [(ngModel)]="editData.experience" name="experience">
+                      <option value="">Select level</option>
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
+                  </div>
+                  <div class="edit-field">
+                    <label>Health Notes</label>
+                    <textarea [(ngModel)]="editData.health_notes" name="health_notes" rows="2" placeholder="Any injuries or medical conditions..."></textarea>
+                  </div>
+                  <div class="edit-actions">
+                    <button type="submit" class="save-btn" [disabled]="savingProfile()">
+                      {{ savingProfile() ? 'Saving...' : 'Save Changes' }}
+                    </button>
+                    <button type="button" class="cancel-btn" (click)="cancelEditProfile()">Cancel</button>
+                  </div>
+                  @if (profileSaveMsg()) {
+                    <div class="save-msg">{{ profileSaveMsg() }}</div>
+                  }
+                </form>
+              }
+            </div>
+
+            <!-- Latest Stats + Check-in Card -->
+            <div class="info-card">
+              <h3 class="card-title">📊 Latest Stats</h3>
+              <div class="stat-blocks">
+                <div class="stat-block">
+                  <span class="stat-val">{{ stats()?.currentWeight ?? '—' }}</span>
+                  <span class="stat-unit">kg</span>
+                  <span class="stat-name">Current Weight</span>
+                </div>
+                <div class="stat-block">
+                  <span class="stat-val">{{ stats()?.currentBodyFat ?? '—' }}</span>
+                  <span class="stat-unit">%</span>
+                  <span class="stat-name">Body Fat</span>
+                </div>
+              </div>
+              <div class="last-checkin">
+                <span>Last Check-in:</span>
+                <strong>{{ stats()?.lastCheckIn ? (stats()!.lastCheckIn | date:'mediumDate') : 'No check-in yet' }}</strong>
+              </div>
+
+              <!-- Check-in / Check-out -->
+              <div class="checkin-actions">
+                <button class="checkin-btn" (click)="doCheckIn()" [disabled]="checkinLoading()">
+                  {{ checkinLoading() ? '...' : '✓ Check In' }}
+                </button>
+                <button class="checkout-btn" (click)="doCheckOut()" [disabled]="checkinLoading()">
+                  {{ checkinLoading() ? '...' : '✕ Check Out' }}
+                </button>
+              </div>
+              @if (checkinMsg()) {
+                <div class="checkin-msg">{{ checkinMsg() }}</div>
+              }
+            </div>
+
+          </div>
+        </div>
+      }
+
+      <!-- PROGRESS TAB -->
+      @if (activeTab() === 'progress') {
+        <div class="tab-panel">
+          <div class="progress-tab-grid">
+
+            <!-- Add Entry Form -->
+            <div class="info-card add-progress-card">
+              <h3 class="card-title">➕ Log Progress</h3>
+              <form class="edit-form" (ngSubmit)="addProgressEntry()">
+                <div class="edit-row">
+                  <div class="edit-field">
+                    <label>Date *</label>
+                    <input type="date" [(ngModel)]="newProgress.date" name="prog-date" required />
+                  </div>
+                  <div class="edit-field">
+                    <label>Weight (kg)</label>
+                    <input type="number" step="0.1" [(ngModel)]="newProgress.weight_kg" name="prog-weight" placeholder="e.g. 72.5" />
+                  </div>
+                </div>
+                <div class="edit-row">
+                  <div class="edit-field">
+                    <label>Body Fat (%)</label>
+                    <input type="number" step="0.1" [(ngModel)]="newProgress.body_fat" name="prog-bf" placeholder="e.g. 18.5" />
+                  </div>
+                  <div class="edit-field">
+                    <label>Muscle Mass (kg)</label>
+                    <input type="number" step="0.1" [(ngModel)]="newProgress.muscle_mass" name="prog-mm" placeholder="e.g. 35.0" />
+                  </div>
+                </div>
+                <div class="edit-field">
+                  <label>Notes</label>
+                  <textarea [(ngModel)]="newProgress.notes" name="prog-notes" rows="2" placeholder="Optional note..."></textarea>
+                </div>
+                <div class="edit-actions">
+                  <button type="submit" class="save-btn" [disabled]="addingProgress() || !newProgress.date">
+                    {{ addingProgress() ? 'Saving...' : 'Add Entry' }}
+                  </button>
+                </div>
+                @if (progressMsg()) {
+                  <div class="save-msg">{{ progressMsg() }}</div>
+                }
+              </form>
+            </div>
+
+            <!-- History Table -->
+            <div>
+              <h3 class="section-title">Weight Progress History</h3>
+              @if (progress().length === 0) {
+                <div class="empty-state">
+                  <p>No progress entries yet. Log your first entry!</p>
+                </div>
+              } @else {
+                <div class="progress-table">
+                  <div class="pt-header">
+                    <span>Date</span>
+                    <span>Weight (kg)</span>
+                    <span>Body Fat (%)</span>
+                    <span>Notes</span>
+                  </div>
+                  @for (entry of progress(); track entry.date) {
+                    <div class="pt-row">
+                      <span>{{ entry.date | date:'mediumDate' }}</span>
+                      <span>{{ entry.weight_kg ?? '—' }}</span>
+                      <span>{{ entry.body_fat ?? '—' }}</span>
+                      <span>{{ entry.notes ?? '—' }}</span>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+          </div>
+        </div>
+      }
+
+      <!-- ATTENDANCE TAB -->
+      @if (activeTab() === 'attendance') {
+        <div class="tab-panel">
+          <h3 class="section-title">Attendance History</h3>
+          @if (attendance().length === 0) {
+            <div class="empty-state">
+              <p>No attendance records yet.</p>
+            </div>
+          } @else {
+            <div class="attendance-list">
+              @for (record of attendance(); track record.id) {
+                <div class="attendance-row">
+                  <span class="att-icon">✓</span>
+                  <div class="att-info">
+                    <strong>{{ record.checkIn | date:'fullDate' }}</strong>
+                    <span>Check-in: {{ record.checkIn | date:'shortTime' }}</span>
+                  </div>
+                  <span class="att-duration">{{ record.durationMins ? record.durationMins + ' mins' : 'Active' }}</span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- MEMBERSHIP TAB -->
+      @if (activeTab() === 'membership') {
+        <div class="tab-panel">
+          <div class="membership-card">
+            <div class="mc-header">
+              <h3>Current Plan</h3>
+              <span class="mc-plan" [style.color]="getPlanBadgeColor()">
+                {{ user().membershipPlan | uppercase }}
+              </span>
+            </div>
+            <div class="mc-details">
+              <div class="mc-row">
+                <span>Status</span>
+                <span class="status-active">● Active</span>
+              </div>
+              <div class="mc-row">
+                <span>Member Since</span>
+                <span>{{ user().joinedAt | date:'mediumDate' }}</span>
+              </div>
+              <div class="mc-row">
+                <span>Days Remaining</span>
+                <span>{{ getMembershipDaysLeft() }} days</span>
+              </div>
+            </div>
+            <a href="#membership" class="upgrade-btn">Upgrade Plan →</a>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+
+</div>
+}

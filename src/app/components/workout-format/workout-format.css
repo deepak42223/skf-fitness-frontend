@@ -1,0 +1,510 @@
+/* ════════════════════════════
+   WORKOUT FORMATS - COMPREHENSIVE SECTION
+   ════════════════════════════ */
+#workout-formats {
+  background: var(--bg-secondary);
+  padding: 5rem 0;
+}
+
+/* ════════════════════════════
+   HERO SECTION
+   ════════════════════════════ */
+.workout-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════
+   WORKOUT FORMATS GRID — CIRCULAR CARDS
+   ════════════════════════════ */
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  justify-items: center;
+}
+
+/* Card: circular shape, smaller size */
+.format-card {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 220px;
+  height: 220px;
+  min-height: unset;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: 2px solid rgba(52,152,219,0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  background: #06080f;
+  flex-shrink: 0;
+}
+
+.format-card:hover {
+  transform: translateY(-8px) scale(1.06);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 0 2px rgba(52,152,219,0.5);
+  border-color: rgba(52,152,219,0.6);
+}
+
+/* Background athlete image — centered */
+.format-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(0.75) contrast(1.1) saturate(1.05);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.format-card:hover .format-bg-img {
+  transform: scale(1.1);
+  filter: brightness(0.65) contrast(1.15) saturate(1.1);
+}
+
+/* Overlay: radial dark center-to-edge for circular readability */
+.format-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(4, 6, 14, 0.55) 0%,
+    rgba(4, 6, 14, 0.82) 100%
+  );
+  transition: background 0.35s ease;
+}
+
+.format-card:hover .format-bg-overlay {
+  background: radial-gradient(
+    circle at center,
+    rgba(4, 6, 14, 0.65) 0%,
+    rgba(4, 6, 14, 0.90) 100%
+  );
+}
+
+/* Content — centered inside circle */
+.format-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 1.25rem;
+  flex: 1;
+  max-width: 100%;
+}
+
+/* Number */
+.format-number {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #3498DB;
+  letter-spacing: 1px;
+  margin-bottom: 0.2rem;
+  font-style: italic;
+  text-shadow: 0 0 10px rgba(52,152,219,0.7);
+}
+
+/* Title */
+.format-name {
+  font-family: var(--font-family-display);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.6rem;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+}
+
+/* Benefit tags — smaller, centered */
+.format-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: auto;
+  padding-bottom: 0.6rem;
+}
+
+.benefit-tag {
+  background: transparent;
+  color: #3498DB;
+  border: 1.5px solid rgba(52,152,219,0.6);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.52rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.format-card:hover .benefit-tag {
+  background: rgba(52, 152, 219, 0.15);
+  border-color: #64B5F6;
+  color: #64B5F6;
+}
+
+/* Bottom row — stacked in circle */
+.format-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.format-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.duration-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #F4A623;
+}
+
+.duration-value {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+/* JOIN NOW — compact pill */
+.format-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: linear-gradient(135deg, #F4A623, #F7C948);
+  color: #1a1000;
+  font-weight: 900;
+  font-size: 0.58rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(244, 166, 35, 0.4);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.format-cta-btn:hover {
+  background: linear-gradient(135deg, #F7C948, #FAD86A);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(244, 166, 35, 0.55);
+}
+
+/* No left accent bar on circular cards */
+.format-card::before { display: none; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .formats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .formats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .format-card  { width: 180px; height: 180px; }
+}
+
+@media (max-width: 480px) {
+  .formats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .format-card  { width: 150px; height: 150px; }
+  .format-name  { font-size: 0.8rem; }
+}
+
+/* ════════════════════════════
+   GOAL RECOMMENDATIONS
+   ════════════════════════════ */
+.goal-section {
+  margin-bottom: 5rem;
+}
+
+.goal-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.goal-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.goal-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.goal-card:hover {
+  border-color: var(--accent);
+  background: #1a1a1a;
+}
+
+.goal-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.goal-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.goal-text strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ════════════════════════════
+   FAQ SECTION
+   ════════════════════════════ */
+.faq-section {
+  margin-bottom: 5rem;
+}
+
+.faq-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: var(--accent);
+}
+
+.faq-question {
+  width: 100%;
+  background: var(--bg-primary);
+  border: none;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.faq-question:hover {
+  background: #1a1a1a;
+}
+
+.faq-toggle {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: var(--bg-tertiary);
+}
+
+.faq-item.expanded .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  padding: 1.5rem;
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ════════════════════════════
+   FINAL CTA
+   ════════════════════════════ */
+.final-cta {
+  text-align: center;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius);
+  padding: 4rem 2rem;
+  border: 1px solid var(--border);
+}
+
+.cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.cta-text {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.cta-button {
+  font-size: 1rem;
+  padding: 1.25rem 2.5rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ════════════════════════════
+   RESPONSIVE DESIGN
+   ════════════════════════════ */
+@media (max-width: 768px) {
+  #workout-formats {
+    padding: 3rem 0;
+  }
+  
+  .formats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .format-content {
+    padding: 1.5rem;
+  }
+  
+  .format-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .format-cta {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .goal-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .goal-card {
+    padding: 1.5rem;
+  }
+  
+  .faq-question {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .faq-answer p {
+    padding: 1.25rem;
+  }
+  
+  .final-cta {
+    padding: 3rem 1.5rem;
+  }
+  
+  .workout-hero,
+  .goal-section,
+  .faq-section {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .format-card {
+    margin: 0;
+  }
+  
+  .format-image {
+    height: 160px;
+  }
+  
+  .benefit-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* ── Gold section-badge ── */
+.section-badge.gold {
+  color: #F4A623;
+  border-color: rgba(244, 166, 35, 0.5);
+  background: rgba(244, 166, 35, 0.08);
+  box-shadow: 0 0 12px rgba(244, 166, 35, 0.15);
+}
+
+/* Gold benefit tags on workout cards */
+.benefit-tag {
+  color: #F4A623;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.benefit-divider {
+  color: rgba(244, 166, 35, 0.4);
+}

@@ -1,0 +1,28 @@
+.services-wrap {
+  position: relative; overflow: hidden;
+  border-radius: 20px; margin: 0 60px;
+}
+.services-bg { position: absolute; inset: 0; z-index: 0; }
+.services-bg video, .services-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: grayscale(1) brightness(0.2); }
+.services-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.90) 50%, rgba(0,0,0,0.85) 100%); }
+
+.services-wrap section { position: relative; z-index: 1; padding: 110px 0; }
+.services-wrap .section-head h2 { color: #ffffff; }
+.services-wrap .section-head p  { color: rgba(255,255,255,0.7); }
+.services-wrap .section-tag { background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.3); }
+.services-wrap .red-line { background: #e8400c; }
+
+.services-list { display: flex; flex-direction: column; }
+.service-row { display: grid; grid-template-columns: 60px 1fr auto auto; align-items: center; gap: 30px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: padding-left .3s; cursor: pointer; }
+.service-row.no-border { border-bottom: none; }
+.service-row:hover { padding-left: 14px; }
+.service-row:hover h3 { color: #e8400c; }
+.service-row .idx { font-family: 'Anton', sans-serif; color: #e8400c; font-size: 18px; opacity: 0.8; }
+.service-row h3 { font-size: clamp(20px, 2.5vw, 28px); color: #ffffff; transition: color .3s; }
+.service-row .desc { color: rgba(255,255,255,0.6); font-size: 14px; max-width: 300px; display: none; line-height: 1.5; }
+.service-row .arrow { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #ffffff; transition: .3s; flex-shrink: 0; }
+.service-row:hover .arrow { background: #e8400c; color: #ffffff; border-color: #e8400c; transform: rotate(45deg); box-shadow: 0 4px 16px rgba(232,64,12,0.4); }
+
+@media (min-width: 900px) { .service-row .desc { display: block; } }
+@media (max-width: 900px) { .services-wrap { margin: 0 24px; } }
+@media (max-width: 700px) { .services-wrap { margin: 0; border-radius: 0; } .service-row { grid-template-columns: 40px 1fr auto; } .service-row h3 { font-size: 18px; } }

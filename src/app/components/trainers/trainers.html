@@ -1,0 +1,38 @@
+<section id="trainers">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge gold">Expert Team</div>
+      <h2 class="section-title">Meet Your Trainers</h2>
+      <p class="section-subtitle">Certified professionals dedicated to helping you achieve your fitness goals</p>
+    </div>
+
+    <div class="trainers-grid">
+      @for (trainer of trainers; track trainer.id) {
+        <div class="trainer-card reveal">
+          <div class="trainer-image">
+            <img [src]="trainer.image" [alt]="trainer.name" loading="lazy">
+            <div class="trainer-overlay">
+              <div class="trainer-socials">
+                @if (trainer.instagram) {
+                  <a [href]="trainer.instagram" class="social-link" target="_blank">
+                    <img src="instagram-logo.png" alt="Instagram" class="social-icon">
+                  </a>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h3 class="trainer-name">{{ trainer.name }}</h3>
+            <p class="trainer-specialty">{{ trainer.specialty }}</p>
+            <div class="trainer-stats">
+              <span class="stat-item">{{ trainer.experience }} exp</span>
+              <span class="stat-divider">•</span>
+              <span class="stat-item">{{ trainer.certifications }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

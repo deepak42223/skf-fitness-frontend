@@ -1,0 +1,48 @@
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+      <img src="skf-logo-new.jpg" alt="SKF Fitness Logo" class="logo-img" />
+        </a>
+        <p>SKF Fitness — where champions are built. Expert coaching, personalized training, and nutrition plans designed to help you achieve real, lasting results.</p>
+      </div>
+
+      <!-- Explore -->
+      <div class="footer-col">
+        <h4>Explore</h4>
+        @for (link of explore; track link.label) {
+          <a [href]="link.href">{{ link.label }}</a>
+        }
+      </div>
+
+      <!-- Programs -->
+      <div class="footer-col">
+        <h4>Programs</h4>
+        @for (link of programs; track link.label) {
+          <a [href]="link.href">{{ link.label }}</a>
+        }
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        @for (link of contact; track link.label) {
+          <a [href]="link.href">{{ link.label }}</a>
+        }
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ year }} SKF Fitness. All rights reserved.</span>
+      <div class="socials">
+        @for (s of socials; track s.label) {
+          <a [href]="s.href" [attr.aria-label]="s.label" target="_blank" rel="noopener noreferrer" class="social-link" [innerHTML]="s.svg">
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

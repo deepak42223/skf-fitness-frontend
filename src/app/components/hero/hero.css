@@ -1,0 +1,352 @@
+/* ═══════════════════════════════════════════════════
+   HERO  —  Forge Fitness Style
+   Black · Teal #12E0C4 · Space Grotesk headings
+   ═══════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #0A0A0A;
+  overflow: hidden;
+}
+
+/* ── Layered: Video + Ribbon Canvas ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #0A0A0A;
+}
+
+/* Video — bottom layer, full bleed */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  filter: brightness(0.9) saturate(1.1);
+}
+
+/* Dim overlay on video so ribbon pops */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 14, 0.45);
+  z-index: 1;
+}
+
+/* Ribbon canvas — floats above video, blends with lighter mode */
+.ribbon-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: none;
+  touch-action: none;
+  mix-blend-mode: screen;
+}
+
+/* Final text-readability overlay */
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 8, 14, 0.45) 0%,
+    rgba(8, 8, 14, 0.20) 50%,
+    rgba(8, 8, 14, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Content ── */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 8rem 0 5rem;
+}
+
+/* Two-column grid → single column, centred */
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 78vh;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ══════════════
+   LEFT — TEXT
+   ══════════════ */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: center;
+  animation: hFadeLeft 0.9s ease-out both;
+}
+
+@keyframes hFadeLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #12E0C4;
+  animation: hFadeLeft 0.9s ease-out 0.05s both;
+}
+
+/* Headline — Space Grotesk feel via display variable */
+.hero-headline {
+  font-family: var(--font-family-display);
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin: 0;
+  animation: hFadeLeft 0.9s ease-out 0.1s both;
+}
+
+.headline-teal {
+  color: #3498DB;
+  display: block;
+}
+
+/* Supporting paragraph */
+.hero-para {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #B9B9B9;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  animation: hFadeLeft 0.9s ease-out 0.2s both;
+}
+
+/* CTA row */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  animation: hFadeLeft 0.9s ease-out 0.3s both;
+}
+
+/* Teal pill button */
+.btn-teal-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #12E0C4;
+  color: #0A0A0A;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 0 0 rgba(18,224,196,0.4);
+}
+
+.btn-teal-pill:hover {
+  background: #0BAE96;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(18,224,196,0.35);
+}
+
+/* Text link */
+.btn-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255,255,255,0.3);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-text-link:hover {
+  color: #12E0C4;
+  text-decoration-color: #12E0C4;
+}
+
+.btn-text-link svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-text-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═════════════════════════
+   RIGHT — CARD + CHIPS
+   ═════════════════════════ */
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hFadeRight 0.9s ease-out 0.15s both;
+}
+
+@keyframes hFadeRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Dark illustration card */
+.hero-card {
+  position: relative;
+  background: #141414;
+  border: 1px solid rgba(18, 224, 196, 0.14);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 0 0 1px rgba(18,224,196,0.06),
+    0 40px 80px rgba(0,0,0,0.6);
+  animation: cardFloat 7s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* SVG illustration */
+.hero-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Card bottom label */
+.card-label {
+  margin-top: 1.25rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(18,224,196,0.5);
+  text-align: center;
+}
+
+/* ── Floating stat chips ── */
+.stat-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.14);
+  z-index: 5;
+  animation: chipPop 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+  white-space: nowrap;
+}
+
+.chip-tl {
+  top: -18px;
+  left: -24px;
+  animation-delay: 0.5s;
+}
+
+.chip-br {
+  bottom: -18px;
+  right: -24px;
+  animation-delay: 0.75s;
+}
+
+@keyframes chipPop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.chip-icon {
+  width: 34px; height: 34px;
+  background: rgba(18,224,196,0.10);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chip-num {
+  font-family: var(--font-family-display);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1B0E3D;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.chip-lbl {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #7A7A8A;
+  letter-spacing: 0.3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    text-align: center;
+  }
+  .hero-left  { align-items: center; }
+  .hero-para  { margin: 0 auto; }
+  .hero-actions { justify-content: center; }
+  .hero-right { justify-content: center; padding: 2rem 0; }
+  .hero-card  { max-width: 380px; }
+  .chip-tl    { top: -14px; left: -10px; }
+  .chip-br    { bottom: -14px; right: -10px; }
+  .features-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-content   { padding: 6rem 0 3rem; }
+  .hero-headline  { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+  .hero-card      { max-width: 320px; padding: 1.75rem 1.25rem 1.5rem; }
+  .stat-chip      { padding: 0.5rem 0.75rem; }
+  .chip-num       { font-size: 0.85rem; }
+  .chip-lbl       { font-size: 0.55rem; }
+  .features-forge { padding: 4rem 0; }
+}

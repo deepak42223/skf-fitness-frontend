@@ -1,0 +1,60 @@
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="container">
+    <div class="nav-content">
+
+      <!-- Logo -->
+      <a class="nav-logo" (click)="goHome()" style="cursor:pointer">
+        <img src="skf-logo-new.jpg" alt="SKF Fitness Studio" class="logo-img" />
+      </a>
+
+      <!-- Center Navigation Links -->
+      <ul class="nav-links">
+        <li><a class="nav-link" [class.active]="isActive('home')"       (click)="navigate('home')"       style="cursor:pointer">HOME</a></li>
+        <li><a class="nav-link" [class.active]="isActive('about')"      (click)="navigate('about')"      style="cursor:pointer">ABOUT US</a></li>
+        <li><a class="nav-link" [class.active]="isActive('services')"   (click)="navigate('services')"   style="cursor:pointer">SERVICES</a></li>
+        <li><a class="nav-link" [class.active]="isActive('programs')"   (click)="navigate('programs')"   style="cursor:pointer">PROGRAMS</a></li>
+        <li><a class="nav-link" [class.active]="isActive('trainers')"   (click)="navigate('trainers')"   style="cursor:pointer">TRAINERS</a></li>
+        <li><a class="nav-link" [class.active]="isActive('pricing')"    (click)="navigate('pricing')"    style="cursor:pointer">PRICING</a></li>
+        <li><a class="nav-link" [class.active]="isActive('contact')"    (click)="navigate('contact')"    style="cursor:pointer">CONTACT</a></li>
+      </ul>
+
+      <!-- Right Controls -->
+      <div class="nav-right">
+        <!-- JOIN NOW / Profile -->
+        @if (isLoggedIn()) {
+          <button class="nav-cta" (click)="goToProfile()">
+            👤 {{ userName() }}
+          </button>
+        } @else {
+          <button class="nav-cta" (click)="openAuthModal()">
+            JOIN NOW <span class="cta-arrow">➤</span>
+          </button>
+        }
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div class="mobile-menu" [class.open]="menuOpen()">
+    <ul class="mobile-nav-links">
+      <li><a (click)="navigate('home');     closeMenu()" style="cursor:pointer">HOME</a></li>
+      <li><a (click)="navigate('about');    closeMenu()" style="cursor:pointer">ABOUT US</a></li>
+      <li><a (click)="navigate('services'); closeMenu()" style="cursor:pointer">SERVICES</a></li>
+      <li><a (click)="navigate('programs'); closeMenu()" style="cursor:pointer">PROGRAMS</a></li>
+      <li><a (click)="navigate('trainers'); closeMenu()" style="cursor:pointer">TRAINERS</a></li>
+      <li><a (click)="navigate('pricing');  closeMenu()" style="cursor:pointer">PRICING</a></li>
+      <li><a (click)="navigate('contact');  closeMenu()" style="cursor:pointer">CONTACT</a></li>
+      @if (!isLoggedIn()) {
+        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#3498DB">JOIN NOW ➤</a></li>
+      }
+    </ul>
+  </div>
+</nav>
+
+<!-- Social sidebar removed -->

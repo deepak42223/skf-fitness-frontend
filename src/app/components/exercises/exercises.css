@@ -1,0 +1,53 @@
+.exercise-scroll { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; }
+.exercise-scroll::-webkit-scrollbar { height: 4px; }
+.exercise-scroll::-webkit-scrollbar-track { background: rgba(52, 152, 219, 0.08); border-radius: 4px; }
+.exercise-scroll::-webkit-scrollbar-thumb { background: #3498DB; border-radius: 4px; }
+
+.ex-card { scroll-snap-align: start; flex: 0 0 300px; background: rgba(52, 152, 219, 0.05); border: 1px solid rgba(52, 152, 219, 0.2); border-radius: var(--radius); overflow: hidden; transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; }
+.ex-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(52, 152, 219, 0.25); }
+
+.ex-img-wrap { position: relative; overflow: hidden; height: 220px; }
+.ex-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .5s; filter: brightness(0.85) contrast(1.05) saturate(1.05); }
+.ex-card:hover .ex-img-wrap img { transform: scale(1.06); filter: brightness(0.95) contrast(1.1) saturate(1.1); }
+
+.ex-tag { position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 700; color: #0a0a0a; letter-spacing: 1.5px; text-transform: uppercase; background: #3498DB; padding: 4px 12px; border-radius: 4px; }
+
+/* Gold tag for Strength exercises */
+.ex-card:nth-child(1) .ex-tag,
+.ex-tag.strength {
+  background: linear-gradient(135deg, #F4A623, #F7C948);
+  color: #1a1000;
+  box-shadow: 0 2px 10px rgba(244, 166, 35, 0.45);
+}
+
+/* Gold card border on Strength cards */
+.ex-card:nth-child(1) {
+  border-color: rgba(244, 166, 35, 0.3);
+}
+.ex-card:nth-child(1):hover {
+  box-shadow: 0 20px 48px rgba(244, 166, 35, 0.2);
+  border-color: rgba(244, 166, 35, 0.55);
+}
+
+/* Gold photo-overlay text */
+.photo-overlay span { font-family: var(--font-family-display); font-size: 20px; color: #F4A623; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 12px rgba(244, 166, 35, 0.5); }
+
+@media (max-width: 900px) { .photo-banner { grid-template-columns: 1fr 1fr; height: 260px; } .photo-banner-item.large { display: none; } }
+@media (max-width: 600px) { .photo-banner { grid-template-columns: 1fr; height: 220px; } .ex-card { flex: 0 0 260px; } }
+
+.ex-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+.ex-card h3 { font-family: var(--font-family-display); font-weight: 400; font-size: 20px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; color: #3498DB; }
+.ex-meta { display: flex; color: #85C1E9; font-size: 13px; margin-bottom: 16px; flex: 1; }
+.ex-meta span { margin-right: 14px; }
+.ex-meta span::before { content: '· '; color: #3498DB; }
+.ex-meta span:first-child::before { content: ''; }
+.ex-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #3498DB; border-bottom: 1px solid rgba(52, 152, 219, 0.35); padding-bottom: 2px; transition: gap .2s; width: fit-content; text-decoration: none; }
+.ex-btn:hover { gap: 10px; border-color: #3498DB; }
+.photo-banner { display: grid; grid-template-columns: 1fr 1.6fr 1fr; height: 380px; gap: 4px; overflow: hidden; border-radius: 12px; }
+.photo-banner-item { position: relative; overflow: hidden; }
+.photo-banner-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: brightness(0.8) saturate(1.1) contrast(1.05); transition: transform .5s, filter .5s; }
+.photo-banner-item:hover img { transform: scale(1.06); filter: brightness(0.95) saturate(1.2) contrast(1.1); }
+.photo-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 24px; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 70%); opacity: 0; transition: opacity .3s; }
+.photo-banner-item:hover .photo-overlay { opacity: 1; }
+@media (max-width: 900px) { .photo-banner { grid-template-columns: 1fr 1fr; height: 260px; } .photo-banner-item.large { display: none; } }
+@media (max-width: 600px) { .photo-banner { grid-template-columns: 1fr; height: 220px; } .ex-card { flex: 0 0 260px; } }

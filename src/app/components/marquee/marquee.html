@@ -1,0 +1,10 @@
+<div class="marquee">
+  <div class="marquee-track">
+    @for (item of items; track item; let i = $index) {
+      <span [class.lime]="i % 2 === 0">{{ item }}</span>
+    }
+    @for (item of items; track item + '_dup'; let i = $index) {
+      <span [class.lime]="i % 2 === 0">{{ item }}</span>
+    }
+  </div>
+</div>

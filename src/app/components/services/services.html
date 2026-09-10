@@ -1,0 +1,36 @@
+<div class="services-wrap" id="services">
+  <div class="services-bg">
+    <!-- Landscape video as dark background -->
+    <video
+      src="15079739_1920_1080_30fps.mp4"
+      autoplay muted loop playsinline preload="auto"
+      aria-hidden="true">
+      <img src="danielle-cerullo-CQfNt66ttZM-unsplash.jpg" alt="" />
+    </video>
+    <div class="services-overlay"></div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="red-line"></div>
+          <div class="section-tag">What We Offer</div>
+          <h2>Our Services</h2>
+        </div>
+        <p>Pick a lane, or combine a few — every plan includes a coach check-in every week.</p>
+      </div>
+
+      <div class="services-list">
+        @for (s of services; track s.idx; let last = $last) {
+          <div class="service-row" [class.no-border]="last">
+            <div class="idx">{{ s.idx }}</div>
+            <h3>{{ s.title }}</h3>
+            <div class="desc">{{ s.desc }}</div>
+            <div class="arrow">→</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

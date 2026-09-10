@@ -1,0 +1,35 @@
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">Transformations</div>
+      <h2 class="section-title">Real Results</h2>
+      <p class="section-subtitle">Success stories from members who transformed their lives at SKF Fitness</p>
+    </div>
+
+    <div class="testimonials-grid">
+      @for (testimonial of testimonials; track testimonial.id) {
+        <div class="testimonial-card reveal">
+          <div class="testimonial-content">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">{{ testimonial.text }}</p>
+            <div class="rating">
+              @for (star of [1,2,3,4,5]; track star) {
+                <span class="star">★</span>
+              }
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img [src]="testimonial.image" [alt]="testimonial.name" loading="lazy">
+            </div>
+            <div class="author-info">
+              <h4 class="author-name">{{ testimonial.name }}</h4>
+              <p class="author-detail">{{ testimonial.achievement }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,59 @@
+<section id="features">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="feat-header reveal">
+      <div class="feat-header-left">
+        <div class="feat-eyebrow">
+          <span class="feat-eyebrow-line"></span>
+          WHY CHOOSE US
+        </div>
+        <h2 class="feat-title">
+          EVERYTHING YOU NEED<br>
+          <span class="feat-title-accent">TO PERFORM</span>
+        </h2>
+      </div>
+      <p class="feat-subtitle">
+        Four pillars that shape every program we build —
+        from your first assessment to your hundredth session.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="features-grid">
+      @for (card of cards; track card.title; let i = $index) {
+        <div class="feature-card reveal"
+             [class.reveal-delay-1]="i === 0"
+             [class.reveal-delay-2]="i === 1"
+             [class.reveal-delay-3]="i === 2"
+             [class.reveal-delay-4]="i === 3">
+
+          <!-- Top: number + icon -->
+          <div class="fc-top">
+            <span class="fc-number">0{{ i + 1 }}</span>
+            <div class="fc-icon">{{ card.icon }}</div>
+          </div>
+
+          <!-- Divider -->
+          <div class="fc-divider"></div>
+
+          <!-- Content -->
+          <h3 class="fc-title">{{ card.title }}</h3>
+          <p class="fc-desc">{{ card.desc }}</p>
+
+          <!-- Bottom arrow -->
+          <div class="fc-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+
+          <!-- Hover glow bg -->
+          <div class="fc-glow"></div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,48 @@
+<section id="exercise">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="red-line"></div>
+        <div class="section-tag">Programs</div>
+        <h2>Featured Exercise Blocks</h2>
+      </div>
+      <p>Drop into any program — every block scales to your current level.</p>
+    </div>
+
+    <div class="exercise-scroll">
+      @for (ex of exercises; track ex.title; let i = $index) {
+        <div class="ex-card reveal" [class.reveal-delay-1]="i===0" [class.reveal-delay-2]="i===1" [class.reveal-delay-3]="i===2" [class.reveal-delay-4]="i===3">
+          <div class="ex-img-wrap">
+            <img [src]="ex.img" [alt]="ex.title" />
+            <div class="ex-tag">{{ ex.tag }}</div>
+          </div>
+          <div class="ex-card-body">
+            <h3>{{ ex.title }}</h3>
+            <div class="ex-meta">
+              <span>{{ ex.sets }}</span>
+              <span>{{ ex.time }}</span>
+              <span>{{ ex.kcal }}</span>
+            </div>
+            <a href="#membership" class="ex-btn">Start Program →</a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Photo Banner -->
+<div class="photo-banner">
+  <div class="photo-banner-item">
+    <img src="danielle-cerullo-CQfNt66ttZM-unsplash.jpg" alt="Gym floor" />
+    <div class="photo-overlay"><span>Gym Floor</span></div>
+  </div>
+  <div class="photo-banner-item large">
+    <img src="victor-freitas-WvDYdXDzkhs-unsplash.jpg" alt="Weight Training" />
+    <div class="photo-overlay"><span>Weight Training</span></div>
+  </div>
+  <div class="photo-banner-item">
+    <img src="edgar-chaparro-sHfo3WOgGTU-unsplash.jpg" alt="Personal Training" />
+    <div class="photo-overlay"><span>Personal Training</span></div>
+  </div>
+</div>
