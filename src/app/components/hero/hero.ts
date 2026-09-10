@@ -82,6 +82,12 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.videoSources[this.currentVideoIndex()];
   }
 
+  openAuthModal() {
+    window.dispatchEvent(new CustomEvent('open-auth-modal', {
+      detail: { tab: 'register' }
+    }));
+  }
+
   nextVideo() {
     const next = (this.currentVideoIndex() + 1) % this.videoSources.length;
     this.currentVideoIndex.set(next);
