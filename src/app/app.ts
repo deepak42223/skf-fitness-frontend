@@ -222,20 +222,20 @@ import { AuthService }            from './services/auth.service';
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .anim-bar.active {
-      background: linear-gradient(180deg, #ffa500, #ff8c00);
-      box-shadow: 0 0 18px rgba(255,165,0,0.85);
+      background: linear-gradient(180deg, #3498DB, #1B4F72);
+      box-shadow: 0 0 18px rgba(52,152,219,0.85);
     }
 
     /* ── Login box ── */
     .login-box {
       position: relative;
       z-index: 10;
-      background: rgba(20, 28, 40, 0.97);
-      border: 1px solid rgba(255,165,0,0.15);
+      background: rgba(12, 16, 26, 0.97);
+      border: 1px solid rgba(52,152,219,0.2);
       padding: 28px 32px 24px;
       border-radius: 20px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.7),
-                  0 0 40px rgba(255,165,0,0.08);
+                  0 0 40px rgba(52,152,219,0.08);
       width: 380px;
       max-height: 92vh;
       overflow-y: auto;
@@ -268,7 +268,7 @@ import { AuthService }            from './services/auth.service';
       cursor: pointer; text-transform: uppercase;
       letter-spacing: 1px; transition: all 0.2s;
     }
-    .auth-tab.active { color: #ffa500; border-bottom-color: #ffa500; }
+    .auth-tab.active { color: #3498DB; border-bottom-color: #3498DB; }
     .auth-tab:hover  { color: #aaa; }
 
     /* Form */
@@ -292,8 +292,8 @@ import { AuthService }            from './services/auth.service';
       font-family: inherit;
     }
     .input-group input:focus {
-      border-color: #ffa500;
-      box-shadow: 0 0 14px rgba(255,165,0,0.25);
+      border-color: #3498DB;
+      box-shadow: 0 0 14px rgba(52,152,219,0.25);
     }
     .input-group input::placeholder { color: rgba(255,255,255,0.4); }
     .input-icon {
@@ -321,13 +321,13 @@ import { AuthService }            from './services/auth.service';
       color: rgba(255,255,255,0.45); font-size: 0.75rem;
       text-decoration: none; transition: color 0.2s;
     }
-    .forgot-password a:hover { color: #ffa500; }
+    .forgot-password a:hover { color: #3498DB; }
 
-    /* Login button — orange gradient pill */
+    /* Login button — blue gradient pill */
     .login-btn {
       width: 100%;
       padding: 13px;
-      background: linear-gradient(90deg, #ffa500, #ff8c00);
+      background: linear-gradient(135deg, #1B4F72, #3498DB);
       border: none; border-radius: 25px;
       color: #fff; font-size: 0.9rem;
       font-weight: 700; text-transform: uppercase;
@@ -338,7 +338,7 @@ import { AuthService }            from './services/auth.service';
     }
     .login-btn:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(255,165,0,0.5);
+      box-shadow: 0 10px 28px rgba(52,152,219,0.5);
     }
     .login-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 

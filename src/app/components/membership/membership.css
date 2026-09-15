@@ -1,8 +1,8 @@
 /* ════════════════════════════════════════════════
    MEMBERSHIP — 3D Electric Cards
-   Card 1: Green  #48dd84  — Basic
-   Card 2: Cyan   #48c4dd  — Pro
-   Card 3: Gold   #F4A623  — Elite
+   Card 1: Neutral white  — Basic
+   Card 2: Blue  #3498DB  — Pro
+   Card 3: Gold  #F4A623  — Elite
    ════════════════════════════════════════════════ */
 
 /* ── Section ── */
@@ -47,24 +47,27 @@
   cursor: pointer;
 }
 
+/* ── Card 1 wrapper — Basic (neutral) ── */
 .ec-wrapper-1 {
   background:
-    linear-gradient(-30deg, rgba(72,221,132,0.4), transparent, rgba(72,221,132,0.4)),
-    linear-gradient(to bottom, #0e0e12, #0e0e12);
+    linear-gradient(-30deg, rgba(255,255,255,0.06), transparent, rgba(255,255,255,0.06)),
+    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
 }
 .ec-wrapper-1:hover { transform: rotateY(-12deg) rotateX(8deg) translateY(-8px); }
 
+/* ── Card 2 wrapper — Pro (blue) ── */
 .ec-wrapper-2 {
   background:
-    linear-gradient(-30deg, rgba(72,196,221,0.4), transparent, rgba(72,196,221,0.4)),
-    linear-gradient(to bottom, #0e0e12, #0e0e12);
+    linear-gradient(-30deg, rgba(52,152,219,0.35), transparent, rgba(52,152,219,0.35)),
+    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
 }
 .ec-wrapper-2:hover { transform: rotateY(12deg) rotateX(8deg) translateY(-8px); }
 
+/* ── Card 3 wrapper — Elite (gold) ── */
 .ec-wrapper-3 {
   background:
     linear-gradient(-30deg, rgba(244,166,35,0.35), transparent, rgba(244,166,35,0.35)),
-    linear-gradient(to bottom, #0e0e12, #0e0e12);
+    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
 }
 .ec-wrapper-3:hover { transform: rotateY(-12deg) rotateX(-8deg) translateY(-8px); }
 
@@ -81,9 +84,9 @@
   margin-top: -4px;
   margin-left: -4px;
 }
-.ec-main-1 { border: 2px solid #48dd84; filter: url(#ec-turbulent-1); }
-.ec-main-2 { border: 2px solid #48c4dd; filter: url(#ec-turbulent-2); }
-.ec-main-3 { border: 2px solid #F4A623; filter: url(#ec-turbulent-3); }
+.ec-main-1 { border: 2px solid rgba(255,255,255,0.15); filter: url(#ec-turbulent-1); }
+.ec-main-2 { border: 2px solid #3498DB;               filter: url(#ec-turbulent-2); }
+.ec-main-3 { border: 2px solid #F4A623;               filter: url(#ec-turbulent-3); }
 
 /* ── Border sizing — height driven by content inside ── */
 .ec-border {
@@ -105,12 +108,12 @@
   width: calc(100% - 4px);
   height: calc(100% - 4px);
 }
-.ec-glow-a-1 { border: 2px solid rgba(72,221,132,0.6); filter: blur(1px); }
-.ec-glow-b-1 { border: 2px solid #48dd84;              filter: blur(4px); }
-.ec-glow-a-2 { border: 2px solid rgba(72,196,221,0.6); filter: blur(1px); }
-.ec-glow-b-2 { border: 2px solid #48c4dd;              filter: blur(4px); }
-.ec-glow-a-3 { border: 2px solid rgba(244,166,35,0.6); filter: blur(1px); }
-.ec-glow-b-3 { border: 2px solid #F4A623;              filter: blur(4px); }
+.ec-glow-a-1 { border: 2px solid rgba(255,255,255,0.2);  filter: blur(1px); }
+.ec-glow-b-1 { border: 2px solid rgba(255,255,255,0.25); filter: blur(4px); }
+.ec-glow-a-2 { border: 2px solid rgba(52,152,219,0.6);   filter: blur(1px); }
+.ec-glow-b-2 { border: 2px solid #3498DB;                filter: blur(4px); }
+.ec-glow-a-3 { border: 2px solid rgba(244,166,35,0.6);   filter: blur(1px); }
+.ec-glow-b-3 { border: 2px solid #F4A623;                filter: blur(4px); }
 
 /* ── Overlay ── */
 .ec-overlay {
@@ -131,8 +134,8 @@
   opacity: 0.3; z-index: -1;
   pointer-events: none;
 }
-.ec-bg-glow-1 { background: linear-gradient(-30deg, #48dd84, transparent, #48dd84); }
-.ec-bg-glow-2 { background: linear-gradient(-30deg, #48c4dd, transparent, #48c4dd); }
+.ec-bg-glow-1 { background: linear-gradient(-30deg, rgba(255,255,255,0.08), transparent, rgba(255,255,255,0.08)); }
+.ec-bg-glow-2 { background: linear-gradient(-30deg, #3498DB, transparent, #64B5F6); }
 .ec-bg-glow-3 { background: linear-gradient(-30deg, #F4A623, transparent, #F7C948); }
 
 /* ═══════════════

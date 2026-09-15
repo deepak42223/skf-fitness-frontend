@@ -377,23 +377,22 @@
 
   /* Animated neon border via outline trick */
   box-shadow:
-    0 0 0 2px #12E0C4,
-    0 0 12px rgba(18, 224, 196, 0.4),
+    0 0 0 2px #3498DB,
+    0 0 12px rgba(52, 152, 219, 0.4),
     0 0 24px rgba(52, 152, 219, 0.2);
-  animation: neonBorderCycle 3s linear infinite;
+  animation: neonBorderCycle 3s ease-in-out infinite;
 }
 
 @keyframes neonBorderCycle {
-  0%   { box-shadow: 0 0 0 2px #12E0C4, 0 0 14px rgba(18,224,196,0.5), 0 0 28px rgba(18,224,196,0.2); }
-  33%  { box-shadow: 0 0 0 2px #3498DB, 0 0 14px rgba(52,152,219,0.5), 0 0 28px rgba(52,152,219,0.2); }
-  66%  { box-shadow: 0 0 0 2px #a855f7, 0 0 14px rgba(168,85,247,0.5), 0 0 28px rgba(168,85,247,0.2); }
-  100% { box-shadow: 0 0 0 2px #12E0C4, 0 0 14px rgba(18,224,196,0.5), 0 0 28px rgba(18,224,196,0.2); }
+  0%   { box-shadow: 0 0 0 2px #3498DB, 0 0 14px rgba(52,152,219,0.6), 0 0 28px rgba(52,152,219,0.2); }
+  50%  { box-shadow: 0 0 0 2px #F4A623, 0 0 14px rgba(244,166,35,0.6), 0 0 28px rgba(244,166,35,0.2); }
+  100% { box-shadow: 0 0 0 2px #3498DB, 0 0 14px rgba(52,152,219,0.6), 0 0 28px rgba(52,152,219,0.2); }
 }
 
 .btn-neon-render:hover {
   transform: translateY(-3px) scale(1.05);
-  color: #12E0C4;
-  background: rgba(18, 224, 196, 0.08);
+  color: #64B5F6;
+  background: rgba(52, 152, 219, 0.08);
 }
 
 /* Remove old span-based styles */
