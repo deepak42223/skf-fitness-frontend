@@ -1,6 +1,7 @@
 footer {
-  background: #000000;
-  border-top: 3px solid #3498DB;
+  background: var(--bg-elevated);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--energy), var(--accent)) 1;
   padding: 70px 0 30px;
   position: relative;
 }

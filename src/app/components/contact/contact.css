@@ -600,3 +600,19 @@
   .form-row { grid-template-columns: 1fr; }
   .contact-form-wrap { padding: 1.5rem; }
 }
+
+/* ── v3 upgrades ── */
+#contact { background: var(--bg-elevated); }
+.contact-form-wrap { background: var(--bg-surface); border-color: rgba(46,155,255,0.15); }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.form-field label { color: var(--energy); }
+.form-submit {
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent)) !important;
+  box-shadow: 0 8px 28px var(--accent-glow) !important;
+}
+.form-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light)) !important;
+  box-shadow: 0 14px 40px var(--accent-glow) !important;
+}

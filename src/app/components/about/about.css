@@ -2,7 +2,7 @@
    ABOUT - SKF DARK CARD LAYOUT
    ════════════════════════════ */
 #about {
-  background: #0a0d1a;
+  background: var(--bg-elevated);
   padding: 5rem 0;
 }
 
@@ -84,8 +84,8 @@
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #3498DB;
-  text-shadow: 0 0 16px rgba(52, 152, 219, 0.5);
+  color: var(--energy);
+  text-shadow: 0 0 16px var(--energy-glow);
 }
 
 .about-heading {

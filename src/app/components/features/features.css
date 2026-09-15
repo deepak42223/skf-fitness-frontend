@@ -2,7 +2,7 @@
    FEATURES — Premium redesign
    ════════════════════════════════════════ */
 #features {
-  background: #0a0c14;
+  background: var(--bg-base);
   padding: 6rem 0 5rem;
 }
 
@@ -31,16 +31,17 @@
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #3498DB;
+  color: var(--energy);
 }
 
 .feat-eyebrow-line {
   display: block;
   width: 32px;
   height: 2px;
-  background: #3498DB;
+  background: linear-gradient(90deg, var(--energy), var(--accent));
   border-radius: 2px;
   flex-shrink: 0;
+  box-shadow: 0 0 8px var(--energy-glow);
 }
 
 /* Title */
@@ -55,10 +56,7 @@
   margin: 0;
 }
 
-.feat-title-accent {
-  color: #3498DB;
-  display: block;
-}
+.feat-title-accent  { color: var(--accent-light); display: block; }
 
 /* Subtitle */
 .feat-subtitle {
@@ -81,8 +79,8 @@
 
 .feature-card {
   position: relative;
-  background: #0f1520;
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
   border-radius: 18px;
   padding: 2rem 1.75rem 1.75rem;
   display: flex;
@@ -262,3 +260,116 @@
   .features-grid { grid-template-columns: 1fr; }
   #features { padding: 4rem 0; }
 }
+
+/* ════════════════════════════════════════
+   BRIGHT COLORS — per card
+   ════════════════════════════════════════ */
+
+/* Card 1 — Electric Cyan */
+.feature-card:nth-child(1) .fc-icon {
+  background: rgba(0, 212, 255, 0.10);
+  border-color: rgba(0, 212, 255, 0.30);
+}
+.feature-card:nth-child(1) .fc-number { color: rgba(0, 212, 255, 0.20); }
+.feature-card:nth-child(1):hover .fc-icon {
+  background: rgba(0, 212, 255, 0.20);
+  border-color: rgba(0, 212, 255, 0.60);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35);
+}
+.feature-card:nth-child(1):hover .fc-number { color: rgba(0, 212, 255, 0.50); }
+.feature-card:nth-child(1):hover .fc-title  { color: #00D4FF; }
+.feature-card:nth-child(1):hover .fc-divider{ background: rgba(0, 212, 255, 0.30); }
+.feature-card:nth-child(1):hover .fc-arrow  {
+  background: #00D4FF; border-color: #00D4FF; color: #000;
+  box-shadow: 0 6px 20px rgba(0,212,255,0.45);
+}
+.feature-card:nth-child(1):hover .fc-glow {
+  background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+}
+.feature-card:nth-child(1):hover {
+  border-color: rgba(0, 212, 255, 0.40);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 40px rgba(0,212,255,0.10);
+}
+
+/* Card 2 — Neon Green */
+.feature-card:nth-child(2) .fc-icon {
+  background: rgba(57, 255, 20, 0.08);
+  border-color: rgba(57, 255, 20, 0.25);
+}
+.feature-card:nth-child(2) .fc-number { color: rgba(57, 255, 20, 0.18); }
+.feature-card:nth-child(2):hover .fc-icon {
+  background: rgba(57, 255, 20, 0.15);
+  border-color: rgba(57, 255, 20, 0.55);
+  box-shadow: 0 8px 24px rgba(57, 255, 20, 0.30);
+}
+.feature-card:nth-child(2):hover .fc-number  { color: rgba(57, 255, 20, 0.45); }
+.feature-card:nth-child(2):hover .fc-title   { color: #39FF14; }
+.feature-card:nth-child(2):hover .fc-divider { background: rgba(57, 255, 20, 0.25); }
+.feature-card:nth-child(2):hover .fc-arrow   {
+  background: #39FF14; border-color: #39FF14; color: #000;
+  box-shadow: 0 6px 20px rgba(57,255,20,0.40);
+}
+.feature-card:nth-child(2):hover .fc-glow {
+  background: radial-gradient(circle, rgba(57,255,20,0.12) 0%, transparent 70%);
+}
+.feature-card:nth-child(2):hover {
+  border-color: rgba(57, 255, 20, 0.35);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 40px rgba(57,255,20,0.08);
+}
+
+/* Card 3 — Bright Orange */
+.feature-card:nth-child(3) .fc-icon {
+  background: rgba(255, 107, 53, 0.10);
+  border-color: rgba(255, 107, 53, 0.25);
+}
+.feature-card:nth-child(3) .fc-number { color: rgba(255, 107, 53, 0.20); }
+.feature-card:nth-child(3):hover .fc-icon {
+  background: rgba(255, 107, 53, 0.18);
+  border-color: rgba(255, 107, 53, 0.55);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+}
+.feature-card:nth-child(3):hover .fc-number  { color: rgba(255, 107, 53, 0.50); }
+.feature-card:nth-child(3):hover .fc-title   { color: #FF6B35; }
+.feature-card:nth-child(3):hover .fc-divider { background: rgba(255, 107, 53, 0.25); }
+.feature-card:nth-child(3):hover .fc-arrow   {
+  background: #FF6B35; border-color: #FF6B35; color: #fff;
+  box-shadow: 0 6px 20px rgba(255,107,53,0.40);
+}
+.feature-card:nth-child(3):hover .fc-glow {
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+}
+.feature-card:nth-child(3):hover {
+  border-color: rgba(255, 107, 53, 0.35);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 40px rgba(255,107,53,0.08);
+}
+
+/* Card 4 — Vivid Purple */
+.feature-card:nth-child(4) .fc-icon {
+  background: rgba(191, 90, 242, 0.10);
+  border-color: rgba(191, 90, 242, 0.25);
+}
+.feature-card:nth-child(4) .fc-number { color: rgba(191, 90, 242, 0.20); }
+.feature-card:nth-child(4):hover .fc-icon {
+  background: rgba(191, 90, 242, 0.18);
+  border-color: rgba(191, 90, 242, 0.55);
+  box-shadow: 0 8px 24px rgba(191, 90, 242, 0.35);
+}
+.feature-card:nth-child(4):hover .fc-number  { color: rgba(191, 90, 242, 0.50); }
+.feature-card:nth-child(4):hover .fc-title   { color: #BF5AF2; }
+.feature-card:nth-child(4):hover .fc-divider { background: rgba(191, 90, 242, 0.25); }
+.feature-card:nth-child(4):hover .fc-arrow   {
+  background: #BF5AF2; border-color: #BF5AF2; color: #fff;
+  box-shadow: 0 6px 20px rgba(191,90,242,0.40);
+}
+.feature-card:nth-child(4):hover .fc-glow {
+  background: radial-gradient(circle, rgba(191,90,242,0.12) 0%, transparent 70%);
+}
+.feature-card:nth-child(4):hover {
+  border-color: rgba(191, 90, 242, 0.35);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 40px rgba(191,90,242,0.08);
+}
+
+/* Feat eyebrow — bright cyan */
+.feat-eyebrow       { color: #00D4FF; }
+.feat-eyebrow-line  { background: linear-gradient(90deg, #00D4FF, #BF5AF2); box-shadow: 0 0 8px rgba(0,212,255,0.5); }
+.feat-title-accent  { color: #00D4FF; }

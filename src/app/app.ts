@@ -222,20 +222,20 @@ import { AuthService }            from './services/auth.service';
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .anim-bar.active {
-      background: linear-gradient(180deg, #3498DB, #1B4F72);
-      box-shadow: 0 0 18px rgba(52,152,219,0.85);
+      background: linear-gradient(180deg, #12E0C4, #2E9BFF);
+      box-shadow: 0 0 18px rgba(18,224,196,0.85);
     }
 
     /* ── Login box ── */
     .login-box {
       position: relative;
       z-index: 10;
-      background: rgba(12, 16, 26, 0.97);
-      border: 1px solid rgba(52,152,219,0.2);
+      background: rgba(27, 32, 48, 0.98);
+      border: 1px solid rgba(46,155,255,0.25);
       padding: 28px 32px 24px;
       border-radius: 20px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.7),
-                  0 0 40px rgba(52,152,219,0.08);
+                  0 0 40px rgba(46,155,255,0.08);
       width: 380px;
       max-height: 92vh;
       overflow-y: auto;
@@ -268,7 +268,7 @@ import { AuthService }            from './services/auth.service';
       cursor: pointer; text-transform: uppercase;
       letter-spacing: 1px; transition: all 0.2s;
     }
-    .auth-tab.active { color: #3498DB; border-bottom-color: #3498DB; }
+    .auth-tab.active { color: #2E9BFF; border-bottom-color: #2E9BFF; }
     .auth-tab:hover  { color: #aaa; }
 
     /* Form */
@@ -292,8 +292,8 @@ import { AuthService }            from './services/auth.service';
       font-family: inherit;
     }
     .input-group input:focus {
-      border-color: #3498DB;
-      box-shadow: 0 0 14px rgba(52,152,219,0.25);
+      border-color: #2E9BFF;
+      box-shadow: 0 0 14px rgba(46,155,255,0.25);
     }
     .input-group input::placeholder { color: rgba(255,255,255,0.4); }
     .input-icon {
@@ -327,7 +327,7 @@ import { AuthService }            from './services/auth.service';
     .login-btn {
       width: 100%;
       padding: 13px;
-      background: linear-gradient(135deg, #1B4F72, #3498DB);
+      background: linear-gradient(135deg, #1668C2, #2E9BFF);
       border: none; border-radius: 25px;
       color: #fff; font-size: 0.9rem;
       font-weight: 700; text-transform: uppercase;
@@ -338,7 +338,7 @@ import { AuthService }            from './services/auth.service';
     }
     .login-btn:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(52,152,219,0.5);
+      box-shadow: 0 10px 28px rgba(46,155,255,0.5);
     }
     .login-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -359,8 +359,8 @@ import { AuthService }            from './services/auth.service';
 
     /* Signup link */
     .signup-link { text-align:center; margin-top: 1rem; }
-    .signup-link a { color:#ffa500; font-size:0.82rem; font-weight:600; text-decoration:none; transition: color 0.2s; }
-    .signup-link a:hover { color:#ff8c00; text-decoration: underline; }
+    .signup-link a { color: #3498DB; font-size:0.82rem; font-weight:600; text-decoration:none; transition: color 0.2s; }
+    .signup-link a:hover { color: #64B5F6; text-decoration: underline; }
 
     /* Feedback */
     .auth-error {

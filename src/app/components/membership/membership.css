@@ -7,7 +7,7 @@
 
 /* ── Section ── */
 #pricing {
-  background: #0a0c14;
+  background: var(--bg-elevated);
   padding: 6rem 0 5rem;
 }
 
@@ -50,24 +50,24 @@
 /* ── Card 1 wrapper — Basic (neutral) ── */
 .ec-wrapper-1 {
   background:
-    linear-gradient(-30deg, rgba(255,255,255,0.06), transparent, rgba(255,255,255,0.06)),
-    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
+    linear-gradient(-30deg, rgba(255,255,255,0.05), transparent, rgba(255,255,255,0.05)),
+    linear-gradient(to bottom, var(--bg-surface), var(--bg-surface));
 }
 .ec-wrapper-1:hover { transform: rotateY(-12deg) rotateX(8deg) translateY(-8px); }
 
-/* ── Card 2 wrapper — Pro (blue) ── */
+/* ── Card 2 wrapper — Pro (accent blue) ── */
 .ec-wrapper-2 {
   background:
-    linear-gradient(-30deg, rgba(52,152,219,0.35), transparent, rgba(52,152,219,0.35)),
-    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
+    linear-gradient(-30deg, rgba(46,155,255,0.30), transparent, rgba(46,155,255,0.30)),
+    linear-gradient(to bottom, var(--bg-surface), var(--bg-surface));
 }
 .ec-wrapper-2:hover { transform: rotateY(12deg) rotateX(8deg) translateY(-8px); }
 
 /* ── Card 3 wrapper — Elite (gold) ── */
 .ec-wrapper-3 {
   background:
-    linear-gradient(-30deg, rgba(244,166,35,0.35), transparent, rgba(244,166,35,0.35)),
-    linear-gradient(to bottom, var(--bg-elevated), var(--bg-elevated));
+    linear-gradient(-30deg, rgba(255,182,39,0.30), transparent, rgba(255,182,39,0.30)),
+    linear-gradient(to bottom, var(--bg-surface), var(--bg-surface));
 }
 .ec-wrapper-3:hover { transform: rotateY(-12deg) rotateX(-8deg) translateY(-8px); }
 
@@ -96,8 +96,8 @@
   position: relative;
   min-height: 520px;
 }
-.ec-border-1 { border: 2px solid rgba(72,221,132,0.5); }
-.ec-border-2 { border: 2px solid rgba(72,196,221,0.5); }
+.ec-border-1 { border: 2px solid var(--border-light); }
+.ec-border-2 { border: 2px solid rgba(52,152,219,0.5); }
 .ec-border-3 { border: 2px solid rgba(244,166,35,0.5); }
 
 /* ── Glow layers — stretch to ec-border height ── */
@@ -197,9 +197,9 @@
 .ec-popular {
   font-size: 0.68rem; font-weight: 800;
   letter-spacing: 1px; text-transform: uppercase;
-  color: #48c4dd;
-  background: rgba(72,196,221,0.1);
-  border: 1px solid rgba(72,196,221,0.3);
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid rgba(52,152,219,0.4);
   border-radius: 999px; padding: 4px 10px;
 }
 .ec-popular-gold {
@@ -251,7 +251,7 @@
   width: 16px; height: 16px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   margin-top: 1px;
-  background: rgba(72,196,221,0.25); color: #48c4dd;
+  background: var(--accent-glow); color: var(--accent);
 }
 
 /* CTA button */
@@ -269,18 +269,19 @@
 .ec-cta:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
 
 .ec-cta-featured {
-  background: linear-gradient(135deg, #48c4dd, #2196f3);
-  border-color: #48c4dd; color: #fff;
-  box-shadow: 0 8px 24px rgba(72,196,221,0.4);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent-light));
+  border-color: var(--accent); color: #fff;
+  box-shadow: 0 8px 28px var(--accent-glow);
 }
 .ec-cta-featured:hover {
-  box-shadow: 0 12px 32px rgba(72,196,221,0.55);
+  box-shadow: 0 14px 40px var(--accent-glow);
+  transform: translateY(-3px);
 }
 
 .ec-cta-elite {
-  background: linear-gradient(135deg, #F4A623, #F7C948);
-  border-color: #F4A623; color: #1a1000;
-  box-shadow: 0 8px 24px rgba(244,166,35,0.4);
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-color: var(--gold); color: #1a1000;
+  box-shadow: 0 8px 28px var(--gold-glow);
 }
 .ec-cta-elite:hover {
   box-shadow: 0 12px 32px rgba(244,166,35,0.55);

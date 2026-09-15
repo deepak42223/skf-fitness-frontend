@@ -188,3 +188,32 @@
   color: #D0D0D0;
   font-size: 1rem;
 }
+
+/* ── Bright accent upgrades ── */
+.section-badge  { color: #00D4FF; border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.06); }
+.section-title  { background: linear-gradient(135deg, #fff 40%, #00D4FF 100%);
+                  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                  background-clip: text; }
+.quote-icon     { color: #FF6B35; opacity: 0.5; }
+.star           { color: #F4A623; filter: drop-shadow(0 0 5px rgba(244,166,35,0.7)); }
+.author-detail  { color: #00D4FF; }
+.testimonial-card:hover { border-color: rgba(0,212,255,0.4); box-shadow: 0 20px 50px rgba(0,212,255,0.10); }
+
+/* ── v3 upgrades ── */
+#testimonials    { background: var(--bg-base); }
+.testimonial-card{ background: var(--bg-elevated); border-color: var(--border); }
+.section-title   { color: var(--text-primary); }
+.testimonial-card:hover { border-color: var(--accent); box-shadow: 0 20px 50px var(--accent-glow); }
+.author-detail   { color: var(--energy); }
+.star            { color: var(--gold); filter: drop-shadow(0 0 5px var(--gold-glow)); }
+.quote-icon      { color: var(--gold); opacity: 0.45; }
+/* Energy accent line above quote */
+.testimonial-content::before {
+  content: '';
+  display: block;
+  width: 32px; height: 3px;
+  background: linear-gradient(90deg, var(--energy), var(--accent));
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 8px var(--energy-glow);
+}
