@@ -222,20 +222,20 @@ import { AuthService }            from './services/auth.service';
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .anim-bar.active {
-      background: linear-gradient(180deg, #12E0C4, #2E9BFF);
-      box-shadow: 0 0 18px rgba(18,224,196,0.85);
+      background: linear-gradient(180deg, #FFD700, #FF6B35);
+      box-shadow: 0 0 18px rgba(255,215,0,0.85);
     }
 
     /* ── Login box ── */
     .login-box {
       position: relative;
       z-index: 10;
-      background: rgba(27, 32, 48, 0.98);
-      border: 1px solid rgba(46,155,255,0.25);
+      background: rgba(25, 80, 58, 0.98);
+      border: 1px solid rgba(255,255,255,0.20);
       padding: 28px 32px 24px;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7),
-                  0 0 40px rgba(46,155,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4),
+                  0 0 40px rgba(255,215,0,0.08);
       width: 380px;
       max-height: 92vh;
       overflow-y: auto;
@@ -268,7 +268,7 @@ import { AuthService }            from './services/auth.service';
       cursor: pointer; text-transform: uppercase;
       letter-spacing: 1px; transition: all 0.2s;
     }
-    .auth-tab.active { color: #2E9BFF; border-bottom-color: #2E9BFF; }
+    .auth-tab.active { color: #FFD700; border-bottom-color: #FFD700; }
     .auth-tab:hover  { color: #aaa; }
 
     /* Form */
@@ -323,13 +323,13 @@ import { AuthService }            from './services/auth.service';
     }
     .forgot-password a:hover { color: #3498DB; }
 
-    /* Login button — blue gradient pill */
+    /* Login button — gold gradient */
     .login-btn {
       width: 100%;
       padding: 13px;
-      background: linear-gradient(135deg, #1668C2, #2E9BFF);
+      background: linear-gradient(135deg, #C8A800, #FFD700);
       border: none; border-radius: 25px;
-      color: #fff; font-size: 0.9rem;
+      color: #12141C; font-size: 0.9rem;
       font-weight: 700; text-transform: uppercase;
       letter-spacing: 1px; cursor: pointer;
       transition: all 0.3s ease;
@@ -338,7 +338,7 @@ import { AuthService }            from './services/auth.service';
     }
     .login-btn:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(46,155,255,0.5);
+      box-shadow: 0 10px 28px rgba(255,215,0,0.5);
     }
     .login-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 

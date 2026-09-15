@@ -21,17 +21,6 @@
   background: var(--bg-base);
 }
 
-/* Video — bottom layer, full bleed */
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.75;
-  filter: brightness(0.9) saturate(1.1);
-}
-
 /* Dim overlay on video so ribbon pops */
 .hero-video-overlay {
   position: absolute;
@@ -395,3 +384,19 @@
 .btn-neon-glow,
 .btn-neon-particles,
 .btn-neon-particles i { display: none; }
+
+/* ── Video — lighter overlay for light mode ── */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: brightness(1.1) saturate(0.8);
+}
+
+/* Light mode headline override */
+.hero-headline { color: var(--text-primary); }
+.hero-para     { color: var(--text-secondary); }
+.headline-teal { color: var(--accent); }

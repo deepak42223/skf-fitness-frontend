@@ -79,8 +79,8 @@
 
 .feature-card {
   position: relative;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.20);
   border-radius: 18px;
   padding: 2rem 1.75rem 1.75rem;
   display: flex;
@@ -168,7 +168,6 @@
   background: rgba(52, 152, 219, 0.25);
 }
 
-/* ── Title ── */
 .fc-title {
   font-family: var(--font-family-display);
   font-size: 1.05rem;
@@ -181,23 +180,17 @@
   transition: color 0.35s ease;
 }
 
-.feature-card:hover .fc-title {
-  color: #64B5F6;
-}
+.feature-card:hover .fc-title { color: var(--accent); }
 
-/* ── Description ── */
 .fc-desc {
   font-size: 0.85rem;
   line-height: 1.7;
-  color: #6A7D90;
-  margin: 0;
-  flex: 1;
+  color: rgba(255,255,255,0.75);
+  margin: 0; flex: 1;
   transition: color 0.35s ease;
 }
 
-.feature-card:hover .fc-desc {
-  color: #8DA8C0;
-}
+.feature-card:hover .fc-desc { color: rgba(255,255,255,0.90); }
 
 /* ── Bottom arrow ── */
 .fc-arrow {

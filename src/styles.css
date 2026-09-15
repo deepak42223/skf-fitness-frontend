@@ -8,55 +8,55 @@
   --font-family-display: 'Bebas Neue', 'Anton', 'Impact', sans-serif;
   --font-family-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* ── Backgrounds — lifted navy-charcoal ── */
-  --bg-base:        #10131C;
-  --bg-elevated:    #1B2030;
-  --bg-surface:     #242B3D;
+  /* ── Backgrounds — Sea Green theme ── */
+  --bg-base:        #257959;   /* Sea Green — main background */
+  --bg-elevated:    #1e6349;   /* Darker green — section alternation */
+  --bg-surface:     #2d8f69;   /* Lighter green — cards, inputs */
 
   /* Legacy aliases */
-  --bg-primary:     #10131C;
-  --bg-secondary:   #1B2030;
-  --bg-tertiary:    #242B3D;
+  --bg-primary:     #257959;
+  --bg-secondary:   #1e6349;
+  --bg-tertiary:    #2d8f69;
 
-  /* ── Text ── */
+  /* ── Text — white on green ── */
   --text-primary:   #FFFFFF;
-  --text-secondary: #C3CAD9;
-  --text-muted:     #8A93A8;
+  --text-secondary: #d4ede5;
+  --text-muted:     #a8cfc0;
 
-  /* ── Primary accent — Electric Blue ── */
-  --accent:         #2E9BFF;
-  --accent-light:   #6BC1FF;
-  --accent-dark:    #1668C2;
-  --accent-glow:    rgba(46,155,255,0.4);
+  /* ── Primary accent — bright white-gold ── */
+  --accent:         #FFD700;   /* Gold — pops on green */
+  --accent-light:   #FFE84D;
+  --accent-dark:    #C8A800;
+  --accent-glow:    rgba(255,215,0,0.4);
 
-  /* ── Premium accent — Gold ── */
-  --gold:           #FFB627;
-  --gold-light:     #FFD166;
-  --gold-dark:      #D68C0F;
-  --gold-glow:      rgba(255,182,39,0.4);
+  /* ── Premium accent — warm coral ── */
+  --gold:           #FF6B35;   /* Coral-orange */
+  --gold-light:     #FF8C5A;
+  --gold-dark:      #CC4A1A;
+  --gold-glow:      rgba(255,107,53,0.4);
 
-  /* ── Energy accent — Teal (3-4 spots only) ── */
-  --energy:         #12E0C4;
-  --energy-glow:    rgba(18,224,196,0.4);
+  /* ── Energy accent — bright lime ── */
+  --energy:         #ADFF2F;   /* Lime — energy on green */
+  --energy-glow:    rgba(173,255,47,0.4);
 
   /* ── Neon feature accents ── */
   --neon-blue:      #00D4FF;
-  --neon-green:     #39FF14;
+  --neon-green:     #ADFF2F;
   --neon-orange:    #FF6B35;
-  --neon-purple:    #BF5AF2;
+  --neon-purple:    #E040FB;
 
   /* ── Structure ── */
-  --border:         #323A50;
+  --border:         rgba(255,255,255,0.18);
   --border-light:   rgba(255,255,255,0.10);
-  --shadow:         rgba(0,0,0,0.4);
-  --card-bg:        #1B2030;
-  --input-bg:       #242B3D;
+  --shadow:         rgba(0,0,0,0.25);
+  --card-bg:        #2d8f69;
+  --input-bg:       #1e6349;
 
   /* ── Status ── */
-  --success: #2ECC71;
+  --success: #ADFF2F;
   --error:   #FF5C5C;
-  --warning: #FFB627;
-  --info:    #2E9BFF;
+  --warning: #FFD700;
+  --info:    #00D4FF;
 
   /* Layout */
   --container-max:  1200px;
@@ -529,8 +529,8 @@ section {
 
 .section-badge {
   display: inline-block;
-  background: rgba(18, 224, 196, 0.08);
-  color: var(--energy);
+  background: rgba(255,255,255,0.15);
+  color: #FFFFFF;
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
   font-size: 0.875rem;
@@ -538,8 +538,7 @@ section {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 1rem;
-  border: 1px solid rgba(18, 224, 196, 0.35);
-  box-shadow: 0 0 12px rgba(18, 224, 196, 0.15);
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
 .section-title {
@@ -744,13 +743,12 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--energy);
+  color: var(--accent);
   padding: 5px 14px;
-  border: 1px solid rgba(18, 224, 196, 0.35);
+  border: 1px solid rgba(255,215,0,0.45);
   border-radius: 4px;
   margin-bottom: 18px;
-  background: rgba(18, 224, 196, 0.06);
-  box-shadow: 0 0 10px rgba(18, 224, 196, 0.12);
+  background: rgba(255,215,0,0.10);
 }
 
 .section-head {
@@ -761,17 +759,15 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 64px;
   flex-wrap: wrap;
 }
-.section-head h2 { font-size: clamp(34px, 4vw, 54px); max-width: 600px; color: #FFFFFF; }
-.section-head p  { color: #D0D0D0; max-width: 360px; font-size: 15.5px; line-height: 1.6; padding-bottom: 6px; }
-
+.section-head h2 { font-size: clamp(34px, 4vw, 54px); max-width: 600px; color: var(--text-primary); }
+.section-head p  { color: var(--text-secondary); max-width: 360px; font-size: 15.5px; line-height: 1.6; padding-bottom: 6px; }
 /* Blue underline accent — bright neon */
 .red-line {
   width: 48px;
   height: 4px;
-  background: linear-gradient(90deg, var(--energy), var(--accent));
+  background: linear-gradient(90deg, var(--accent), var(--energy));
   border-radius: 2px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px var(--energy-glow);
 }
 
 /* ════════════════════════════
