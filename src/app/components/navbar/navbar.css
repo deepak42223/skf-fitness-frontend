@@ -5,10 +5,10 @@
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(30, 99, 73, 0.95);
+  background: rgba(24, 27, 32, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(52,152,219,0.12);
   padding: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation: navSlideDown 0.8s ease-out;
@@ -20,11 +20,11 @@
 }
 
 .navbar.scrolled {
-  background: rgba(25, 80, 58, 0.99);
+  background: rgba(24, 27, 32, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255,215,0,0.2);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(52,152,219,0.25);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.6);
 }
 
 .nav-content {
@@ -68,7 +68,7 @@
 }
 
 .nav-link {
-  color: rgba(255,255,255,0.85);
+  color: var(--text-secondary);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.775rem;
@@ -82,8 +82,8 @@
 }
 
 .nav-link:hover {
-  color: var(--accent);
-  background: rgba(255,255,255,0.10);
+  color: var(--accent-dark);
+  background: rgba(46, 155, 255, 0.08);
 }
 
 .nav-link.active { color: var(--accent); }
@@ -236,8 +236,8 @@
 .mobile-menu {
   position: absolute;
   top: 100%; left: 0; right: 0;
-  background: rgba(25, 80, 58, 0.99);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: rgba(245, 247, 250, 0.98);
+  border-bottom: 1px solid rgba(46,155,255,0.2);
   transform: translateY(-100%);
   opacity: 0; visibility: hidden;
   transition: all 0.3s ease;

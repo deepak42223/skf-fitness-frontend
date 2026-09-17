@@ -1,58 +1,225 @@
-<section id="features">
+<section id="features" class="features-section">
   <div class="container">
 
-    <!-- Section Header -->
+    <!-- Section Header with Kinetic Typography -->
     <div class="feat-header reveal">
       <div class="feat-header-left">
         <div class="feat-eyebrow">
-          <span class="feat-eyebrow-line"></span>
-          WHY CHOOSE US
+          <span class="feat-eyebrow-dot"></span>
+          2026 ARCHITECTURE &bull; WHY CHOOSE US
         </div>
-        <h2 class="feat-title">
-          EVERYTHING YOU NEED<br>
-          <span class="feat-title-accent">TO PERFORM</span>
+        <h2 class="feat-title kinetic-header">
+          <span class="kinetic-word">EVERYTHING</span>&nbsp;
+          <span class="kinetic-word">YOU</span>&nbsp;
+          <span class="kinetic-word">NEED</span><br>
+          <span class="feat-title-accent kinetic-word">TO PERFORM</span>
         </h2>
       </div>
       <p class="feat-subtitle">
-        Four pillars that shape every program we build —
-        from your first assessment to your hundredth session.
+        Four intelligent pillars designed as interactive widgets — giving you complete control over your training, nutrition, and live progress.
       </p>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="features-grid">
-      @for (card of cards; track card.title; let i = $index) {
-        <div class="feature-card reveal"
-             [class.reveal-delay-1]="i === 0"
-             [class.reveal-delay-2]="i === 1"
-             [class.reveal-delay-3]="i === 2"
-             [class.reveal-delay-4]="i === 3">
+    <!-- Asymmetric Bento Grid -->
+    <div class="bento-grid">
 
-          <!-- Top: number + icon -->
-          <div class="fc-top">
-            <span class="fc-number">0{{ i + 1 }}</span>
-            <div class="fc-icon">{{ card.icon }}</div>
-          </div>
-
-          <!-- Divider -->
-          <div class="fc-divider"></div>
-
-          <!-- Content -->
-          <h3 class="fc-title">{{ card.title }}</h3>
-          <p class="fc-desc">{{ card.desc }}</p>
-
-          <!-- Bottom arrow -->
-          <div class="fc-arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </div>
-
-          <!-- Hover glow bg -->
-          <div class="fc-glow"></div>
+      <!-- TILE 1: Large Media Focus (Spans 7 cols / 2 rows on desktop) -->
+      <div #tile1 class="bento-card bento-hero glow-border-2026 reveal"
+           (mousemove)="onCardMouseMove($event, tile1)"
+           (mouseleave)="onCardMouseLeave(tile1)">
+        
+        <div class="bento-media-bg">
+          <video autoplay muted loop playsinline preload="auto" class="bento-video">
+            <source src="12712319_2160_3840_30fps.mp4" type="video/mp4">
+          </video>
+          <div class="bento-media-gradient"></div>
         </div>
-      }
+
+        <div class="bento-hero-content">
+          <div class="bento-badge-row">
+            <span class="live-pill">
+              <span class="pulse-indicator"></span> LIVE COACHING
+            </span>
+            <span class="bento-tag">Pillar 01</span>
+          </div>
+
+          <h3 class="bento-hero-title">Goal-Based Programming</h3>
+          <p class="bento-hero-desc">
+            Fat loss, muscle gain, endurance — your plan is built specifically around your body metrics and adjusted weekly based on live telemetry and coach feedback.
+          </p>
+
+          <!-- Interactive mini telemetry bar -->
+          <div class="telemetry-bar">
+            <div class="telemetry-stat">
+              <span class="stat-num">98.4%</span>
+              <span class="stat-label">Goal Adherence</span>
+            </div>
+            <div class="telemetry-divider"></div>
+            <div class="telemetry-stat">
+              <span class="stat-num">12,000+</span>
+              <span class="stat-label">Athletes Trained</span>
+            </div>
+            <div class="telemetry-divider"></div>
+            <div class="telemetry-stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Custom Blocks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TILE 2: Animated Data Storytelling (Neumorphic Slider Widget) -->
+      <div #tile2 class="bento-card bento-data glow-border-2026 reveal"
+           (mousemove)="onCardMouseMove($event, tile2)"
+           (mouseleave)="onCardMouseLeave(tile2)">
+        
+        <div class="bento-card-header">
+          <div class="bento-icon-box">📊</div>
+          <div>
+            <span class="bento-tag">Pillar 02</span>
+            <h3 class="bento-card-title">Live Intensity Engine</h3>
+          </div>
+        </div>
+
+        <p class="bento-data-sub">Slide to project your weekly energy expenditure and muscle adaptation:</p>
+
+        <!-- Neumorphic Tactile Control -->
+        <div class="tactile-control-box">
+          <div class="slider-header-row">
+            <span class="tactile-label">Training Volume</span>
+            <span class="tactile-val">{{ workoutDays() }} Days / Week</span>
+          </div>
+
+          <input type="range" min="2" max="6" step="1"
+                 [ngModel]="workoutDays()"
+                 (ngModelChange)="workoutDays.set($event)"
+                 class="tactile-slider" />
+
+          <div class="slider-ticks">
+            <span>2d</span>
+            <span>3d</span>
+            <span>4d</span>
+            <span>5d</span>
+            <span>6d</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Storytelling Metrics -->
+        <div class="data-results-grid">
+          <div class="data-metric-pill">
+            <span class="metric-value font-neon">{{ caloriesPerWeek() | number }}</span>
+            <span class="metric-caption">Est. kcal Burned</span>
+          </div>
+          <div class="data-metric-pill">
+            <span class="metric-value font-blue">+{{ metabolicBoost() }}%</span>
+            <span class="metric-caption">Metabolic Elevation</span>
+          </div>
+        </div>
+
+        <div class="recovery-status-chip" [style.borderColor]="recoveryStatus().color">
+          <span class="status-dot" [style.backgroundColor]="recoveryStatus().color"></span>
+          <span>Phase: <strong>{{ recoveryStatus().text }}</strong></span>
+        </div>
+      </div>
+
+      <!-- TILE 3: Nested Micro-Carousel Widget (Nutrition Planning) -->
+      <div #tile3 class="bento-card bento-carousel-cell glow-border-2026 reveal"
+           (mousemove)="onCardMouseMove($event, tile3)"
+           (mouseleave)="onCardMouseLeave(tile3)">
+        
+        <div class="bento-card-header">
+          <div class="bento-icon-box">🥗</div>
+          <div class="flex-1">
+            <div class="bento-top-between">
+              <span class="bento-tag">Pillar 03</span>
+              <span class="micro-badge">{{ macroSlides[currentMacroSlide()].badge }}</span>
+            </div>
+            <h3 class="bento-card-title">Nutrition &amp; Macro Architecture</h3>
+          </div>
+        </div>
+
+        <!-- Micro Carousel Content -->
+        <div class="micro-slider-container">
+          <div class="micro-slide active">
+            <h4 class="slide-title">{{ macroSlides[currentMacroSlide()].title }}</h4>
+            <p class="slide-desc">{{ macroSlides[currentMacroSlide()].subtitle }}</p>
+
+            <div class="macro-chips-row">
+              <div class="macro-chip">
+                <span class="macro-label">Protein</span>
+                <span class="macro-val">{{ macroSlides[currentMacroSlide()].protein }}</span>
+              </div>
+              <div class="macro-chip">
+                <span class="macro-label">Carbs</span>
+                <span class="macro-val">{{ macroSlides[currentMacroSlide()].carbs }}</span>
+              </div>
+              <div class="macro-chip">
+                <span class="macro-label">Fats</span>
+                <span class="macro-val">{{ macroSlides[currentMacroSlide()].fats }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="micro-nav-bar">
+          <div class="micro-dots">
+            @for (s of macroSlides; track $index) {
+              <span class="micro-dot" [class.active]="$index === currentMacroSlide()"
+                    (click)="setMacroSlide($index)"></span>
+            }
+          </div>
+          <div class="micro-arrows">
+            <button class="arrow-btn tactile-press" (click)="prevMacroSlide()" aria-label="Previous slide">&#8249;</button>
+            <button class="arrow-btn tactile-press" (click)="nextMacroSlide()" aria-label="Next slide">&#8250;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TILE 4: Tactile Status & Live Recovery Widget -->
+      <div #tile4 class="bento-card bento-recovery-cell glow-border-2026 reveal"
+           (mousemove)="onCardMouseMove($event, tile4)"
+           (mouseleave)="onCardMouseLeave(tile4)">
+        
+        <div class="bento-card-header">
+          <div class="bento-icon-box">🧘</div>
+          <div class="flex-1">
+            <span class="bento-tag">Pillar 04</span>
+            <h3 class="bento-card-title">Live Floor &amp; Recovery Hub</h3>
+          </div>
+          <!-- Tactile Hardware Switch -->
+          <button class="hardware-toggle" [class.on]="gymLiveActive()"
+                  (click)="toggleGymStatus()"
+                  title="Toggle live telemetry sensor">
+            <span class="toggle-thumb"></span>
+          </button>
+        </div>
+
+        <p class="bento-card-desc">
+          Automated foam rolling, mobility flows, and active recovery protocols with live gym telemetry.
+        </p>
+
+        @if (gymLiveActive()) {
+          <div class="live-gauge-box">
+            <div class="gauge-top">
+              <span class="gauge-label">Live Floor Occupancy</span>
+              <span class="gauge-percentage font-neon">{{ occupancyPercent() }}%</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-fill" [style.width]="occupancyPercent() + '%'"></div>
+            </div>
+            <div class="gauge-footer">
+              <span>{{ occupancyCount() }} of {{ maxCapacity }} members active</span>
+              <span class="status-indicator-green">Optimal Airflow</span>
+            </div>
+          </div>
+        } @else {
+          <div class="hub-offline-state">
+            <span>Sensors Paused (Click toggle to reconnect live feed)</span>
+          </div>
+        }
+      </div>
+
     </div>
 
   </div>
