@@ -21,7 +21,7 @@
   background: var(--bg-base);
 }
 
-/* Hero video — boosted brightness for max visibility */
+/* Hero video — full visibility */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -29,7 +29,8 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.85) contrast(1.05) saturate(1.1);
+  opacity: 1;
+  filter: brightness(0.9) contrast(1.05) saturate(1.1);
 }
 
 /* Dim overlay on video — kept very light so video shows clearly */
@@ -410,16 +411,7 @@
 .btn-neon-particles,
 .btn-neon-particles i { display: none; }
 
-/* ── Video — lighter overlay for light mode ── */
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.18;
-  filter: brightness(1.1) saturate(0.8);
-}
+
 
 /* Light mode headline override */
 .hero-headline { color: var(--text-primary); }

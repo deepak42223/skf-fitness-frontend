@@ -32,9 +32,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
 
   private videoSources = [
-    '15079739_1920_1080_30fps.mp4',
-    '200657-913478674_medium.mp4',
-    '6388865-uhd_3840_2160_25fps.mp4'
+    'hero-main.mp4'
   ];
 
   currentVideoIndex = signal(0);
@@ -112,7 +110,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private startVideoRotation() {
-    this.videoInterval = setInterval(() => this.nextVideo(), 10000);
+    // Single video — no rotation needed
   }
 
   // ── Canvas / Ribbon ────────────────────────────────
