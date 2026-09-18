@@ -24,10 +24,10 @@
   --text-muted:     #7A8CA0;
 
   /* ── Primary accent — Electric Blue ── */
-  --accent:         #3498DB;
-  --accent-light:   #64B5F6;
-  --accent-dark:    #1B4F72;
-  --accent-glow:    rgba(52,152,219,0.35);
+  --accent:         #2563EB;
+  --accent-light:   #60A5FA;
+  --accent-dark:    #1D4ED8;
+  --accent-glow:    rgba(37,99,235,0.3);
 
   /* ── Premium accent — Gold ── */
   --gold:           #F4A623;
@@ -35,15 +35,15 @@
   --gold-dark:      #C8841A;
   --gold-glow:      rgba(244,166,35,0.35);
 
-  /* ── Energy accent — Teal ── */
+  /* ── Energy accent — Teal (keep for badges only) ── */
   --energy:         #12E0C4;
-  --energy-glow:    rgba(18,224,196,0.4);
+  --energy-glow:    rgba(18,224,196,0.25);
 
-  /* ── Neon feature accents ── */
-  --neon-blue:      #00D4FF;
-  --neon-green:     #39FF14;
-  --neon-orange:    #FF6B35;
-  --neon-purple:    #BF5AF2;
+  /* ── Remove neon colors (set to neutral so old code doesn't break) ── */
+  --neon-blue:      #60A5FA;
+  --neon-green:     #12E0C4;
+  --neon-orange:    #F97316;
+  --neon-purple:    #2563EB;
 
   /* ── Structure ── */
   --border:         #333945;
@@ -600,70 +600,56 @@ section {
    ════════════════════════════ */
 .whatsapp-fab {
   position: fixed;
-  bottom: 6rem;
-  right: 1rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   z-index: 999;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #25D366;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
-  transition: transform .25s, box-shadow .25s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+  transition: transform .2s ease, box-shadow .2s ease;
   text-decoration: none;
 }
 
 .whatsapp-fab:hover {
-  transform: scale(1.12) translateY(-3px);
-  box-shadow: 0 10px 32px rgba(37,211,102,0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
 }
 
 .scroll-top-btn {
   position: fixed;
-  bottom: 7.5rem;
-  right: 1rem;
+  bottom: 5.5rem;
+  right: 1.5rem;
   z-index: 999;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: var(--accent);
-  color: var(--bg-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #2563EB;
+  color: #fff;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(212, 255, 63, 0.4);
-  transition: transform .25s, opacity .25s;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+  transition: transform .2s ease, opacity .2s ease;
   opacity: 0;
   pointer-events: none;
   font-weight: 900;
 }
 
-.scroll-top-btn.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.scroll-top-btn:hover {
-  transform: translateY(-3px);
-}
+.scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
+.scroll-top-btn:hover { transform: translateY(-2px); }
 
 @media (min-width: 768px) {
-  .whatsapp-fab {
-    bottom: 2rem;
-    right: 2rem;
-  }
-  
-  .scroll-top-btn {
-    bottom: 4rem;
-    right: 2rem;
-  }
+  .whatsapp-fab { bottom: 2rem; right: 2rem; }
+  .scroll-top-btn { bottom: 5.5rem; right: 2rem; }
 }
 
 /* ════════════════════════════
@@ -865,13 +851,11 @@ a { color: inherit; text-decoration: none; }
    ════════════════════════════ */
 .page-progress {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent);
+  top: 0; left: 0;
+  height: 2px;
+  background: #2563EB;
   z-index: 9999;
   transition: width 0.1s ease;
-  box-shadow: 0 0 10px var(--accent);
 }
 
 /* ════════════════════════════

@@ -1,52 +1,48 @@
 <section class="hero" id="home">
 
-  <!-- ── Background Video + Neon Ribbon Canvas ── -->
+  <!-- ── Background Video ── -->
   <div class="hero-bg">
-    <!-- Video layer (bottom) -->
     <video #videoPlayer autoplay muted loop playsinline preload="auto"
       class="hero-video" (ended)="nextVideo()">
       <source [src]="getCurrentVideoSrc()" type="video/mp4">
     </video>
-    <!-- Dark overlay on video -->
     <div class="hero-video-overlay"></div>
-    <!-- Neon ribbon canvas (top, blends over video) -->
     <canvas #ribbonCanvas class="ribbon-canvas"></canvas>
-    <!-- Final readability overlay -->
     <div class="hero-bg-overlay"></div>
   </div>
 
-  <!-- ── Hero Grid ── -->
+  <!-- ── Hero Content ── -->
   <div class="hero-content">
     <div class="container">
       <div class="hero-grid">
-
-        <!-- LEFT: Text -->
         <div class="hero-left">
 
-          <!-- Teal eyebrow label -->
+          <!-- Badge -->
           <span class="hero-eyebrow">
-            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#12E0C4"/></svg>
+            <svg width="6" height="6" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#12E0C4"/></svg>
             HYDERABAD'S PREMIER GYM
           </span>
 
-          <!-- Headline with Kinetic Typography -->
-          <h1 class="hero-headline kinetic-header">
-            <span class="headline-line">
-              <span class="kinetic-word">TRAIN</span>&nbsp;<span class="kinetic-word">HARDER,</span>
-            </span>
-            <span class="headline-line headline-teal">
-              <span class="kinetic-word">GET</span>&nbsp;<span class="kinetic-word">STRONGER</span>
-            </span>
+          <!-- Headline -->
+          <h1 class="hero-headline">
+            <span class="headline-line">TRAIN HARDER,</span>
+            <span class="headline-line headline-teal">GET STRONGER</span>
           </h1>
 
-          <!-- CTA row -->
+          <!-- Supporting description -->
+          <p class="hero-para">
+            Expert coaching, premium equipment, and personalized programs —<br class="desktop-break">
+            everything you need to reach your peak performance.
+          </p>
+
+          <!-- CTA Buttons -->
           <div class="hero-actions">
-            <a class="btn-neon-render tactile-press" (click)="openAuthModal()" style="cursor:pointer">
-              JOIN NOW
+            <a class="btn-neon-render" (click)="openAuthModal()" style="cursor:pointer">
+              Join Now
             </a>
-            <a href="#about" class="btn-text-link">
-              Learn more
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            <a href="#services" class="btn-text-link">
+              Explore Programs
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -54,11 +50,13 @@
           </div>
 
         </div>
-
       </div>
     </div>
   </div>
 
+  <!-- Scroll indicator -->
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+  </div>
+
 </section>
-
-
