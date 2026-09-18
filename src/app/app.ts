@@ -94,6 +94,22 @@ import { AuthService }            from './services/auth.service';
               <button class="auth-tab" [class.active]="authTab()==='register'" (click)="authTab.set('register')">Register</button>
             </div>
 
+            @if (authTab() === 'forgot') {
+              <form class="auth-form" (ngSubmit)="forgotPassword()">
+                <p style="color:#aabbcc;font-size:0.85rem;margin:0 0 0.5rem">Enter your email and we'll send a reset link.</p>
+                <div class="input-group">
+                  <input type="email" [(ngModel)]="forgotEmail" name="forgotEmail" placeholder="Your email address" required />
+                  <span class="input-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                </div>
+                @if (authError())   { <div class="auth-error">{{ authError() }}</div> }
+                @if (authSuccess()) { <div class="auth-success">{{ authSuccess() }}</div> }
+                <button type="submit" class="login-btn" [disabled]="authLoading()">
+                  {{ authLoading() ? 'SENDING...' : 'SEND RESET LINK' }}
+                </button>
+              </form>
+              <div class="signup-link"><a (click)="authTab.set('login')" style="cursor:pointer">Back to Login</a></div>
+            }
+
             @if (authTab() === 'login') {
               <form class="auth-form" (ngSubmit)="login()">
                 <div class="input-group">
@@ -104,20 +120,12 @@ import { AuthService }            from './services/auth.service';
                   <input type="password" [(ngModel)]="loginPassword" name="password" placeholder="Password" required />
                   <span class="input-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
                 </div>
-                <div class="forgot-password"><a href="#">Forgot your password?</a></div>
+                <div class="forgot-password"><a (click)="authTab.set('forgot')" style="cursor:pointer">Forgot your password?</a></div>
                 @if (authError()) { <div class="auth-error">{{ authError() }}</div> }
                 <button type="submit" class="login-btn" [disabled]="authLoading()">
                   {{ authLoading() ? 'SIGNING IN...' : 'LOGIN' }}
                 </button>
               </form>
-              <div class="social-login">
-                <p>or log in with</p>
-                <div class="social-icons-row">
-                  <div class="social-icon facebook">f</div>
-                  <div class="social-icon twitter">𝕏</div>
-                  <div class="social-icon google">G</div>
-                </div>
-              </div>
               <div class="signup-link"><a (click)="authTab.set('register')" style="cursor:pointer">Sign Up</a></div>
             }
 
@@ -442,7 +450,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showScrollTop  = signal(false);
   showAuthModal  = signal(false);
   showProfile    = signal(false);
-  authTab        = signal<'login' | 'register'>('login');
+  authTab        = signal<'login' | 'register' | 'forgot'>('login');
   authLoading    = signal(false);
   authError      = signal('');
   authSuccess    = signal('');
@@ -462,6 +470,9 @@ export class AppComponent implements OnInit, OnDestroy {
   regPhone    = '';
   regPassword = '';
   regPlan     = 'pro';
+
+  // Forgot password
+  forgotEmail = '';
 
   constructor(public authService: AuthService) {}
 
@@ -575,6 +586,29 @@ export class AppComponent implements OnInit, OnDestroy {
         this.authLoading.set(false);
         this.authError.set(err?.error?.message || 'Registration failed. Try again.');
       }
+    });
+  }
+
+  forgotPassword() {
+    if (!this.forgotEmail) {
+      this.authError.set('Please enter your email address');
+      return;
+    }
+    this.authLoading.set(true);
+    this.authError.set('');
+    this.authSuccess.set('');
+
+    this.authService.forgotPassword(this.forgotEmail).subscribe({
+      next: (res: any) => {
+        this.authLoading.set(false);
+        this.authSuccess.set(res.message || 'If that email exists, a reset link has been sent.');
+        this.forgotEmail = '';
+      },
+      error: () => {
+        this.authLoading.set(false);
+        // Same success message to avoid email enumeration
+        this.authSuccess.set('If that email exists, a reset link has been sent.');
+      },
     });
   }
 

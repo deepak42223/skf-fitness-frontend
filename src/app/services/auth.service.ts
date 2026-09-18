@@ -65,6 +65,10 @@ export class AuthService {
     return this.api.post<AuthUser>('members', data);
   }
 
+  forgotPassword(email: string): Observable<object> {
+    return this.api.post<object>('auth/forgot-password', { email });
+  }
+
   logout() {
     localStorage.removeItem('skf-auth-token');
     localStorage.removeItem('skf-user');
