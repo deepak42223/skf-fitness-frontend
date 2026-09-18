@@ -1,0 +1,125 @@
+<!-- Not found state -->
+@if (notFound()) {
+  <div class="wd-not-found">
+    <h2>Workout not found</h2>
+    <a routerLink="/" class="wd-back">← Back to Home</a>
+  </div>
+}
+
+<!-- Workout detail page -->
+@if (workout(); as w) {
+  <div class="wd-page">
+
+    <!-- Hero banner -->
+    <div class="wd-hero">
+      <img [src]="w.img" [alt]="w.title" class="wd-hero-img" />
+      <div class="wd-hero-overlay"></div>
+      <div class="wd-hero-content container">
+        <a routerLink="/" class="wd-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+          Back
+        </a>
+        <span class="wd-category" [class]="'wd-cat--' + w.category.toLowerCase()">{{ w.category }}</span>
+        <h1 class="wd-title">{{ w.title }}</h1>
+        <div class="wd-hero-meta">
+          <span class="wd-diff" [style.color]="getDifficultyColor(w.difficulty)">● {{ w.difficulty }}</span>
+          <span class="wd-sep">·</span>
+          <span>{{ w.duration }}</span>
+          <span class="wd-sep">·</span>
+          <span>{{ w.sets }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="wd-body container">
+      <div class="wd-grid">
+
+        <!-- Left: Details -->
+        <div class="wd-main">
+
+          <!-- Description -->
+          <div class="wd-section">
+            <h2 class="wd-section-title">About this workout</h2>
+            <p class="wd-desc-text">{{ w.description }}</p>
+          </div>
+
+          <!-- Exercises list -->
+          <div class="wd-section">
+            <h2 class="wd-section-title">Exercise List</h2>
+            <div class="wd-exercises">
+              @for (ex of w.exercises; track ex.name; let i = $index) {
+                <div class="wd-exercise-row">
+                  <span class="wd-ex-num">{{ i + 1 }}</span>
+                  <div class="wd-ex-info">
+                    <span class="wd-ex-name">{{ ex.name }}</span>
+                    <span class="wd-ex-reps">{{ ex.reps }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="wd-rest">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Rest: {{ w.restTime }}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Summary card -->
+        <div class="wd-sidebar">
+          <div class="wd-summary-card">
+
+            <h3 class="wd-summary-title">Workout Summary</h3>
+
+            <div class="wd-summary-rows">
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Category</span>
+                <span class="wd-summary-val">{{ w.category }}</span>
+              </div>
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Difficulty</span>
+                <span class="wd-summary-val" [style.color]="getDifficultyColor(w.difficulty)">{{ w.difficulty }}</span>
+              </div>
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Duration</span>
+                <span class="wd-summary-val">{{ w.duration }}</span>
+              </div>
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Sets / Rounds</span>
+                <span class="wd-summary-val">{{ w.sets }}</span>
+              </div>
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Equipment</span>
+                <span class="wd-summary-val">{{ w.equipment }}</span>
+              </div>
+              <div class="wd-summary-row">
+                <span class="wd-summary-label">Rest Time</span>
+                <span class="wd-summary-val">{{ w.restTime }}</span>
+              </div>
+            </div>
+
+            <!-- Target muscles -->
+            <div class="wd-targets-block">
+              <span class="wd-summary-label">Target Muscles</span>
+              <div class="wd-target-tags">
+                @for (t of w.targets; track t) {
+                  <span class="wd-target-tag">{{ t }}</span>
+                }
+              </div>
+            </div>
+
+            <a href="#membership" class="wd-start-btn">START WORKOUT →</a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+}

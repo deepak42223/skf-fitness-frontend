@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener, signal } from '@angular/core';
 import { CommonModule }           from '@angular/common';
 import { FormsModule }            from '@angular/forms';
+import { RouterOutlet }           from '@angular/router';
 import { NavbarComponent }        from './components/navbar/navbar';
 import { HeroComponent }          from './components/hero/hero';
 import { TaglineComponent }       from './components/tagline/tagline';
@@ -25,6 +26,7 @@ import { AuthService }            from './services/auth.service';
   imports: [
     CommonModule,
     FormsModule,
+    RouterOutlet,
     NavbarComponent,
     HeroComponent,
     TaglineComponent,
@@ -46,6 +48,9 @@ import { AuthService }            from './services/auth.service';
     <div class="page-progress" [style.width]="scrollProgress() + '%'"></div>
 
     <app-navbar></app-navbar>
+
+    <!-- Routed pages (e.g. /workouts/:id) render here -->
+    <router-outlet></router-outlet>
 
     <!-- Show Profile Page if logged in, else show main website -->
     @if (authService.isLoggedIn() && showProfile()) {
@@ -86,7 +91,7 @@ import { AuthService }            from './services/auth.service';
             <button class="auth-close" (click)="closeModal()">✕</button>
 
             <div class="auth-logo-area">
-              <img src="skf-logo-new.jpg" alt="SKF" class="auth-logo" />
+              <img src="skf-logo-new.jpg" alt="SKF" class="auth-logo" width="52" height="52" />
             </div>
 
             <div class="auth-tabs">

@@ -1,48 +1,83 @@
 <section id="exercise">
   <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="red-line"></div>
-        <div class="section-tag">Programs</div>
-        <h2>Featured Exercise Blocks</h2>
-      </div>
-      <p>Drop into any program — every block scales to your current level.</p>
+
+    <!-- Header -->
+    <div class="ex-header reveal">
+      <div class="red-line"></div>
+      <div class="section-tag">Programs</div>
+      <h2 class="ex-title">Featured Exercise Blocks</h2>
+      <p class="ex-subtitle">Structured workouts for strength, conditioning, cardio and mobility — built for every fitness level.</p>
     </div>
 
-    <div class="exercise-scroll">
-      @for (ex of exercises; track ex.title; let i = $index) {
-        <div class="ex-card reveal" [class.reveal-delay-1]="i===0" [class.reveal-delay-2]="i===1" [class.reveal-delay-3]="i===2" [class.reveal-delay-4]="i===3">
+    <!-- 4-column grid -->
+    <div class="ex-grid">
+      @for (w of workouts; track w.id; let i = $index) {
+        <div class="ex-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
+
+          <!-- Image -->
           <div class="ex-img-wrap">
-            <img [src]="ex.img" [alt]="ex.title" />
-            <div class="ex-tag">{{ ex.tag }}</div>
+            <img [src]="w.img" [alt]="w.title" loading="lazy" />
+            <span class="ex-tag" [class]="'ex-tag--' + w.category.toLowerCase()">{{ w.category }}</span>
+            <div class="ex-img-overlay"></div>
           </div>
-          <div class="ex-card-body">
-            <h3>{{ ex.title }}</h3>
-            <div class="ex-meta">
-              <span>{{ ex.sets }}</span>
-              <span>{{ ex.time }}</span>
-              <span>{{ ex.kcal }}</span>
+
+          <!-- Body -->
+          <div class="ex-body">
+
+            <!-- Difficulty -->
+            <div class="ex-difficulty">
+              <span class="ex-diff-dot" [class]="'diff-' + w.difficulty.toLowerCase()"></span>
+              <span class="ex-diff-label">{{ w.difficulty }}</span>
             </div>
-            <a href="#membership" class="ex-btn">Start Program →</a>
+
+            <!-- Title -->
+            <h3 class="ex-workout-title">{{ w.title }}</h3>
+
+            <!-- Meta: sets • duration -->
+            <div class="ex-meta">
+              <span>{{ w.sets }}</span>
+              <span class="ex-meta-sep">·</span>
+              <span>{{ w.duration }}</span>
+            </div>
+
+            <!-- Targets -->
+            <div class="ex-targets">
+              @for (t of w.targets; track t) {
+                <span class="ex-target-tag">{{ t }}</span>
+              }
+            </div>
+
+            <!-- Description -->
+            <p class="ex-desc">{{ w.description }}</p>
+
+            <!-- CTA -->
+            <a [routerLink]="['/workouts', w.id]" class="ex-cta">
+              View Workout
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
           </div>
         </div>
       }
     </div>
+
   </div>
 </section>
 
 <!-- Photo Banner -->
 <div class="photo-banner">
   <div class="photo-banner-item">
-    <img src="danielle-cerullo-CQfNt66ttZM-unsplash.jpg" alt="Gym floor" />
+    <img src="danielle-cerullo-CQfNt66ttZM-unsplash.jpg" alt="Gym floor" loading="lazy" />
     <div class="photo-overlay"><span>Gym Floor</span></div>
   </div>
   <div class="photo-banner-item large">
-    <img src="victor-freitas-WvDYdXDzkhs-unsplash.jpg" alt="Weight Training" />
+    <img src="victor-freitas-WvDYdXDzkhs-unsplash.jpg" alt="Weight Training" loading="lazy" />
     <div class="photo-overlay"><span>Weight Training</span></div>
   </div>
   <div class="photo-banner-item">
-    <img src="edgar-chaparro-sHfo3WOgGTU-unsplash.jpg" alt="Personal Training" />
+    <img src="edgar-chaparro-sHfo3WOgGTU-unsplash.jpg" alt="Personal Training" loading="lazy" />
     <div class="photo-overlay"><span>Personal Training</span></div>
   </div>
 </div>

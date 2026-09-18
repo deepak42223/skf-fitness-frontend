@@ -53,7 +53,7 @@ export class WorkoutFormatComponent {
       benefits: ['Improve Mobility', 'Build Strength', 'Move Better'],
       duration: '50 mins',
       description: 'Move better, feel stronger, and build practical fitness through dynamic full-body exercises.',
-      image: 'gold-s-gym-nepal-RzI-idjc8RQ-unsplash.jpg',
+      image: 'functional-training.jpg',
       cta: 'TRY FOR FREE'
     },
     {
@@ -73,7 +73,7 @@ export class WorkoutFormatComponent {
       benefits: ['Have Fun', 'Burn Calories', 'Stay Active'],
       duration: '50 mins',
       description: 'Dance, move, and burn calories while improving stamina, coordination, and overall fitness.',
-      image: 'lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg',
+      image: 'dance-fitness.jpg',
       cta: 'TRY FOR FREE'
     },
     {
@@ -83,7 +83,7 @@ export class WorkoutFormatComponent {
       benefits: ['Improve Flexibility', 'Reduce Stiffness', 'Relax'],
       duration: '45-50 mins',
       description: 'Improve flexibility, mobility, balance, and breathing while helping your body recover from intense training.',
-      image: 'chris-kendall-sJ6az6-T1u8-unsplash.jpg',
+      image: 'yoga-mobility-wf.jpg',
       cta: 'TRY FOR FREE'
     },
     {
@@ -93,7 +93,7 @@ export class WorkoutFormatComponent {
       benefits: ['Build Stamina', 'Improve Coordination', 'Release Stress'],
       duration: '50 mins',
       description: 'Learn fundamental boxing movements, improve conditioning, and build power through an exciting full-body workout.',
-      image: 'edgar-chaparro-sHfo3WOgGTU-unsplash.jpg',
+      image: 'boxing-wf.jpg',
       cta: 'TRY FOR FREE'
     },
     {
@@ -103,7 +103,7 @@ export class WorkoutFormatComponent {
       benefits: ['Personal Goals', 'Expert Guidance', 'Faster Progress'],
       duration: 'Customized',
       description: 'Train with personalized guidance, structured workouts, and expert support to stay consistent and achieve your goals.',
-      image: 'spencer-davis-0ShTs8iPY28-unsplash.jpg',
+      image: 'personal-training-wf.jpg',
       cta: 'BOOK A SESSION'
     }
   ];

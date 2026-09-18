@@ -1,53 +1,322 @@
-.exercise-scroll { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; }
-.exercise-scroll::-webkit-scrollbar { height: 4px; }
-.exercise-scroll::-webkit-scrollbar-track { background: rgba(52, 152, 219, 0.08); border-radius: 4px; }
-.exercise-scroll::-webkit-scrollbar-thumb { background: #3498DB; border-radius: 4px; }
-
-.ex-card { scroll-snap-align: start; flex: 0 0 300px; background: rgba(52, 152, 219, 0.05); border: 1px solid rgba(52, 152, 219, 0.2); border-radius: var(--radius); overflow: hidden; transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; }
-.ex-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(52, 152, 219, 0.25); }
-
-.ex-img-wrap { position: relative; overflow: hidden; height: 220px; }
-.ex-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .5s; filter: brightness(0.85) contrast(1.05) saturate(1.05); }
-.ex-card:hover .ex-img-wrap img { transform: scale(1.06); filter: brightness(0.95) contrast(1.1) saturate(1.1); }
-
-.ex-tag { position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 700; color: #0a0a0a; letter-spacing: 1.5px; text-transform: uppercase; background: #3498DB; padding: 4px 12px; border-radius: 4px; }
-
-/* Gold tag for Strength exercises */
-.ex-card:nth-child(1) .ex-tag,
-.ex-tag.strength {
-  background: linear-gradient(135deg, #F4A623, #F7C948);
-  color: #1a1000;
-  box-shadow: 0 2px 10px rgba(244, 166, 35, 0.45);
+/* ════════════════════════════
+   FEATURED EXERCISE BLOCKS
+   ════════════════════════════ */
+#exercise {
+  background: var(--bg-elevated);
+  padding: 5rem 0 4rem;
 }
 
-/* Gold card border on Strength cards */
+/* ── Header ── */
+.ex-header {
+  margin-bottom: 2.75rem;
+}
+
+.ex-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.ex-subtitle {
+  font-family: var(--font-family-body);
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* ── 4-column grid ── */
+.ex-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* ── Card ── */
+.ex-card {
+  background: #1a1d24;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ex-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  border-color: rgba(37,99,235,0.35);
+}
+
+/* Strength card — gold accent */
 .ex-card:nth-child(1) {
-  border-color: rgba(244, 166, 35, 0.3);
+  border-color: rgba(244,166,35,0.18);
 }
 .ex-card:nth-child(1):hover {
-  box-shadow: 0 20px 48px rgba(244, 166, 35, 0.2);
-  border-color: rgba(244, 166, 35, 0.55);
+  border-color: rgba(244,166,35,0.45);
+  box-shadow: 0 16px 40px rgba(244,166,35,0.12);
 }
 
-/* Gold photo-overlay text */
-.photo-overlay span { font-family: var(--font-family-display); font-size: 20px; color: #F4A623; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 12px rgba(244, 166, 35, 0.5); }
+/* ── Image ── */
+.ex-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
 
-@media (max-width: 900px) { .photo-banner { grid-template-columns: 1fr 1fr; height: 260px; } .photo-banner-item.large { display: none; } }
-@media (max-width: 600px) { .photo-banner { grid-template-columns: 1fr; height: 220px; } .ex-card { flex: 0 0 260px; } }
+.ex-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.82) contrast(1.05) saturate(0.95);
+  transition: transform 0.45s ease, filter 0.35s ease;
+}
 
-.ex-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
-.ex-card h3 { font-family: var(--font-family-display); font-weight: 400; font-size: 20px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; color: #3498DB; }
-.ex-meta { display: flex; color: #85C1E9; font-size: 13px; margin-bottom: 16px; flex: 1; }
-.ex-meta span { margin-right: 14px; }
-.ex-meta span::before { content: '· '; color: #3498DB; }
-.ex-meta span:first-child::before { content: ''; }
-.ex-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #3498DB; border-bottom: 1px solid rgba(52, 152, 219, 0.35); padding-bottom: 2px; transition: gap .2s; width: fit-content; text-decoration: none; }
-.ex-btn:hover { gap: 10px; border-color: #3498DB; }
-.photo-banner { display: grid; grid-template-columns: 1fr 1.6fr 1fr; height: 380px; gap: 4px; overflow: hidden; border-radius: 12px; }
-.photo-banner-item { position: relative; overflow: hidden; }
-.photo-banner-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: brightness(0.8) saturate(1.1) contrast(1.05); transition: transform .5s, filter .5s; }
-.photo-banner-item:hover img { transform: scale(1.06); filter: brightness(0.95) saturate(1.2) contrast(1.1); }
-.photo-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 24px; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 70%); opacity: 0; transition: opacity .3s; }
+.ex-card:hover .ex-img-wrap img {
+  transform: scale(1.06);
+  filter: brightness(0.75) contrast(1.08);
+}
+
+.ex-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(26,29,36,0.7) 100%);
+  pointer-events: none;
+}
+
+/* ── Category tag ── */
+.ex-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-family-body);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.ex-tag--strength {
+  background: linear-gradient(135deg, #F4A623, #F7C948);
+  color: #1a1000;
+}
+
+.ex-tag--conditioning,
+.ex-tag--cardio {
+  background: #2563EB;
+  color: #fff;
+}
+
+.ex-tag--mobility {
+  background: rgba(18,224,196,0.15);
+  color: #12E0C4;
+  border: 1px solid rgba(18,224,196,0.3);
+}
+
+/* ── Body ── */
+.ex-body {
+  padding: 1.1rem 1.25rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+/* Difficulty */
+.ex-difficulty {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ex-diff-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diff-beginner    { background: #12E0C4; }
+.diff-intermediate { background: #F4A623; }
+.diff-advanced    { background: #EF4444; }
+
+.ex-diff-label {
+  font-family: var(--font-family-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Title */
+.ex-workout-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* Strength card title — gold */
+.ex-card:nth-child(1) .ex-workout-title { color: #F4A623; }
+
+/* Sets · Duration */
+.ex-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family-body);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.ex-meta-sep { color: rgba(255,255,255,0.25); }
+
+/* Target tags */
+.ex-targets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.ex-target-tag {
+  font-family: var(--font-family-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #60A5FA;
+  background: rgba(37,99,235,0.1);
+  border: 1px solid rgba(37,99,235,0.2);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+/* Description */
+.ex-desc {
+  font-family: var(--font-family-body);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+/* CTA */
+.ex-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-family-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #2563EB;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37,99,235,0.3);
+  padding-bottom: 2px;
+  width: fit-content;
+  margin-top: 0.25rem;
+  transition: gap 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.ex-cta:hover {
+  gap: 0.65rem;
+  border-color: #2563EB;
+  color: #60A5FA;
+}
+
+.ex-cta svg { transition: transform 0.2s ease; }
+.ex-cta:hover svg { transform: translateX(3px); }
+
+/* Strength card CTA — gold */
+.ex-card:nth-child(1) .ex-cta {
+  color: #F4A623;
+  border-color: rgba(244,166,35,0.3);
+}
+.ex-card:nth-child(1) .ex-cta:hover {
+  color: #F7C948;
+  border-color: #F4A623;
+}
+
+/* ── Photo Banner ── */
+.photo-banner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  height: 320px;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.photo-banner-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-banner-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.75) saturate(1.05) contrast(1.05);
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+.photo-banner-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.9) saturate(1.15) contrast(1.08);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 .photo-banner-item:hover .photo-overlay { opacity: 1; }
-@media (max-width: 900px) { .photo-banner { grid-template-columns: 1fr 1fr; height: 260px; } .photo-banner-item.large { display: none; } }
-@media (max-width: 600px) { .photo-banner { grid-template-columns: 1fr; height: 220px; } .ex-card { flex: 0 0 260px; } }
+
+.photo-overlay span {
+  font-family: var(--font-family-display);
+  font-size: 1.15rem;
+  color: #F4A623;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .ex-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+}
+
+@media (max-width: 768px) {
+  #exercise { padding: 4rem 0 3rem; }
+  .photo-banner { grid-template-columns: 1fr 1fr; height: 240px; }
+  .photo-banner-item.large { display: none; }
+}
+
+@media (max-width: 580px) {
+  .ex-grid { grid-template-columns: 1fr; }
+  .photo-banner { grid-template-columns: 1fr; height: 200px; }
+  .photo-banner-item:not(:first-child) { display: none; }
+}

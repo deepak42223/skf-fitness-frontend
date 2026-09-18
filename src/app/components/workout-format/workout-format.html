@@ -1,91 +1,71 @@
 <section id="workout-formats">
   <div class="container">
-    
-    <!-- Hero Section -->
-    <div class="workout-hero">
-      <div class="section-badge gold">Workout Formats</div>
-      <h1 class="hero-title">Train Your Way. Get Stronger Every Day.</h1>
+
+    <!-- Section Header -->
+    <div class="wf-header">
+      <span class="wf-eyebrow">Workout Formats</span>
+      <h2 class="wf-title">Train Your Way.<br><span class="wf-title-accent">Get Stronger Every Day.</span></h2>
+      <p class="wf-desc">Choose the workout that fits your goals, lifestyle, and fitness level.</p>
     </div>
 
-    <!-- Workout Formats Grid -->
-    <div class="formats-grid">
+    <!-- 4×2 Circular Cards Grid -->
+    <div class="wf-grid">
       @for (format of workoutFormats; track format.id; let i = $index) {
-        <div class="format-card">
+        <div class="wf-card reveal" [style.transition-delay]="(i * 0.07) + 's'">
 
-          <!-- Full background image -->
-          <img [src]="format.image" [alt]="format.name" class="format-bg-img" loading="lazy" />
-          <div class="format-bg-overlay"></div>
+          <!-- Circle image -->
+          <div class="wf-circle">
+            <img [src]="format.image" [alt]="format.name" class="wf-img" loading="lazy" />
+            <div class="wf-overlay"></div>
 
-          <!-- Card content over image -->
-          <div class="format-card-content">
-
-            <!-- Top: number -->
-            <div class="format-number">{{ i + 1 }}.</div>
-
-            <!-- Title -->
-            <h3 class="format-name">{{ format.name }}</h3>
-
-            <!-- Bottom: CTA only -->
-            <div class="format-footer">
-              <a href="#membership" class="format-cta-btn">JOIN NOW →</a>
+            <!-- Hover reveal: description -->
+            <div class="wf-hover-info">
+              <p class="wf-desc-hover">{{ format.description }}</p>
+              <a href="#membership" class="wf-hover-cta">Join Now →</a>
             </div>
-
           </div>
+
+          <!-- Below circle: number + name + CTA -->
+          <div class="wf-info">
+            <span class="wf-num">0{{ i + 1 }}</span>
+            <h3 class="wf-name">{{ format.name }}</h3>
+            <a href="#membership" class="wf-cta">View Program →</a>
+          </div>
+
         </div>
       }
     </div>
 
-    <!-- Goal-Based Recommendations -->
+    <!-- Goal Recommendations -->
     <div class="goal-section">
       <h2 class="goal-title">Find the Right Workout for Your Goal</h2>
-      
       <div class="goal-cards">
         <div class="goal-card">
           <h3 class="goal-heading">Want to build muscle and strength?</h3>
-          <p class="goal-text">
-            <strong>Strength Training</strong> is your best choice. Progressive resistance exercises 
-            help you develop stronger muscles and improve overall physical performance.
-          </p>
+          <p class="goal-text"><strong>Strength Training</strong> is your best choice. Progressive resistance exercises help you develop stronger muscles and improve overall physical performance.</p>
         </div>
-
         <div class="goal-card">
           <h3 class="goal-heading">Want to lose weight and burn calories?</h3>
-          <p class="goal-text">
-            Try <strong>HIIT, Cardio Fitness, or Dance Fitness</strong>. These formats keep you active, 
-            increase calorie expenditure, and improve cardiovascular conditioning.
-          </p>
+          <p class="goal-text">Try <strong>HIIT, Cardio Fitness, or Dance Fitness</strong>. These formats keep you active, increase calorie expenditure, and improve cardiovascular conditioning.</p>
         </div>
-
         <div class="goal-card">
           <h3 class="goal-heading">Want better flexibility and mobility?</h3>
-          <p class="goal-text">
-            Choose <strong>Yoga & Mobility or Functional Training</strong> to improve your range of motion, 
-            balance, and movement quality.
-          </p>
+          <p class="goal-text">Choose <strong>Yoga & Mobility or Functional Training</strong> to improve your range of motion, balance, and movement quality.</p>
         </div>
-
         <div class="goal-card">
           <h3 class="goal-heading">Want a high-energy workout?</h3>
-          <p class="goal-text">
-            <strong>HIIT, Boxing Fitness, and Dance Fitness</strong> are great options when you want 
-            an energetic session that keeps you moving.
-          </p>
+          <p class="goal-text"><strong>HIIT, Boxing Fitness, and Dance Fitness</strong> are great options when you want an energetic session that keeps you moving.</p>
         </div>
-
         <div class="goal-card">
           <h3 class="goal-heading">Want personalized guidance?</h3>
-          <p class="goal-text">
-            Choose <strong>Personal Training</strong> for workouts tailored specifically to your 
-            fitness goals, experience, and current fitness level.
-          </p>
+          <p class="goal-text">Choose <strong>Personal Training</strong> for workouts tailored specifically to your fitness goals, experience, and current fitness level.</p>
         </div>
       </div>
     </div>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <div class="faq-section">
       <h2 class="faq-title">Frequently Asked Questions</h2>
-      
       <div class="faq-list">
         @for (faq of faqs; track $index) {
           <div class="faq-item" [class.expanded]="expandedFaq() === $index">
@@ -105,13 +85,8 @@
     <div class="final-cta">
       <div class="cta-content">
         <h2 class="cta-title">Stronger Body. Better Movement. Healthier You.</h2>
-        <p class="cta-text">
-          Your fitness journey doesn't need to be complicated. Choose your goal, 
-          find the workout that fits you, and start building a stronger and healthier version of yourself.
-        </p>
-        <a href="#membership" class="cta-button btn btn-primary btn-lg">
-          TRY YOUR FIRST WORKOUT TODAY
-        </a>
+        <p class="cta-text">Your fitness journey doesn't need to be complicated. Choose your goal, find the workout that fits you, and start building a stronger and healthier version of yourself.</p>
+        <a href="#membership" class="cta-button">TRY YOUR FIRST WORKOUT TODAY</a>
       </div>
     </div>
 
