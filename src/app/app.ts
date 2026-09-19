@@ -18,6 +18,10 @@ import { CtaComponent }           from './components/cta/cta';
 import { FooterComponent }        from './components/footer/footer';
 import { UserProfileComponent }   from './components/user-profile/user-profile';
 import { AuthService }            from './services/auth.service';
+import { LoaderComponent }        from './components/loader/loader';
+import { CursorComponent }        from './components/cursor/cursor';
+import { SmoothScrollService }    from './services/smooth-scroll.service';
+import { TextRevealService }      from './services/text-reveal.service';
 
 @Component({
   selector: 'app-root',
@@ -41,9 +45,19 @@ import { AuthService }            from './services/auth.service';
     CtaComponent,
     FooterComponent,
     UserProfileComponent,
+    LoaderComponent,
+    CursorComponent,
   ],
   template: `
     <div class="page-progress" [style.width]="scrollProgress() + '%'"></div>
+
+    <!-- Custom cursor (desktop only) -->
+    <app-cursor></app-cursor>
+
+    <!-- Loading screen -->
+    @if (showLoader()) {
+      <app-loader (done)="onLoaderDone()"></app-loader>
+    }
 
     <app-navbar></app-navbar>
 
@@ -452,6 +466,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showScrollTop  = signal(false);
   showAuthModal  = signal(false);
   showProfile    = signal(false);
+  showLoader     = signal(true);
   authTab        = signal<'login' | 'register' | 'forgot'>('login');
   authLoading    = signal(false);
   authError      = signal('');
@@ -476,7 +491,11 @@ export class AppComponent implements OnInit, OnDestroy {
   // Forgot password
   forgotEmail = '';
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private smoothScroll: SmoothScrollService,
+    private textReveal: TextRevealService,
+  ) {}
 
   private boundOpenModal:   EventListener | null = null;
   private boundGoHome:      EventListener | null = null;
@@ -519,6 +538,15 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.boundOpenModal)   window.removeEventListener('open-auth-modal', this.boundOpenModal);
     if (this.boundGoHome)      window.removeEventListener('go-home', this.boundGoHome);
     if (this.boundShowProfile) window.removeEventListener('show-profile', this.boundShowProfile);
+  }
+
+  onLoaderDone() {
+    this.showLoader.set(false);
+    // Init smooth scroll and text reveal after loader finishes
+    this.smoothScroll.init();
+    this.textReveal.init();
+    // Hide system cursor on desktop
+    document.documentElement.style.cursor = 'none';
   }
 
   openModal(tab: 'login' | 'register' = 'login') {
