@@ -2,22 +2,7 @@ import {
   Component, OnInit, OnDestroy, AfterViewInit,
   ViewChild, ElementRef, HostListener, signal
 } from '@angular/core';
-
-interface RibbonPoint {
-  x: number; y: number;
-  dx: number; dy: number;
-  size: number; color: string;
-}
-
-const CFG = {
-  SPEED_X:      0.15,
-  SPEED_Y:      0.15,
-  MAX_LENGTH:   130,
-  RED_STEP:     0.02,
-  GREEN_STEP:   0.015,
-  BLUE_STEP:    0.025,
-  SPREAD_LIMIT: 20,
-};
+import * as THREE from 'three';
 
 @Component({
   selector: 'app-hero',
@@ -30,60 +15,42 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Video ──────────────────────────────────────────
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild('threeCanvas') threeCanvas!: ElementRef<HTMLCanvasElement>;
 
-  private videoSources = [
-    'hero-main.mp4'
-  ];
-
+  private videoSources = ['hero-main.mp4'];
   currentVideoIndex = signal(0);
-  private videoInterval: any;
 
-  // ── Ribbon canvas ──────────────────────────────────
-  @ViewChild('ribbonCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
-
-  private ctx!: CanvasRenderingContext2D;
+  // ── Three.js ───────────────────────────────────────
+  private renderer!: THREE.WebGLRenderer;
+  private scene!: THREE.Scene;
+  private camera!: THREE.PerspectiveCamera;
+  private particles!: THREE.Points;
   private rafId = 0;
-  private points: RibbonPoint[] = [];
-  private mouse      = { x: 0, y: 0 };
-  private prevMouse  = { x: 0, y: 0 };
-  private colorState = { red: 0, green: 255, blue: 255, size: 0 };
-  private autoAngle  = 0;
-  private userMoved  = false;
+  private mouseX = 0;
+  private mouseY = 0;
+  private clock = new THREE.Clock();
 
   // ── Lifecycle ──────────────────────────────────────
-  ngOnInit() {
-    this.startVideoRotation();
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    // Init video
     this.playVideo();
-
-    // Init canvas
-    const canvas = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d')!;
-    this.resize();
-    this.mouse.x     = window.innerWidth  / 2;
-    this.mouse.y     = window.innerHeight / 2;
-    this.prevMouse.x = this.mouse.x;
-    this.prevMouse.y = this.mouse.y;
-    this.draw();
+    this.initThree();
+    this.animate();
   }
 
   ngOnDestroy() {
-    if (this.videoInterval) clearInterval(this.videoInterval);
     cancelAnimationFrame(this.rafId);
+    this.renderer?.dispose();
   }
 
-  // ── Video methods ──────────────────────────────────
+  // ── Video ──────────────────────────────────────────
   getCurrentVideoSrc(): string {
     return this.videoSources[this.currentVideoIndex()];
   }
 
   openAuthModal() {
-    window.dispatchEvent(new CustomEvent('open-auth-modal', {
-      detail: { tab: 'register' }
-    }));
+    window.dispatchEvent(new CustomEvent('open-auth-modal', { detail: { tab: 'register' } }));
   }
 
   nextVideo() {
@@ -103,114 +70,134 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
       v.load();
       v.play().catch(() => {
         const retry = () => { v.play().catch(() => {}); };
-        document.addEventListener('click',      retry, { once: true });
+        document.addEventListener('click', retry, { once: true });
         document.addEventListener('touchstart', retry, { once: true });
       });
     }, 200);
   }
 
-  private startVideoRotation() {
-    // Single video — no rotation needed
+  // ── Three.js Particles ────────────────────────────
+  private initThree() {
+    const canvas = this.threeCanvas.nativeElement;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // Renderer — transparent so video shows through
+    this.renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: false,
+    });
+    this.renderer.setSize(w, h);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setClearColor(0x000000, 0); // fully transparent
+
+    // Scene & Camera
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
+    this.camera.position.z = 5;
+
+    // Particle geometry — 2000 random points in 3D space
+    const COUNT = 2000;
+    const positions = new Float32Array(COUNT * 3);
+    const colors    = new Float32Array(COUNT * 3);
+    const sizes     = new Float32Array(COUNT);
+
+    // Color palette: blue, cyan, white, gold
+    const palette = [
+      new THREE.Color('#2563EB'), // electric blue
+      new THREE.Color('#60A5FA'), // light blue
+      new THREE.Color('#FFFFFF'), // white
+      new THREE.Color('#93C5FD'), // sky blue
+      new THREE.Color('#F4A623'), // gold accent
+    ];
+
+    for (let i = 0; i < COUNT; i++) {
+      // Spread particles across a wide area
+      positions[i * 3]     = (Math.random() - 0.5) * 20; // x
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 12; // y
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 8;  // z
+
+      // Random color from palette
+      const c = palette[Math.floor(Math.random() * palette.length)];
+      colors[i * 3]     = c.r;
+      colors[i * 3 + 1] = c.g;
+      colors[i * 3 + 2] = c.b;
+
+      // Random sizes — most small, some bigger
+      sizes[i] = Math.random() < 0.05 ? Math.random() * 3 + 2 : Math.random() * 1.5 + 0.5;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
+
+    // Circular particle texture via canvas
+    const texCanvas = document.createElement('canvas');
+    texCanvas.width  = 64;
+    texCanvas.height = 64;
+    const ctx = texCanvas.getContext('2d')!;
+    const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0,   'rgba(255,255,255,1)');
+    grad.addColorStop(0.4, 'rgba(255,255,255,0.6)');
+    grad.addColorStop(1,   'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 64, 64);
+    const texture = new THREE.CanvasTexture(texCanvas);
+
+    // Material — vertex colors, additive blending for glow
+    const material = new THREE.PointsMaterial({
+      size: 0.08,
+      map: texture,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+      opacity: 0.75,
+      depthWrite: false,
+      sizeAttenuation: true,
+    });
+
+    this.particles = new THREE.Points(geometry, material);
+    this.scene.add(this.particles);
   }
 
-  // ── Canvas / Ribbon ────────────────────────────────
+  private animate() {
+    this.rafId = requestAnimationFrame(() => this.animate());
+
+    const elapsed = this.clock.getElapsedTime();
+
+    // Slowly rotate the whole particle system
+    this.particles.rotation.y = elapsed * 0.04;
+    this.particles.rotation.x = elapsed * 0.015;
+
+    // Subtle drift toward mouse
+    this.particles.rotation.y += this.mouseX * 0.00008;
+    this.particles.rotation.x += this.mouseY * 0.00008;
+
+    // Gentle float — move individual particles using sin wave
+    const positions = (this.particles.geometry.getAttribute('position') as THREE.BufferAttribute).array as Float32Array;
+    for (let i = 0; i < positions.length; i += 3) {
+      positions[i + 1] += Math.sin(elapsed * 0.3 + i) * 0.0003; // gentle vertical drift
+    }
+    this.particles.geometry.getAttribute('position').needsUpdate = true;
+
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  // ── Events ────────────────────────────────────────
   @HostListener('window:resize')
-  resize() {
-    const c = this.canvasRef?.nativeElement;
-    if (!c) return;
-    c.width  = window.innerWidth;
-    c.height = window.innerHeight;
+  onResize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    this.camera.aspect = w / h;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(w, h);
   }
 
   @HostListener('window:mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
-    this.mouse.x  = e.clientX;
-    this.mouse.y  = e.clientY;
-    this.userMoved = true;
-  }
-
-  @HostListener('window:touchmove', ['$event'])
-  onTouchMove(e: TouchEvent) {
-    if (!e.touches?.[0]) return;
-    this.mouse.x  = e.touches[0].clientX;
-    this.mouse.y  = e.touches[0].clientY;
-    this.userMoved = true;
-  }
-
-  private draw() {
-    const canvas = this.canvasRef.nativeElement;
-
-    // Auto figure-8 when no mouse movement
-    if (!this.userMoved) {
-      this.autoAngle += 0.012;
-      const cx = canvas.width  / 2;
-      const cy = canvas.height / 2;
-      this.mouse.x = cx + canvas.width  * 0.38 * Math.sin(this.autoAngle);
-      this.mouse.y = cy + canvas.height * 0.28 * Math.sin(this.autoAngle * 2);
-    }
-
-    const mouseX = this.mouse.x;
-    const mouseY = this.mouse.y;
-    const lim = CFG.SPREAD_LIMIT;
-    const dx = Math.max(-lim, Math.min(lim, (mouseX - this.prevMouse.x) * CFG.SPEED_X));
-    const dy = Math.max(-lim, Math.min(lim, (mouseY - this.prevMouse.y) * CFG.SPEED_Y));
-
-    this.prevMouse.x = mouseX;
-    this.prevMouse.y = mouseY;
-
-    const cs = this.colorState;
-    cs.size  += 0.125;
-    cs.red   += CFG.RED_STEP;
-    cs.green += CFG.GREEN_STEP;
-    cs.blue  += CFG.BLUE_STEP;
-
-    const size = Math.abs(Math.sin(cs.size) * 12) + 2;
-    const r    = Math.floor(Math.sin(cs.red)   * 128 + 128);
-    const g    = Math.floor(Math.sin(cs.green) * 128 + 128);
-    const b    = Math.floor(Math.sin(cs.blue)  * 128 + 128);
-
-    this.points.push({ x: mouseX, y: mouseY, dx, dy, size, color: `rgb(${r},${g},${b})` });
-    if (this.points.length > CFG.MAX_LENGTH) this.points.shift();
-
-    // Fade — transparent so video shows through
-    this.ctx.globalCompositeOperation = 'source-over';
-    this.ctx.globalAlpha = 1;
-    this.ctx.fillStyle   = 'rgba(0, 0, 0, 0.04)';
-    this.ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw ribbon 3× with lighter blend for neon glow over video
-    this.ctx.globalCompositeOperation = 'lighter';
-    this.drawLines();
-    this.drawLines();
-    this.drawLines();
-
-    this.rafId = requestAnimationFrame(() => this.draw());
-  }
-
-  private drawLines() {
-    const pts   = this.points;
-    const total = pts.length;
-    if (total < 3) return;
-
-    for (let i = total - 1; i > 1; i--) {
-      const p0 = pts[i];
-      const p1 = pts[i - 1];
-      const p2 = pts[i - 2];
-
-      this.ctx.beginPath();
-      this.ctx.strokeStyle = p0.color;
-      this.ctx.lineWidth   = p0.size;
-      this.ctx.globalAlpha = i / total;
-      this.ctx.moveTo((p1.x + p0.x) / 2, (p1.y + p0.y) / 2);
-      this.ctx.quadraticCurveTo(p1.x, p1.y, (p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
-      this.ctx.stroke();
-
-      p0.x += p0.dx;
-      p0.y += p0.dy;
-    }
-
-    if (pts[0]) { pts[0].x += pts[0].dx; pts[0].y += pts[0].dy; }
-    const last = pts[total - 1];
-    if (last)   { last.x += last.dx; last.y += last.dy; }
+    this.mouseX = e.clientX - window.innerWidth  / 2;
+    this.mouseY = e.clientY - window.innerHeight / 2;
   }
 }

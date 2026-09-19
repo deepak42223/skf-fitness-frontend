@@ -11,7 +11,6 @@ import { FeaturesComponent }      from './components/features/features';
 import { ServicesComponent }      from './components/services/services';
 import { WorkoutFormatComponent } from './components/workout-format/workout-format';
 import { MembershipComponent }    from './components/membership/membership';
-import { TrainersComponent }      from './components/trainers/trainers';
 import { ExercisesComponent }     from './components/exercises/exercises';
 import { TestimonialsComponent }  from './components/testimonials/testimonials';
 import { ContactComponent }       from './components/contact/contact';
@@ -36,7 +35,6 @@ import { AuthService }            from './services/auth.service';
     ServicesComponent,
     WorkoutFormatComponent,
     MembershipComponent,
-    TrainersComponent,
     ExercisesComponent,
     TestimonialsComponent,
     ContactComponent,
@@ -64,7 +62,6 @@ import { AuthService }            from './services/auth.service';
       <app-services></app-services>
       <app-workout-format></app-workout-format>
       <app-membership></app-membership>
-      <app-trainers></app-trainers>
       <app-exercises></app-exercises>
       <app-testimonials></app-testimonials>
       <app-contact></app-contact>
@@ -185,7 +182,7 @@ import { AuthService }            from './services/auth.service';
 
     <!-- WhatsApp FAB -->
     <a
-      href="https://wa.me/919876543210?text=Hi%2C%20I'm%20interested%20in%20joining%20SKF%20Fitness!"
+      href="https://wa.me/918885735911?text=Hi%2C%20I'm%20interested%20in%20joining%20SKF%20Fitness!"
       target="_blank"
       rel="noopener"
       class="whatsapp-fab"

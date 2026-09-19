@@ -2,7 +2,7 @@
    TAGLINE SECTION
    ════════════════════════════ */
 .tagline-section {
-  background: #000000;
+  background: linear-gradient(135deg, #ffffff 0%, #dbeafe 35%, #bfdbfe 65%, #fef3c7 100%);
   padding: 5rem 0;
 }
 
@@ -18,9 +18,9 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(10, 20, 35, 0.85);
-  border: 1.5px solid rgba(52, 152, 219, 0.6);
-  color: #64B5F6;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1.5px solid rgba(37, 99, 235, 0.35);
+  color: #2563EB;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -28,11 +28,6 @@
   padding: 9px 20px;
   border-radius: 50px;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(12px);
-  box-shadow:
-    0 0 16px rgba(52, 152, 219, 0.2),
-    0 0 32px rgba(52, 152, 219, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .badge-dot {
@@ -55,18 +50,19 @@
 .tagline-heading {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 900;
-  color: #FFFFFF;
+  color: #000000;
   line-height: 1.15;
   margin: 0 0 1.5rem 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.08em;
   animation: none;
+  text-shadow: 2px 4px 16px rgba(37, 99, 235, 0.35), 0 0 32px rgba(37, 99, 235, 0.15);
 }
 
 /* Description */
 .tagline-desc {
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   line-height: 1.8;
-  color: #A0A0A0;
+  color: #000000;
   max-width: 700px;
   margin: 0 auto 2rem auto;
 }

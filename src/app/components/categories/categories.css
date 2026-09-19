@@ -2,7 +2,7 @@
    PROGRAMS — OVAL CARD GRID
    ════════════════════════════ */
 #programs {
-  background: #06080f;
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%);
   padding: 5rem 0 4.5rem;
 }
 
@@ -34,13 +34,12 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  text-shadow: 3px 4px 18px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9);
 }
 
 .title-blue {
-  background: linear-gradient(135deg, #2563EB 0%, #60A5FA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
+  -webkit-text-fill-color: #FFFFFF;
 }
 
 .title-line {
@@ -57,10 +56,26 @@
 
 /* ── Cards row ── */
 .programs-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.programs-row {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1.1rem;
-  align-items: start;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.programs-row-1 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.programs-row-2 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 75%;
+  margin: 0 auto;
 }
 
 /* ── Single card ── */
@@ -72,12 +87,12 @@
   cursor: pointer;
 }
 
-/* ── Oval image container ── */
+/* ── Rectangle image container ── */
 .prog-oval {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: 999px;
+  border-radius: 12px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
@@ -180,40 +195,47 @@
 
 /* ── Responsive ── */
 @media (max-width: 1200px) {
-  .programs-cards {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
+  .programs-row-1 { grid-template-columns: repeat(4, 1fr); }
+  .programs-row-2 { grid-template-columns: repeat(3, 1fr); max-width: 75%; }
 }
 
 @media (max-width: 900px) {
-  .programs-cards {
+  .programs-row-1,
+  .programs-row-2 {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
   #programs { padding: 3.5rem 0 3rem; }
-
-  .programs-cards {
+  .programs-cards { gap: 1rem; }
+  .programs-row-1,
+  .programs-row-2 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    max-width: 100%;
   }
-
-  .prog-name {
-    font-size: 0.78rem;
-  }
-
-  .prog-cta {
-    font-size: 0.62rem;
-    padding: 7px 14px;
-  }
+  .prog-name { font-size: 0.78rem; }
+  .prog-cta { font-size: 0.62rem; padding: 7px 14px; }
 }
 
-@media (max-width: 380px) {
-  .programs-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
+/* ── Three.js particle canvas ── */
+#programs {
+  position: relative;
+}
+
+.prog-three-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+/* Ensure content sits above canvas */
+#programs .container {
+  position: relative;
+  z-index: 1;
 }

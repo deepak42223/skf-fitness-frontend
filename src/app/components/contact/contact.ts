@@ -27,7 +27,7 @@ export class ContactComponent {
 
   info = [
     { icon: '📍', label: 'Address', value: '124 Iron Street, Hyderabad, Telangana 500001' },
-    { icon: '📞', label: 'Phone',   value: '+91 98765 43210' },
+    { icon: '📞', label: 'Phone',   value: '+91 88857 35911' },
     { icon: '✉️',  label: 'Email',  value: 'hello@skffitness.com' },
     { icon: '🕐', label: 'Hours',   value: 'Mon–Sat: 5AM–11PM  |  Sun: 7AM–9PM' },
   ];

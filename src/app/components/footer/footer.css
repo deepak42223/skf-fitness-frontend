@@ -1,5 +1,5 @@
 footer {
-  background: var(--bg-elevated);
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%);
   border-top: 3px solid;
   border-image: linear-gradient(90deg, var(--energy), var(--accent)) 1;
   padding: 70px 0 30px;

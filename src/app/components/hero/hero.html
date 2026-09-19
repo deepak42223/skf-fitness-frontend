@@ -1,17 +1,21 @@
 <section class="hero" id="home">
 
-  <!-- ── Background Video ── -->
+  <!-- ── Background layers ── -->
   <div class="hero-bg">
+    <!-- Video -->
     <video #videoPlayer autoplay muted loop playsinline preload="auto"
       class="hero-video" (ended)="nextVideo()">
       <source [src]="getCurrentVideoSrc()" type="video/mp4">
     </video>
+    <!-- Dark overlay -->
     <div class="hero-video-overlay"></div>
-    <canvas #ribbonCanvas class="ribbon-canvas"></canvas>
+    <!-- Three.js particle canvas -->
+    <canvas #threeCanvas class="three-canvas"></canvas>
+    <!-- Bottom fade -->
     <div class="hero-bg-overlay"></div>
   </div>
 
-  <!-- ── Hero Content ── -->
+  <!-- ── Content ── -->
   <div class="hero-content">
     <div class="container">
       <div class="hero-grid">
@@ -19,17 +23,16 @@
 
           <!-- Headline -->
           <h1 class="hero-headline">
-            <span class="headline-line">TRAIN HARDER,</span>
-            <span class="headline-line headline-teal">GET STRONGER</span>
+            <span class="headline-line">TRAIN HARDER, GET STRONGER</span>
           </h1>
 
-          <!-- Supporting description -->
+          <!-- Description -->
           <p class="hero-para">
             Expert coaching, premium equipment, and personalized programs —<br class="desktop-break">
             everything you need to reach your peak performance.
           </p>
 
-          <!-- CTA Buttons -->
+          <!-- CTAs -->
           <div class="hero-actions">
             <a class="btn-neon-render" (click)="openAuthModal()" style="cursor:pointer">
               Join Now

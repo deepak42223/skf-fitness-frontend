@@ -1,4 +1,8 @@
 <section id="programs">
+
+  <!-- Three.js particle canvas behind the section -->
+  <canvas #progCanvas class="prog-three-canvas"></canvas>
+
   <div class="container">
 
     <!-- Section Header -->
@@ -11,37 +15,49 @@
       </h2>
     </div>
 
-    <!-- Oval Cards Grid -->
+    <!-- Cards: Row 1 (4 cards) + Row 2 (3 cards centered) -->
     <div class="programs-cards">
-      @for (program of programs; track program.id; let i = $index) {
-        <div class="prog-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
 
-          <!-- Oval image -->
-          <div class="prog-oval">
-            <img
-              [src]="program.image"
-              [alt]="program.name"
-              class="prog-oval-img"
-              loading="lazy"
-            />
-            <div class="prog-oval-overlay"></div>
-            <!-- Number badge -->
-            <span class="prog-number">{{ i + 1 }}.</span>
+      <!-- Row 1 — first 4 cards -->
+      <div class="programs-row programs-row-1">
+        @for (program of programs.slice(0, 4); track program.id; let i = $index) {
+          <div class="prog-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
+            <div class="prog-oval">
+              <img [src]="program.image" [alt]="program.name" class="prog-oval-img" loading="lazy" />
+              <div class="prog-oval-overlay"></div>
+              <span class="prog-number">{{ i + 1 }}.</span>
+            </div>
+            <h3 class="prog-name">{{ program.name | uppercase }}</h3>
+            <a href="#membership" class="prog-cta">
+              JOIN NOW
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
           </div>
+        }
+      </div>
 
-          <!-- Label -->
-          <h3 class="prog-name">{{ program.name | uppercase }}</h3>
+      <!-- Row 2 — last 3 cards centered -->
+      <div class="programs-row programs-row-2">
+        @for (program of programs.slice(4); track program.id; let i = $index) {
+          <div class="prog-card reveal" [style.transition-delay]="((i + 4) * 0.08) + 's'">
+            <div class="prog-oval">
+              <img [src]="program.image" [alt]="program.name" class="prog-oval-img" loading="lazy" />
+              <div class="prog-oval-overlay"></div>
+              <span class="prog-number">{{ i + 5 }}.</span>
+            </div>
+            <h3 class="prog-name">{{ program.name | uppercase }}</h3>
+            <a href="#membership" class="prog-cta">
+              JOIN NOW
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        }
+      </div>
 
-          <!-- CTA -->
-          <a href="#membership" class="prog-cta">
-            JOIN NOW
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-
-        </div>
-      }
     </div>
 
   </div>
