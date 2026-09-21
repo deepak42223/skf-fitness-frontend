@@ -9,26 +9,57 @@ export class TextRevealService {
 
   init() {
     setTimeout(() => {
+      this.revealHero();
       this.revealHeadings();
       this.revealSections();
       this.revealCards();
     }, 100);
   }
 
+  private revealHero() {
+    // Hero headline — simple slide up, no word split
+    const headline = document.querySelector('.hero-headline');
+    if (headline) {
+      gsap.from(headline, {
+        y: 50,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power3.out',
+        delay: 0.2,
+      });
+    }
+  }
+
   private revealHeadings() {
-    // Find all section headings with [data-reveal] or h2 inside sections
     const headings = document.querySelectorAll<HTMLElement>(
-      'h2, .hero-headline, .tagline-heading, .wf-title, .programs-title, .ex-title, .goal-title, .faq-title, .cta-title'
+      'h2, .tagline-heading, .wf-title, .programs-title, .ex-title, .goal-title, .faq-title, .cta-title'
     );
 
     headings.forEach((el) => {
-      // Wrap each word in a span for line-by-line reveal
       if (el.dataset['gsapReady']) return;
       el.dataset['gsapReady'] = 'true';
 
-      const text = el.innerHTML;
-      // Split words, preserve HTML tags
-      const words = text.split(/(\s+)/).filter(w => w.trim());
+      // Only split plain text nodes — skip elements with complex HTML children
+      const hasChildElements = el.querySelectorAll('*').length > 0;
+      if (hasChildElements) {
+        // Simple fade+slide up for complex HTML headings
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 92%',
+            toggleActions: 'play none none none',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          clearProps: 'all',
+        });
+        return;
+      }
+
+      // Safe word split for plain text headings only
+      const words = el.textContent?.trim().split(/\s+/) || [];
       el.innerHTML = words
         .map(w => `<span class="gsap-word-wrap"><span class="gsap-word">${w}</span></span>`)
         .join(' ');
@@ -36,20 +67,20 @@ export class TextRevealService {
       gsap.from(el.querySelectorAll('.gsap-word'), {
         scrollTrigger: {
           trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none reverse',
+          start: 'top 92%',
+          toggleActions: 'play none none none',
         },
         y: '100%',
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
         stagger: 0.05,
+        clearProps: 'all',
       });
     });
   }
 
   private revealSections() {
-    // Fade-up for paragraphs, subheadings, badges
     const elements = document.querySelectorAll<HTMLElement>(
       '.section-tag, .red-line, .ex-subtitle, .wf-desc, .programs-eyebrow, .hero-para, .tagline-desc, .tagline-badge, .section-badge, .hero-eyebrow'
     );
@@ -61,19 +92,19 @@ export class TextRevealService {
       gsap.from(el, {
         scrollTrigger: {
           trigger: el,
-          start: 'top 90%',
-          toggleActions: 'play none none reverse',
+          start: 'top 92%',
+          toggleActions: 'play none none none', // play once only
         },
-        y: 30,
+        y: 25,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.75,
         ease: 'power2.out',
+        clearProps: 'all',
       });
     });
   }
 
   private revealCards() {
-    // Stagger cards in each grid
     const grids = document.querySelectorAll<HTMLElement>(
       '.programs-row, .wf-grid, .goal-cards, .ex-grid, .other-locations-grid'
     );
@@ -83,17 +114,19 @@ export class TextRevealService {
       grid.dataset['gsapReady'] = 'true';
 
       const children = Array.from(grid.children) as HTMLElement[];
+
       gsap.from(children, {
         scrollTrigger: {
           trigger: grid,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: 'top 92%',
+          toggleActions: 'play none none none', // play once, never hide again
         },
-        y: 60,
+        y: 50,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.75,
         ease: 'power3.out',
-        stagger: 0.1,
+        stagger: 0.08,
+        clearProps: 'all', // remove inline styles after animation so CSS takes over
       });
     });
   }

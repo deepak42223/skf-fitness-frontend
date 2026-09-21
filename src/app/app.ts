@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy, HostListener, signal } from '@angular/core';
 import { CommonModule }           from '@angular/common';
 import { FormsModule }            from '@angular/forms';
-import { RouterOutlet }           from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { NavbarComponent }        from './components/navbar/navbar';
 import { HeroComponent }          from './components/hero/hero';
 import { TaglineComponent }       from './components/tagline/tagline';
@@ -19,7 +21,6 @@ import { FooterComponent }        from './components/footer/footer';
 import { UserProfileComponent }   from './components/user-profile/user-profile';
 import { AuthService }            from './services/auth.service';
 import { LoaderComponent }        from './components/loader/loader';
-import { CursorComponent }        from './components/cursor/cursor';
 import { SmoothScrollService }    from './services/smooth-scroll.service';
 import { TextRevealService }      from './services/text-reveal.service';
 
@@ -46,13 +47,9 @@ import { TextRevealService }      from './services/text-reveal.service';
     FooterComponent,
     UserProfileComponent,
     LoaderComponent,
-    CursorComponent,
   ],
   template: `
     <div class="page-progress" [style.width]="scrollProgress() + '%'"></div>
-
-    <!-- Custom cursor (desktop only) -->
-    <app-cursor></app-cursor>
 
     <!-- Loading screen -->
     @if (showLoader()) {
@@ -61,26 +58,29 @@ import { TextRevealService }      from './services/text-reveal.service';
 
     <app-navbar></app-navbar>
 
-    <!-- Routed pages (e.g. /workouts/:id) render here -->
+    <!-- Routed pages render here -->
     <router-outlet></router-outlet>
 
-    <!-- Show Profile Page if logged in, else show main website -->
-    @if (authService.isLoggedIn() && showProfile()) {
-      <app-user-profile (onLogout)="handleLogout()"></app-user-profile>
-    } @else {
-      <app-hero></app-hero>
-      <app-tagline></app-tagline>
-      <app-categories></app-categories>
-      <app-about></app-about>
-      <app-features></app-features>
-      <app-services></app-services>
-      <app-workout-format></app-workout-format>
-      <app-membership></app-membership>
-      <app-exercises></app-exercises>
-      <app-testimonials></app-testimonials>
-      <app-contact></app-contact>
-      <app-cta></app-cta>
-      <app-footer></app-footer>
+    <!-- Show home page sections only on / route -->
+    @if (isHomePage()) {
+      <!-- Show Profile Page if logged in, else show main website -->
+      @if (authService.isLoggedIn() && showProfile()) {
+        <app-user-profile (onLogout)="handleLogout()"></app-user-profile>
+      } @else {
+        <app-hero></app-hero>
+        <app-tagline></app-tagline>
+        <app-categories></app-categories>
+        <app-about></app-about>
+        <app-features></app-features>
+        <app-services></app-services>
+        <app-workout-format></app-workout-format>
+        <app-membership></app-membership>
+        <app-exercises></app-exercises>
+        <app-testimonials></app-testimonials>
+        <app-contact></app-contact>
+        <app-cta></app-cta>
+        <app-footer></app-footer>
+      }
     }
 
     <!-- Auth Modal — Animated Login Page Style -->
@@ -467,6 +467,9 @@ export class AppComponent implements OnInit, OnDestroy {
   showAuthModal  = signal(false);
   showProfile    = signal(false);
   showLoader     = signal(true);
+  isHomePage     = signal(true);
+
+  private routerSub!: Subscription;
   authTab        = signal<'login' | 'register' | 'forgot'>('login');
   authLoading    = signal(false);
   authError      = signal('');
@@ -495,6 +498,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     private smoothScroll: SmoothScrollService,
     private textReveal: TextRevealService,
+    private router: Router,
   ) {}
 
   private boundOpenModal:   EventListener | null = null;
@@ -503,6 +507,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initScrollReveal();
+
+    // Track route changes — hide home sections on sub-pages
+    this.routerSub = this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: any) => {
+        const homeRoutes = ['', '/'];
+        this.isHomePage.set(homeRoutes.includes(e.urlAfterRedirects));
+        window.scrollTo({ top: 0 });
+      });
 
     // Remove any stale listeners before adding new ones (hot-reload safety)
     if (this.boundOpenModal)   window.removeEventListener('open-auth-modal', this.boundOpenModal);
@@ -535,6 +548,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.routerSub?.unsubscribe();
     if (this.boundOpenModal)   window.removeEventListener('open-auth-modal', this.boundOpenModal);
     if (this.boundGoHome)      window.removeEventListener('go-home', this.boundGoHome);
     if (this.boundShowProfile) window.removeEventListener('show-profile', this.boundShowProfile);
@@ -542,11 +556,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onLoaderDone() {
     this.showLoader.set(false);
-    // Init smooth scroll and text reveal after loader finishes
     this.smoothScroll.init();
     this.textReveal.init();
-    // Hide system cursor on desktop
-    document.documentElement.style.cursor = 'none';
   }
 
   openModal(tab: 'login' | 'register' = 'login') {

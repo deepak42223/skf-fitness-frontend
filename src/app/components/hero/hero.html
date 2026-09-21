@@ -2,11 +2,8 @@
 
   <!-- ── Background layers ── -->
   <div class="hero-bg">
-    <!-- Video -->
-    <video #videoPlayer autoplay muted loop playsinline preload="auto"
-      class="hero-video" (ended)="nextVideo()">
-      <source [src]="getCurrentVideoSrc()" type="video/mp4">
-    </video>
+    <!-- Background image -->
+    <img src="hero-bg.png" alt="SKF Fitness Gym" class="hero-video" />
     <!-- Dark overlay -->
     <div class="hero-video-overlay"></div>
     <!-- Three.js particle canvas -->

@@ -1015,18 +1015,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ════════════════════════════
-   CUSTOM CURSOR — hide system
-   ════════════════════════════ */
-@media (hover: hover) and (pointer: fine) {
-  * { cursor: none !important; }
-}
-
-/* Re-show on touch */
-@media (hover: none) {
-  * { cursor: auto !important; }
-}
-
-/* ════════════════════════════
    LENIS SMOOTH SCROLL
    ════════════════════════════ */
 html.lenis {

@@ -1,6 +1,6 @@
 import {
   Component, OnInit, OnDestroy, AfterViewInit,
-  ViewChild, ElementRef, HostListener, signal
+  ViewChild, ElementRef, HostListener
 } from '@angular/core';
 import * as THREE from 'three';
 
@@ -14,11 +14,7 @@ import * as THREE from 'three';
 export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Video ──────────────────────────────────────────
-  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('threeCanvas') threeCanvas!: ElementRef<HTMLCanvasElement>;
-
-  private videoSources = ['hero-main.mp4'];
-  currentVideoIndex = signal(0);
 
   // ── Three.js ───────────────────────────────────────
   private renderer!: THREE.WebGLRenderer;
@@ -34,7 +30,6 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.playVideo();
     this.initThree();
     this.animate();
   }
@@ -45,35 +40,8 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // ── Video ──────────────────────────────────────────
-  getCurrentVideoSrc(): string {
-    return this.videoSources[this.currentVideoIndex()];
-  }
-
   openAuthModal() {
     window.dispatchEvent(new CustomEvent('open-auth-modal', { detail: { tab: 'register' } }));
-  }
-
-  nextVideo() {
-    const next = (this.currentVideoIndex() + 1) % this.videoSources.length;
-    this.currentVideoIndex.set(next);
-    setTimeout(() => {
-      const v = this.videoPlayer?.nativeElement;
-      if (v) { v.muted = true; v.load(); v.play().catch(() => {}); }
-    }, 100);
-  }
-
-  private playVideo() {
-    setTimeout(() => {
-      const v = this.videoPlayer?.nativeElement;
-      if (!v) return;
-      v.muted = true;
-      v.load();
-      v.play().catch(() => {
-        const retry = () => { v.play().catch(() => {}); };
-        document.addEventListener('click', retry, { once: true });
-        document.addEventListener('touchstart', retry, { once: true });
-      });
-    }, 200);
   }
 
   // ── Three.js Particles ────────────────────────────
