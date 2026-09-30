@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════
+   APPROACH SECTION
+   Centered · Serif headline · Minimal
+   ═══════════════════════════════════════════ */
+
+.approach {
+  position: relative;
+  padding: 120px 0;
+  background: linear-gradient(180deg, #f8f8f6 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+.approach-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ── Icon Badge ── */
+.approach-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 0.5rem;
+  animation: approachFadeIn 0.8s ease-out both;
+}
+
+/* ── Eyebrow ── */
+.approach-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: none;
+  color: #2563EB;
+  margin: 0;
+  animation: approachFadeIn 0.8s ease-out 0.1s both;
+}
+
+/* ── Headline with serif font ── */
+.approach-headline {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+  margin: 0;
+  animation: approachFadeIn 0.8s ease-out 0.2s both;
+}
+
+.approach-highlight {
+  font-style: italic;
+  color: #2563EB;
+  position: relative;
+}
+
+/* ── Description ── */
+.approach-description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(0,0,0,0.65);
+  max-width: 580px;
+  margin: 0.5rem 0 0;
+  animation: approachFadeIn 0.8s ease-out 0.3s both;
+}
+
+/* ── CTA Button ── */
+.approach-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: #fff;
+  background: #2563EB;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 0.5rem;
+  animation: approachFadeIn 0.8s ease-out 0.4s both;
+}
+
+.approach-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Animations ── */
+@keyframes approachFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .approach {
+    padding: 80px 0;
+  }
+
+  .approach-headline {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .approach-description {
+    font-size: 0.9rem;
+  }
+
+  .approach-icon {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .approach {
+    padding: 60px 0;
+  }
+
+  .approach-content {
+    gap: 1.25rem;
+  }
+
+  .approach-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+  }
+
+  .approach-btn {
+    padding: 11px 24px;
+    font-size: 0.68rem;
+  }
+}

@@ -7,57 +7,43 @@
 
     <!-- Section Header -->
     <div class="programs-header">
-      <p class="programs-eyebrow">OUR PROGRAMS</p>
-      <h2 class="programs-title">
-        <span class="title-line"></span>
-        TRAIN FOR <span class="title-blue">YOUR GOALS</span>
-        <span class="title-line"></span>
-      </h2>
+      <div class="programs-header-left">
+        <h2 class="programs-title">
+          Find your way<br>to move.
+        </h2>
+      </div>
+      <div class="programs-header-right">
+        <p class="programs-description">
+          Different goals need different paths. Every Form program is led by coaches who see the whole person, not just the workout.
+        </p>
+      </div>
     </div>
 
-    <!-- Cards: Row 1 (4 cards) + Row 2 (3 cards centered) -->
-    <div class="programs-cards">
-
-      <!-- Row 1 — first 4 cards -->
-      <div class="programs-row programs-row-1">
-        @for (program of programs.slice(0, 4); track program.id; let i = $index) {
-          <div class="prog-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
-            <div class="prog-oval">
-              <img [src]="program.image" [alt]="program.name" class="prog-oval-img" loading="lazy" />
-              <div class="prog-oval-overlay"></div>
-              <span class="prog-number">{{ i + 1 }}.</span>
+    <!-- Cards: 4 columns -->
+    <div class="programs-grid">
+      @for (program of programs; track program.id; let i = $index) {
+        <div class="prog-card reveal" [class.loading-skeleton]="loading()" [style.transition-delay]="(i * 0.1) + 's'">
+          <div class="prog-image-wrap">
+            <img [src]="program.image" [alt]="program.name" class="prog-image" [class.skeleton-image]="loading()" loading="lazy" />
+            <div class="prog-overlay"></div>
+            
+            <!-- Number badge -->
+            <div class="prog-number">0{{ i + 1 }}</div>
+            
+            <!-- Content at bottom -->
+            <div class="prog-content">
+              <h3 class="prog-name" [class.skeleton-text]="loading()">{{ program.name }}</h3>
+              <p class="prog-description">{{ getDescription(program.id) }}</p>
+              <a href="#membership" class="prog-explore">
+                EXPLORE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
-            <h3 class="prog-name">{{ program.name | uppercase }}</h3>
-            <a href="#membership" class="prog-cta">
-              JOIN NOW
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
-        }
-      </div>
-
-      <!-- Row 2 — last 3 cards centered -->
-      <div class="programs-row programs-row-2">
-        @for (program of programs.slice(4); track program.id; let i = $index) {
-          <div class="prog-card reveal" [style.transition-delay]="((i + 4) * 0.08) + 's'">
-            <div class="prog-oval">
-              <img [src]="program.image" [alt]="program.name" class="prog-oval-img" loading="lazy" />
-              <div class="prog-oval-overlay"></div>
-              <span class="prog-number">{{ i + 5 }}.</span>
-            </div>
-            <h3 class="prog-name">{{ program.name | uppercase }}</h3>
-            <a href="#membership" class="prog-cta">
-              JOIN NOW
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        }
-      </div>
-
+        </div>
+      }
     </div>
 
   </div>

@@ -2,191 +2,161 @@
   <div class="container">
 
     <!-- Section Header -->
-    <div class="section-header reveal">
-      <div class="section-badge">Get In Touch</div>
-      <h2 class="section-title">Contact Us</h2>
-      <p class="section-subtitle">Have a question or ready to start? Send us a message and we'll get back to you within 24 hours.</p>
+    <div class="contact-header">
+      <h2 class="contact-title">
+        Get In <span class="contact-title-blue">Touch</span>.
+      </h2>
     </div>
 
-    <!-- Contact Form + Info Grid -->
-    <div class="contact-grid reveal">
+    <!-- Contact Grid: Form Left, Map Right -->
+    <div class="contact-main-grid">
 
-      <!-- LEFT: Form -->
-      <div class="contact-form-wrap">
+      <!-- LEFT: Contact Form -->
+      <div class="contact-form-section">
         <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
 
-          <div class="form-row">
-            <div class="form-field">
-              <label for="cf-name">Full Name *</label>
-              <input
-                id="cf-name"
-                type="text"
-                [(ngModel)]="form.name"
-                name="name"
-                placeholder="Your full name"
-                required />
-            </div>
-            <div class="form-field">
-              <label for="cf-phone">Phone *</label>
-              <input
-                id="cf-phone"
-                type="tel"
-                [(ngModel)]="form.phone"
-                name="phone"
-                placeholder="+91 88857 35911"
-                required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label for="cf-email">Email Address *</label>
+          <!-- Full Name Field -->
+          <div class="form-group">
+            <label class="form-label">FULL NAME</label>
             <input
-              id="cf-email"
-              type="email"
-              [(ngModel)]="form.email"
-              name="email"
-              placeholder="you@example.com"
+              type="text"
+              class="form-input"
+              [(ngModel)]="form.name"
+              name="name"
+              placeholder="Your full name"
               required />
           </div>
 
-          <div class="form-field">
-            <label for="cf-subject">Subject</label>
-            <select id="cf-subject" [(ngModel)]="form.subject" name="subject">
-              <option value="">Select a topic</option>
-              <option value="membership">Membership Enquiry</option>
-              <option value="personal-training">Personal Training</option>
-              <option value="class-schedule">Class Schedule</option>
-              <option value="other">Other</option>
-            </select>
+          <!-- Email & Phone Row -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">EMAIL ADDRESS</label>
+              <input
+                type="email"
+                class="form-input"
+                [(ngModel)]="form.email"
+                name="email"
+                placeholder="you@example.com"
+                required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">PHONE NUMBER</label>
+              <input
+                type="tel"
+                class="form-input"
+                [(ngModel)]="form.phone"
+                name="phone"
+                placeholder="+91"
+                required />
+            </div>
           </div>
 
-          <div class="form-field">
-            <label for="cf-message">Message *</label>
+          <!-- Message Field -->
+          <div class="form-group">
+            <label class="form-label">MESSAGE</label>
             <textarea
-              id="cf-message"
+              class="form-textarea"
               [(ngModel)]="form.message"
               name="message"
-              placeholder="Tell us how we can help..."
+              placeholder="Tell us about your goals"
               rows="5"
               required></textarea>
           </div>
 
+          <!-- Error/Success Messages -->
           @if (isError()) {
-            <div class="form-feedback error">⚠ {{ errorMsg() }}</div>
+            <div class="form-feedback error">{{ errorMsg() }}</div>
           }
           @if (isSuccess()) {
-            <div class="form-feedback success">✓ Message sent! We'll be in touch soon.</div>
+            <div class="form-feedback success">✓ Message sent successfully!</div>
           }
 
+          <!-- Submit Button -->
           <button
             type="submit"
-            class="form-submit btn btn-primary"
+            class="form-submit-btn"
             [disabled]="isLoading() || !contactForm.valid">
-            {{ isLoading() ? 'SENDING...' : 'SEND MESSAGE →' }}
+            {{ isLoading() ? 'SENDING...' : 'SEND MESSAGE' }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
           </button>
 
         </form>
       </div>
 
-      <!-- RIGHT: Info -->
-      <div class="contact-info-wrap">
-        @for (item of info; track item.label) {
-          <div class="contact-info-item">
-            <span class="ci-icon">{{ item.icon }}</span>
-            <div class="ci-text">
-              <span class="ci-label">{{ item.label }}</span>
-              <span class="ci-value">{{ item.value }}</span>
+      <!-- RIGHT: Map Card -->
+      <div class="contact-map-section">
+        <div class="map-card">
+          <!-- Map Placeholder -->
+          <div class="map-placeholder">
+            <div class="map-marker">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="#2563EB">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
             </div>
+            <div class="map-location-name">SKF Fitness</div>
+            <div class="map-location-address">Hyderabad, Telangana</div>
           </div>
-        }
 
-        <!-- WhatsApp direct CTA -->
-        <a href="https://wa.me/918885735911?text=Hi%2C%20I'm%20interested%20in%20joining%20SKF%20Fitness!"
-           target="_blank" rel="noopener" class="whatsapp-contact-btn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          Chat on WhatsApp
-        </a>
-      </div>
-
-    </div>
-
-    <!-- Main Location Section -->
-    <div class="main-location-section">
-      <div class="location-header">
-        <h2 class="location-title">SKF Fitness Bandlaguda</h2>
-        <span class="location-badge">Main Location</span>
-      </div>
-      
-      <div class="location-info-grid">
-        <div class="info-item">
-          <div class="info-icon address-icon">📍</div>
-          <div class="info-content">
-            <span class="info-label">Address</span>
-            <div class="info-value">
-              <div>Vantage Line Mall, Suncity Road</div>
-              <div>Sai Baba Nagar, Bandlaguda Jagir</div>
-              <div>Hyderabad, Telangana</div>
+          <!-- Contact Info Cards -->
+          <div class="contact-info-cards">
+            
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="info-card-content">
+                <p class="info-card-label">ADDRESS</p>
+                <p class="info-card-value">Hyderabad Telangana</p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="info-item">
-          <div class="info-icon hours-icon">🕐</div>
-          <div class="info-content">
-            <span class="info-label">Hours</span>
-            <div class="info-value">
-              <div>Mon-Sat: 5AM-11PM</div>
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="info-card-content">
+                <p class="info-card-label">PHONE</p>
+                <p class="info-card-value">+91 883 773 5911</p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="info-item">
-          <div class="info-icon phone-icon">📞</div>
-          <div class="info-content">
-            <span class="info-label">Phone</span>
-            <div class="info-value">+91 88857 35911</div>
-          </div>
-        </div>
-      </div>
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="info-card-content">
+                <p class="info-card-label">EMAIL</p>
+                <p class="info-card-value">info@skffitness.com</p>
+              </div>
+            </div>
 
-      <div class="location-actions">
-        <a href="tel:+918885735911" class="action-btn call-btn">Call Now</a>
-        <a href="https://maps.google.com/?q=Vantage+Line+Mall+Suncity+Road+Bandlaguda+Jagir+Hyderabad+Telangana" target="_blank" class="action-btn directions-btn">Get Directions</a>
-      </div>
-    </div>
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="info-card-content">
+                <p class="info-card-label">HOURS</p>
+                <p class="info-card-value">Mon-Sat: 5 AM-10 PM</p>
+              </div>
+            </div>
 
-    <!-- Other Locations Section -->
-    <div class="other-locations-section">
-      <h3 class="other-locations-title">Other Locations</h3>
-      
-      <div class="other-locations-grid">
-        <div class="other-location-card reveal">
-          <h4 class="other-location-name">SKF Fitness Gachibowli</h4>
-          <div class="other-location-details">
-            <p class="other-location-address">Tech Park Plaza, Gachibowli</p>
-            <p class="other-location-hours">Hours: 6AM-10PM (Mon-Sat)</p>
-            <a href="tel:+919876543211" class="other-location-phone">📞 +91 98765 43211</a>
-          </div>
-        </div>
-
-        <div class="other-location-card reveal">
-          <h4 class="other-location-name">SKF Fitness Kondapur</h4>
-          <div class="other-location-details">
-            <p class="other-location-address">Metro Square, Kondapur</p>
-            <p class="other-location-hours">Hours: 5:30AM-11PM (Mon-Sat)</p>
-            <a href="tel:+919876543212" class="other-location-phone">📞 +91 98765 43212</a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- CTA Section -->
-    <div class="journey-cta-section">
-      <div class="cta-content">
-        <h3 class="cta-title">Ready to Start Your Journey?</h3>
-        <p class="cta-subtitle">Visit any location for a free assessment and facility tour</p>
-        <a href="#pricing" class="cta-button">View Membership Plans</a>
-      </div>
     </div>
 
   </div>

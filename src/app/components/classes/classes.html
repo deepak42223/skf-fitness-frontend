@@ -1,0 +1,61 @@
+<section class="cls-section" id="classes">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="cls-header reveal">
+      <div class="cls-eyebrow">
+        <span class="cls-eyebrow-bar"></span>
+        <span>MEMBER PROTOCOLS</span>
+      </div>
+      <h2 class="cls-title">HIGH-VELOCITY CLASSES</h2>
+    </div>
+
+    <!-- Class Cards -->
+    <div class="cls-grid">
+      @for (cls of classes; track cls.name; let i = $index) {
+        <div class="cls-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
+
+          <!-- Image -->
+          <div class="cls-img-wrap">
+            <img [src]="cls.image" [alt]="cls.name" class="cls-img" loading="lazy" />
+            <div class="cls-img-overlay"></div>
+            <!-- Live badge -->
+            @if (cls.isLive) {
+              <span class="cls-live-badge">
+                <span class="cls-live-dot"></span>
+                LIVE
+              </span>
+            }
+          </div>
+
+          <!-- Content -->
+          <div class="cls-body">
+            <div class="cls-meta-top">
+              <span class="cls-category">{{ cls.category }}</span>
+              <span class="cls-level" [style.color]="getLevelColor(cls.level)">● {{ cls.level }}</span>
+            </div>
+            <h3 class="cls-name">{{ cls.name }}</h3>
+            <div class="cls-meta-row">
+              <span class="cls-trainer">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                {{ cls.trainer }}
+              </span>
+              <span class="cls-duration">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                {{ cls.duration }}
+              </span>
+            </div>
+            <a href="#membership" class="cls-book-btn">BOOK →</a>
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

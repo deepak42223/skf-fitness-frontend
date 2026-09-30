@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════
+   PHILOSOPHY QUOTE SECTION
+   Centered quote with sage green background
+   ═══════════════════════════════════════════ */
+
+.philosophy {
+  position: relative;
+  padding: 100px 0;
+  background: #d4e4d8;
+  overflow: hidden;
+}
+
+.philosophy-content {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ── Quote mark ── */
+.philosophy-quote-mark {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.15);
+  line-height: 1;
+  margin-bottom: -1rem;
+}
+
+/* ── Quote text ── */
+.philosophy-quote {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.philosophy-highlight {
+  font-style: italic;
+  color: #3D9970;
+}
+
+/* ── Attribution ── */
+.philosophy-attribution {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
+  margin: 1rem 0 0;
+}
+
+/* ── Animations ── */
+.philosophy-content {
+  animation: philosophyFadeIn 1s ease-out both;
+}
+
+@keyframes philosophyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .philosophy {
+    padding: 80px 0;
+  }
+
+  .philosophy-quote-mark {
+    font-size: 3rem;
+  }
+
+  .philosophy-quote {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .philosophy-attribution {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .philosophy {
+    padding: 60px 0;
+  }
+
+  .philosophy-quote-mark {
+    font-size: 2.5rem;
+    margin-bottom: -0.5rem;
+  }
+
+  .philosophy-quote {
+    font-size: clamp(1.35rem, 7vw, 1.75rem);
+  }
+}

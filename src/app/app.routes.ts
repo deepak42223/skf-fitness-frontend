@@ -1,17 +1,40 @@
 import { Routes } from '@angular/router';
-import { WorkoutDetailComponent }  from './components/workout-detail/workout-detail';
-import { ServicesPageComponent }   from './pages/services-page/services-page';
-import { TrainersPageComponent }   from './pages/trainers-page/trainers-page';
-import { WorkoutsPageComponent }   from './pages/workouts-page/workouts-page';
-import { ContactPageComponent }    from './pages/contact-page/contact-page';
-import { AboutPageComponent }      from './pages/about-page/about-page';
 
 export const routes: Routes = [
-  { path: 'services',      component: ServicesPageComponent,  title: 'Services — SKF Fitness' },
-  { path: 'trainers',      component: TrainersPageComponent,  title: 'Trainers — SKF Fitness' },
-  { path: 'programs',      component: WorkoutsPageComponent,  title: 'Programs — SKF Fitness' },
-  { path: 'contact',       component: ContactPageComponent,   title: 'Contact — SKF Fitness' },
-  { path: 'about',         component: AboutPageComponent,     title: 'About Us — SKF Fitness' },
-  { path: 'workouts/:id',  component: WorkoutDetailComponent, title: 'Workout — SKF Fitness' },
-  { path: '**',            redirectTo: '', pathMatch: 'full' },
+  { 
+    path: 'services', 
+    loadComponent: () => import('./pages/services-page/services-page').then(m => m.ServicesPageComponent),
+    title: 'Services — SKF Fitness' 
+  },
+  { 
+    path: 'trainers', 
+    loadComponent: () => import('./pages/trainers-page/trainers-page').then(m => m.TrainersPageComponent),
+    title: 'Trainers — SKF Fitness' 
+  },
+  { 
+    path: 'programs', 
+    loadComponent: () => import('./pages/workouts-page/workouts-page').then(m => m.WorkoutsPageComponent),
+    title: 'Programs — SKF Fitness' 
+  },
+  { 
+    path: 'contact', 
+    loadComponent: () => import('./pages/contact-page/contact-page').then(m => m.ContactPageComponent),
+    title: 'Contact — SKF Fitness' 
+  },
+  { 
+    path: 'about', 
+    loadComponent: () => import('./pages/about-page/about-page').then(m => m.AboutPageComponent),
+    title: 'About Us — SKF Fitness' 
+  },
+  { 
+    path: 'generator', 
+    loadComponent: () => import('./components/workout-generator/workout-generator').then(m => m.WorkoutGeneratorComponent),
+    title: 'Workout Generator — SKF Fitness' 
+  },
+  { 
+    path: 'workouts/:id', 
+    loadComponent: () => import('./components/workout-detail/workout-detail').then(m => m.WorkoutDetailComponent),
+    title: 'Workout — SKF Fitness' 
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

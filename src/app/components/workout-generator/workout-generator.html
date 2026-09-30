@@ -1,0 +1,189 @@
+<app-navbar></app-navbar>
+
+<main class="wg-page">
+
+  <!-- ── Hero Banner ── -->
+  <div class="wg-hero">
+    <div class="wg-hero-overlay"></div>
+    <div class="wg-hero-content container">
+      <span class="wg-hero-eyebrow">SKF FITNESS</span>
+      <h1 class="wg-hero-title">WORKOUT<br><span class="wg-hero-accent">GENERATOR</span></h1>
+      <p class="wg-hero-sub">Build a personalised gym program in seconds. Pick your split, target your muscles, set your goal — and we'll generate your workout.</p>
+    </div>
+  </div>
+
+  <!-- ── Generator ── -->
+  <section class="wg-generator container">
+
+    <!-- Step 01 -->
+    <div class="wg-step">
+      <div class="wg-step-header">
+        <span class="wg-step-num">01</span>
+        <div>
+          <h2 class="wg-step-title">Pick your Split</h2>
+          <p class="wg-step-desc">Select the workout structure you want to follow.</p>
+        </div>
+      </div>
+      <div class="wg-options-grid">
+        @for (type of workoutTypes; track type) {
+          <button class="wg-option-btn"
+                  [class.active]="poison() === type"
+                  (click)="selectPoison(type)">
+            {{ formatLabel(type) }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Step 02 -->
+    <div class="wg-step">
+      <div class="wg-step-header">
+        <span class="wg-step-num">02</span>
+        <div>
+          <h2 class="wg-step-title">Lock on Targets</h2>
+          <p class="wg-step-desc">Select the muscle groups you want to train.</p>
+        </div>
+      </div>
+      <div class="wg-muscle-dropdown">
+        <button class="wg-muscle-toggle" (click)="showMuscleModal.set(!showMuscleModal())">
+          <span>
+            @if (muscles().length === 0) { Select muscle groups }
+            @else { {{ muscles().map(m => formatLabel(m)).join(', ') }} }
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               [style.transform]="showMuscleModal() ? 'rotate(180deg)' : 'rotate(0)'">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        @if (showMuscleModal()) {
+          <div class="wg-muscle-list">
+            @for (m of muscleOptions(); track m) {
+              <button class="wg-muscle-item"
+                      [class.selected]="muscles().includes(m)"
+                      (click)="toggleMuscle(m)">
+                <span class="wg-muscle-check">{{ muscles().includes(m) ? '✓' : '' }}</span>
+                {{ formatLabel(m) }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Step 03 -->
+    <div class="wg-step">
+      <div class="wg-step-header">
+        <span class="wg-step-num">03</span>
+        <div>
+          <h2 class="wg-step-title">Set Your Goal</h2>
+          <p class="wg-step-desc">Select your primary training objective.</p>
+        </div>
+      </div>
+      <div class="wg-options-grid wg-goals-grid">
+        @for (g of goalTypes; track g) {
+          <button class="wg-option-btn"
+                  [class.active]="goal() === g"
+                  (click)="goal.set(g)">
+            <span class="wg-goal-name">{{ formatLabel(g) }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Generate Button -->
+    <div class="wg-generate-wrap">
+      <button class="wg-generate-btn"
+              [disabled]="muscles().length === 0"
+              (click)="generateWorkout()">
+        <span class="wg-generate-text">FORMULATE WORKOUT</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+      @if (muscles().length === 0) {
+        <p class="wg-generate-hint">Select at least one muscle group to continue</p>
+      }
+    </div>
+
+  </section>
+
+  <!-- ── Generated Workout ── -->
+  @if (workout(); as exercises) {
+    <section class="wg-workout container" id="wg-workout">
+
+      <div class="wg-workout-header">
+        <div class="wg-workout-eyebrow">
+          <span class="wg-eyebrow-bar"></span>
+          YOUR WORKOUT
+        </div>
+        <h2 class="wg-workout-title">WELCOME TO THE<br><span class="wg-workout-accent">DANGER ZONE</span></h2>
+        <p class="wg-workout-sub">{{ exercises.length }} exercises generated for {{ muscles().map(m => formatLabel(m)).join(' & ') }}</p>
+      </div>
+
+      <div class="wg-exercise-list">
+        @for (ex of exercises; track ex.name; let i = $index) {
+          <div class="wg-ex-card">
+
+            <!-- Number + Name row -->
+            <div class="wg-ex-header">
+              <span class="wg-ex-num">0{{ i + 1 }}</span>
+              <div class="wg-ex-title-wrap">
+                <h3 class="wg-ex-name">{{ formatName(ex.name) }}</h3>
+                <span class="wg-ex-type">{{ ex.type }}</span>
+              </div>
+            </div>
+
+            <!-- Muscle group -->
+            <div class="wg-ex-muscles">
+              <span class="wg-ex-label">Muscle Group</span>
+              <div class="wg-ex-muscle-tags">
+                @for (m of ex.muscles; track m) {
+                  <span class="wg-muscle-tag">{{ m }}</span>
+                }
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="wg-ex-desc-wrap">
+              @for (part of ex.description.split('___'); track $index) {
+                <p class="wg-ex-desc" [class.wg-ex-variant]="$index > 0">{{ part }}</p>
+              }
+            </div>
+
+            <!-- Stats + sets tracker -->
+            <div class="wg-ex-stats">
+              <div class="wg-ex-stat">
+                <span class="wg-ex-stat-label">{{ ex.unit === 'reps' ? 'Reps' : 'Duration (s)' }}</span>
+                <span class="wg-ex-stat-val">{{ ex.reps }}</span>
+              </div>
+              <div class="wg-ex-stat">
+                <span class="wg-ex-stat-label">Rest (s)</span>
+                <span class="wg-ex-stat-val">{{ ex.rest }}</span>
+              </div>
+              <div class="wg-ex-stat">
+                <span class="wg-ex-stat-label">Tempo</span>
+                <span class="wg-ex-stat-val">{{ ex.tempo }}</span>
+              </div>
+              <button class="wg-ex-stat wg-sets-btn" (click)="incrementSet(i)">
+                <span class="wg-ex-stat-label">Sets Done</span>
+                <span class="wg-ex-stat-val">{{ getSetCount(i) }} / 5</span>
+              </button>
+            </div>
+
+          </div>
+        }
+      </div>
+
+      <!-- Re-generate -->
+      <div class="wg-regen-wrap">
+        <button class="wg-regen-btn" (click)="generateWorkout()">
+          REGENERATE WORKOUT ↺
+        </button>
+      </div>
+
+    </section>
+  }
+
+</main>
+
+<app-footer></app-footer>

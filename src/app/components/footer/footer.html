@@ -5,7 +5,7 @@
       <!-- Brand -->
       <div class="footer-brand">
         <a href="#home" class="logo">
-      <img src="skf-logo-new.jpg" alt="SKF Fitness Logo" class="logo-img" width="60" height="60" loading="lazy" />
+          <img src="skf-logo-new.jpg" alt="SKF Fitness Logo" class="logo-img" width="52" height="52" loading="lazy" />
         </a>
         <p>SKF Fitness — where champions are built. Expert coaching, personalized training, and nutrition plans designed to help you achieve real, lasting results.</p>
       </div>
@@ -26,21 +26,58 @@
         }
       </div>
 
-      <!-- Contact -->
+      <!-- Contact — dotted-square icon frames (signature motif) -->
       <div class="footer-col">
         <h4>Contact</h4>
-        @for (link of contact; track link.label) {
-          <a [href]="link.href">{{ link.label }}</a>
-        }
+        <div class="footer-contact-list">
+
+          <div class="footer-contact-item">
+            <div class="footer-dotted-frame" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="footer-contact-text">
+              <span class="footer-contact-label">Address</span>
+              <span class="footer-contact-value">Bandlaguda Jagir, Hyderabad</span>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="footer-dotted-frame" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a2 2 0 0 1 1.97-2.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/>
+              </svg>
+            </div>
+            <div class="footer-contact-text">
+              <span class="footer-contact-label">Phone</span>
+              <a href="tel:+918885735911" class="footer-contact-value">+91 88857 35911</a>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="footer-dotted-frame" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="footer-contact-text">
+              <span class="footer-contact-label">Email</span>
+              <a href="mailto:hello@skffitness.com" class="footer-contact-value">hello@skffitness.com</a>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
 
     <div class="footer-bottom">
       <span>&copy; {{ year }} SKF Fitness. All rights reserved.</span>
       <div class="socials">
         @for (s of socials; track s.label) {
-          <a [href]="s.href" [attr.aria-label]="s.label" target="_blank" rel="noopener noreferrer" class="social-link" [innerHTML]="s.svg">
-          </a>
+          <a [href]="s.href" [attr.aria-label]="s.label" target="_blank" rel="noopener noreferrer" class="social-link" [innerHTML]="s.svg"></a>
         }
       </div>
     </div>

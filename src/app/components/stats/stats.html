@@ -1,8 +1,26 @@
-<div class="stats-band">
-  @for (s of stats; track s.label) {
-    <div class="stat-block">
-      <b>{{ s.value }}</b>
-      <span>{{ s.label }}</span>
+<div class="stats-ribbon">
+  <div class="container">
+    <div class="stats-row">
+      @for (stat of stats; track stat.label; let last = $last) {
+        <div class="stat-item">
+          <!-- Dotted-square icon frame — signature motif -->
+          <div class="stat-icon-frame">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div>
+            <span class="stat-value">{{ stat.value }}</span>
+            <div class="stat-text">
+              <span class="stat-label">{{ stat.label }}</span>
+              <span class="stat-sub">{{ stat.sub }}</span>
+            </div>
+          </div>
+        </div>
+        @if (!last) {
+          <div class="stat-divider"></div>
+        }
+      }
     </div>
-  }
+  </div>
 </div>

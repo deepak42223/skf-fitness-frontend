@@ -1,0 +1,65 @@
+<section class="faq-section" id="faq">
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="section-header">
+      <div class="section-badge">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Got questions? We have got answers. Can not find what you are looking for? Contact us!</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="faq-search">
+      <input 
+        type="text" 
+        placeholder="Search questions..." 
+        (input)="updateSearch($any($event.target).value)"
+        class="search-input">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+      @for (cat of categories; track cat) {
+        <button 
+          class="category-btn"
+          [class.active]="selectedCategory() === cat"
+          (click)="setCategory(cat)">
+          {{ cat === 'all' ? 'All' : (cat | titlecase) }}
+        </button>
+      }
+    </div>
+
+    <!-- FAQ List -->
+    <div class="faq-list">
+      @for (faq of filteredFaqs; track faq.id) {
+        <div class="faq-item" [class.active]="activeId() === faq.id">
+          <button class="faq-question" (click)="toggle(faq.id)">
+            <span>{{ faq.question }}</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer" [class.show]="activeId() === faq.id">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      } @empty {
+        <div class="no-results">
+          <p>No questions found matching your search.</p>
+        </div>
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta">
+      <h3>Still have questions?</h3>
+      <p>Our team is here to help you get started</p>
+      <a href="#contact" class="cta-button">Contact Us</a>
+    </div>
+
+  </div>
+</section>

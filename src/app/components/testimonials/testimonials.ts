@@ -39,4 +39,22 @@ export class TestimonialsComponent {
       image: 'charles-gaudreault-xXofYCc3hqc-unsplash.jpg'
     }
   ];
+
+  currentIndex = 0;
+
+  get currentTestimonial() {
+    return this.testimonials[this.currentIndex];
+  }
+
+  nextTestimonial() {
+    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+  }
+
+  previousTestimonial() {
+    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+  }
+
+  goToTestimonial(index: number) {
+    this.currentIndex = index;
+  }
 }

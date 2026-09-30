@@ -320,3 +320,66 @@
   .photo-banner { grid-template-columns: 1fr; height: 200px; }
   .photo-banner-item:not(:first-child) { display: none; }
 }
+
+/* ════════════════════════════
+   HORIZONTAL ROW LAYOUT
+   ════════════════════════════ */
+.ex-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem;
+  grid-template-columns: unset !important;
+}
+
+/* Card — horizontal row */
+.ex-card {
+  flex-direction: row !important;
+  min-height: 220px;
+  align-items: stretch;
+}
+
+/* Even cards — image on LEFT, content on RIGHT */
+.ex-card:nth-child(even) {
+  flex-direction: row-reverse !important;
+}
+
+/* Image — fixed width */
+.ex-img-wrap {
+  width: 340px !important;
+  height: auto !important;
+  flex-shrink: 0;
+}
+
+.ex-img-wrap img {
+  object-position: center center !important;
+}
+
+/* Image overlay — horizontal fade */
+.ex-img-overlay {
+  background: linear-gradient(to right, transparent 60%, rgba(26,29,36,0.5) 100%) !important;
+}
+
+.ex-card:nth-child(even) .ex-img-overlay {
+  background: linear-gradient(to left, transparent 60%, rgba(26,29,36,0.5) 100%) !important;
+}
+
+/* Body — centered vertically */
+.ex-body {
+  padding: 2rem 2.5rem !important;
+  justify-content: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ex-card,
+  .ex-card:nth-child(even) {
+    flex-direction: column !important;
+  }
+  .ex-img-wrap {
+    width: 100% !important;
+    height: 220px !important;
+  }
+  .ex-body {
+    padding: 1.25rem !important;
+  }
+}

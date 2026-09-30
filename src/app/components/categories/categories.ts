@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { UpperCasePipe } from '@angular/common';
+import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, signal } from '@angular/core';
 import * as THREE from 'three';
 
 interface Program {
@@ -11,7 +10,7 @@ interface Program {
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [UpperCasePipe],
+  imports: [],
   templateUrl: './categories.html',
   styleUrl: './categories.css'
 })
@@ -19,15 +18,40 @@ export class CategoriesComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('progCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
 
+  loading = signal(true);
+
   programs: Program[] = [
-    { id: 'strength', name: 'Strength Training', image: 'victor-freitas-WvDYdXDzkhs-unsplash.jpg' },
-    { id: 'cardio',   name: 'Cardio Fitness',    image: 'cardio-fitness.jpg' },
-    { id: 'yoga-fit', name: 'Yogi & Fitness',    image: 'yogi-fitness.jpg' },
-    { id: 'yoga',     name: 'Yoga & Mobility',   image: 'yoga-mobility.jpg' },
-    { id: 'boxing',   name: 'Boxing Fitness',    image: 'boxing-fitness.jpg' },
-    { id: 'personal', name: 'Personal Training', image: 'personal-training.jpg' },
-    { id: 'dance',    name: 'Dance Fitness',     image: 'dance-fitness.jpg' },
+    { 
+      id: 'personal', 
+      name: 'Personal Training',
+      image: 'personal-training.jpg'
+    },
+    { 
+      id: 'small-group', 
+      name: 'Small Group',
+      image: 'cardio-fitness.jpg'
+    },
+    { 
+      id: 'mobility', 
+      name: 'Mobility & Recovery',
+      image: 'yoga-mobility.jpg'
+    },
+    { 
+      id: 'open-gym', 
+      name: 'Open Gym',
+      image: 'victor-freitas-WvDYdXDzkhs-unsplash.jpg'
+    },
   ];
+
+  getDescription(id: string): string {
+    const descriptions: Record<string, string> = {
+      'personal': 'One-to-one coaching shaped around your body, goals and pace.',
+      'small-group': 'Focused sessions with a close-knit group and individual attention.',
+      'mobility': 'Restore movement, build resilience and recover with intention.',
+      'open-gym': 'A calm, considered space to train independently on your schedule.'
+    };
+    return descriptions[id] || '';
+  }
 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
@@ -40,6 +64,11 @@ export class CategoriesComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.initThree();
+
+    // Simulate loading delay
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 1500);
 
     // Only animate when section is visible
     this.observer = new IntersectionObserver(entries => {

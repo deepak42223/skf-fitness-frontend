@@ -1,19 +1,99 @@
 /* ════════════════════════════
-   ABOUT - FULL BANNER IMAGE
+   ABOUT — BOLD ATHLETIC
+   White bg · Red circular icon badges
    ════════════════════════════ */
 #about {
-  background: var(--bg-elevated);
-  padding: 5rem 0;
+  background: var(--white);
+  padding: 100px 0;
 }
 
+/* ── Section header ── */
+.about-header {
+  margin-bottom: 3.5rem;
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ── 4-column card grid ── */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* ── Single card ── */
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 2rem 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-top: 3px solid transparent;
+  border-radius: 2px;
+  transition: border-top-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.about-card:hover {
+  border-top-color: #2563EB;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+  transform: translateY(-4px);
+}
+
+/* Red circular icon badge — signature motif */
+.about-card .icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2563EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.about-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.about-card-body {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ── Banner with corner-bracket frame ── */
 .about-banner {
   width: 100%;
-  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(52, 152, 219, 0.18);
-  box-shadow:
-    0 0 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(52, 152, 219, 0.08);
+  position: relative;
+}
+
+.about-banner::before {
+  top: 16px; left: 16px;
+  border-width: 3px 0 0 3px;
+  border-color: #2563EB;
+}
+.about-banner::after {
+  bottom: 16px; right: 16px;
+  border-width: 0 3px 3px 0;
+  border-color: #2563EB;
 }
 
 .about-banner-img {
@@ -24,6 +104,11 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 1024px) {
+  .about-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 576px) {
-  #about { padding: 3rem 0; }
+  #about { padding: 60px 0; }
+  .about-cards { grid-template-columns: 1fr; gap: 1.25rem; }
 }

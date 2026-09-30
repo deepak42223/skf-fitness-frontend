@@ -2,23 +2,23 @@
   <div class="container">
     <div class="nav-content">
 
-      <!-- Logo -->
+      <!-- Logo — bold black wordmark -->
       <a class="nav-logo" routerLink="/" style="cursor:pointer">
-        <img src="skf-logo-new.jpg" alt="SKF Fitness Studio" class="logo-img" width="46" height="46" />
+        <img src="skf-logo-new.jpg" alt="SKF Fitness" class="logo-img" width="38" height="38" />
       </a>
 
-      <!-- Center Navigation Links -->
+      <!-- Desktop nav links — all-caps, red active -->
       <ul class="nav-links">
-        <li><a class="nav-link" routerLink="/"          routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">HOME</a></li>
-        <li><a class="nav-link" routerLink="/about"     routerLinkActive="active">ABOUT US</a></li>
-        <li><a class="nav-link" routerLink="/services"  routerLinkActive="active">SERVICES</a></li>
-        <li><a class="nav-link" routerLink="/programs"  routerLinkActive="active">PROGRAMS</a></li>
-        <li><a class="nav-link" routerLink="/trainers"  routerLinkActive="active">TRAINERS</a></li>
-        <li><a class="nav-link" (click)="navigate('pricing')" style="cursor:pointer" [class.active]="isActive('pricing')">PRICING</a></li>
-        <li><a class="nav-link" routerLink="/contact"   routerLinkActive="active">CONTACT</a></li>
+        <li><a class="nav-link" routerLink="/" [class.active]="isActive('home')" style="cursor:pointer">Home</a></li>
+        <li><a class="nav-link" (click)="navigate('about')"          [class.active]="isActive('about')"          style="cursor:pointer">About</a></li>
+        <li><a class="nav-link" (click)="navigate('services')"       [class.active]="isActive('services')"       style="cursor:pointer">Services</a></li>
+        <li><a class="nav-link" (click)="navigate('workout-format')" [class.active]="isActive('workout-format')" style="cursor:pointer">Programs</a></li>
+        <li><a class="nav-link" (click)="navigate('pricing')"        [class.active]="isActive('pricing')"        style="cursor:pointer">Pricing</a></li>
+        <li><a class="nav-link" routerLink="/trainers"   routerLinkActive="active">Trainers</a></li>
+        <li><a class="nav-link" routerLink="/contact"    routerLinkActive="active">Contact</a></li>
       </ul>
 
-      <!-- Right Controls -->
+      <!-- Right: JOIN NOW red pill -->
       <div class="nav-right">
         @if (isLoggedIn()) {
           <button class="nav-cta" (click)="goToProfile()">
@@ -26,10 +26,10 @@
           </button>
         } @else {
           <button class="nav-cta" (click)="openAuthModal()">
-            JOIN NOW <span class="cta-arrow">➤</span>
+            Join Now <span class="cta-arrow">→</span>
           </button>
         }
-        <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()">
+        <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -40,15 +40,15 @@
   <!-- Mobile Dropdown -->
   <div class="mobile-menu" [class.open]="menuOpen()">
     <ul class="mobile-nav-links">
-      <li><a routerLink="/"         (click)="closeMenu()">HOME</a></li>
-      <li><a routerLink="/about"    (click)="closeMenu()">ABOUT US</a></li>
-      <li><a routerLink="/services" (click)="closeMenu()">SERVICES</a></li>
-      <li><a routerLink="/programs" (click)="closeMenu()">PROGRAMS</a></li>
-      <li><a routerLink="/trainers" (click)="closeMenu()">TRAINERS</a></li>
-      <li><a (click)="navigate('pricing'); closeMenu()" style="cursor:pointer">PRICING</a></li>
-      <li><a routerLink="/contact"  (click)="closeMenu()">CONTACT</a></li>
+      <li><a routerLink="/" (click)="closeMenu()" style="cursor:pointer">Home</a></li>
+      <li><a (click)="navigate('about');   closeMenu()" style="cursor:pointer">About</a></li>
+      <li><a (click)="navigate('services');closeMenu()" style="cursor:pointer">Services</a></li>
+      <li><a (click)="navigate('workout-format');closeMenu()" style="cursor:pointer">Programs</a></li>
+      <li><a (click)="navigate('pricing'); closeMenu()" style="cursor:pointer">Pricing</a></li>
+      <li><a routerLink="/trainers" (click)="closeMenu()">Trainers</a></li>
+      <li><a routerLink="/contact"  (click)="closeMenu()">Contact</a></li>
       @if (!isLoggedIn()) {
-        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#3498DB">JOIN NOW ➤</a></li>
+        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#2563EB;font-weight:800">Join Now →</a></li>
       }
     </ul>
   </div>

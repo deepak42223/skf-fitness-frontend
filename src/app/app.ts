@@ -8,19 +8,23 @@ import { NavbarComponent }        from './components/navbar/navbar';
 import { HeroComponent }          from './components/hero/hero';
 import { TaglineComponent }       from './components/tagline/tagline';
 import { CategoriesComponent }    from './components/categories/categories';
-import { AboutComponent }         from './components/about/about';
-import { FeaturesComponent }      from './components/features/features';
+import { CtaBannerComponent }    from './components/cta-banner/cta-banner';
+import { PhilosophyComponent }    from './components/philosophy/philosophy';
+import { MethodComponent }        from './components/method/method';
+import { ApproachComponent }      from './components/approach/approach';
 import { ServicesComponent }      from './components/services/services';
 import { WorkoutFormatComponent } from './components/workout-format/workout-format';
 import { MembershipComponent }    from './components/membership/membership';
-import { ExercisesComponent }     from './components/exercises/exercises';
 import { TestimonialsComponent }  from './components/testimonials/testimonials';
+import { TrainersComponent }      from './components/trainers/trainers';
+import { FaqComponent } from './components/faq/faq';
 import { ContactComponent }       from './components/contact/contact';
 import { CtaComponent }           from './components/cta/cta';
 import { FooterComponent }        from './components/footer/footer';
 import { UserProfileComponent }   from './components/user-profile/user-profile';
 import { AuthService }            from './services/auth.service';
 import { LoaderComponent }        from './components/loader/loader';
+import { ToastContainerComponent } from './shared/toast-container.component';
 import { SmoothScrollService }    from './services/smooth-scroll.service';
 import { TextRevealService }      from './services/text-reveal.service';
 
@@ -35,18 +39,21 @@ import { TextRevealService }      from './services/text-reveal.service';
     HeroComponent,
     TaglineComponent,
     CategoriesComponent,
-    AboutComponent,
-    FeaturesComponent,
+    MethodComponent,
+    PhilosophyComponent,
+    ApproachComponent,
     ServicesComponent,
     WorkoutFormatComponent,
     MembershipComponent,
-    ExercisesComponent,
     TestimonialsComponent,
+    TrainersComponent,
+    FaqComponent,
     ContactComponent,
     CtaComponent,
     FooterComponent,
     UserProfileComponent,
     LoaderComponent,
+    ToastContainerComponent,
   ],
   template: `
     <div class="page-progress" [style.width]="scrollProgress() + '%'"></div>
@@ -54,6 +61,7 @@ import { TextRevealService }      from './services/text-reveal.service';
     <!-- Loading screen -->
     @if (showLoader()) {
       <app-loader (done)="onLoaderDone()"></app-loader>
+    <app-toast-container></app-toast-container>
     }
 
     <app-navbar></app-navbar>
@@ -68,17 +76,19 @@ import { TextRevealService }      from './services/text-reveal.service';
         <app-user-profile (onLogout)="handleLogout()"></app-user-profile>
       } @else {
         <app-hero></app-hero>
+        <app-method></app-method>
+        <app-philosophy></app-philosophy>
         <app-tagline></app-tagline>
         <app-categories></app-categories>
-        <app-about></app-about>
-        <app-features></app-features>
-        <app-services></app-services>
+        <app-approach></app-approach>
         <app-workout-format></app-workout-format>
         <app-membership></app-membership>
-        <app-exercises></app-exercises>
+        <app-services></app-services>
         <app-testimonials></app-testimonials>
+        <app-trainers></app-trainers>
         <app-contact></app-contact>
         <app-cta></app-cta>
+        <app-faq></app-faq>
         <app-footer></app-footer>
       }
     }
