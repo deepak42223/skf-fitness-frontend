@@ -99,7 +99,7 @@
 /* ── Main headline ── */
 .hero-headline {
   font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(2rem, 4vw, 3.5rem); /* Further reduced for smaller headline */
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -2px;
