@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { AnimatedHeadlineComponent } from '../animated-headline/animated-headline.component';
 
 interface Plan {
   id: string;
@@ -13,11 +14,13 @@ interface Plan {
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [],
+  imports: [AnimatedHeadlineComponent],
   templateUrl: './membership.html',
   styleUrl: './membership.css'
 })
-export class MembershipComponent {
+export class MembershipComponent implements OnInit {
+  loading = signal(true);
+
   plans: Plan[] = [
     {
       id: 'basic',
@@ -64,6 +67,13 @@ export class MembershipComponent {
       cta: 'Go Elite'
     }
   ];
+
+  ngOnInit() {
+    // Simulate loading delay
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 1200);
+  }
 
   selectPlan(planId: string) {
     window.dispatchEvent(new CustomEvent('open-auth-modal', {

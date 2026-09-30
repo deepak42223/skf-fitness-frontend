@@ -1,0 +1,322 @@
+/* ============================================
+   ANIMATED HEADLINE COMPONENT
+   Converted from CodyHouse Animated Headlines
+   Optimized for SKF Fitness Brand
+   ============================================ */
+
+.animated-headline {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.2;
+  /* Remove fixed font size - inherit from parent */
+}
+
+.words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+}
+
+.words-wrapper b {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  color: #e8400c; /* SKF Red */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.words-wrapper b.is-visible {
+  position: relative;
+  opacity: 1;
+  animation: none;
+  color: #e8400c !important; /* Force SKF red */
+  font-weight: 700 !important;
+}
+
+/* ============================================
+   EFFECT 1: ROTATE (FADE + ROTATE)
+   Best for: Hero section, professional look
+   ============================================ */
+.effect-rotate .words-wrapper {
+  perspective: 300px;
+}
+
+.effect-rotate b {
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transform: rotateX(180deg);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.effect-rotate b.is-visible {
+  opacity: 1;
+  transform: rotateX(0deg);
+  animation: rotateWord 0.6s ease-in-out;
+}
+
+@keyframes rotateWord {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  60% {
+    opacity: 1;
+    transform: rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+/* ============================================
+   EFFECT 2: SLIDE (VERTICAL SLIDE)
+   Best for: Services, smooth transitions
+   ============================================ */
+.effect-slide .words-wrapper {
+  overflow: hidden;
+  vertical-align: top;
+  height: 1.2em;
+}
+
+.effect-slide b {
+  opacity: 0;
+  top: 0.2em;
+  transition: opacity 0.3s, top 0.3s;
+}
+
+.effect-slide b.is-visible {
+  opacity: 1;
+  top: 0;
+  animation: slideIn 0.6s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   EFFECT 3: ZOOM (SCALE IN/OUT)
+   Best for: CTA sections, energetic feel
+   ============================================ */
+.effect-zoom b {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.effect-zoom b.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+   EFFECT 4: TYPE (TYPEWRITER)
+   Best for: Testimonials, personal feel
+   ============================================ */
+.effect-type .words-wrapper {
+  overflow: hidden;
+  vertical-align: top;
+  height: 1.2em;
+}
+
+.effect-type b {
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #e8400c;
+  animation: none;
+}
+
+.effect-type b.is-visible {
+  opacity: 1;
+  animation: typing 0.8s steps(20, end), blink-caret 0.75s step-end 3;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #e8400c;
+  }
+}
+
+/* ============================================
+   EFFECT 5: CLIP (WIDTH REVEAL)
+   Best for: Membership section, elegant
+   ============================================ */
+.effect-clip .words-wrapper {
+  overflow: hidden;
+  vertical-align: top;
+  height: 1.2em;
+}
+
+.effect-clip b {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.6s;
+}
+
+.effect-clip b.is-visible {
+  opacity: 1;
+  width: auto;
+  animation: clipReveal 0.6s ease-in-out;
+}
+
+@keyframes clipReveal {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   EFFECT 6: FADE (SIMPLE FADE)
+   Best for: Subtle, minimal design
+   ============================================ */
+.effect-fade b {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.effect-fade b.is-visible {
+  opacity: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   SKF FITNESS BRAND CUSTOMIZATION
+   ============================================ */
+
+/* Add red glow effect to visible words */
+.words-wrapper b.is-visible {
+  color: #e8400c !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 20px rgba(232, 64, 12, 0.6),
+               0 0 40px rgba(232, 64, 12, 0.3);
+}
+
+/* Ensure proper width for wrapper */
+.effect-rotate .words-wrapper,
+.effect-zoom .words-wrapper,
+.effect-fade .words-wrapper {
+  display: inline-block;
+  min-width: 200px; /* Adjust based on longest word */
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Simplify animations on mobile */
+  .animated-headline {
+    perspective: none;
+  }
+  
+  /* Reduce animation complexity */
+  .effect-rotate b.is-visible {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .effect-zoom b.is-visible {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Keep simpler effects as-is */
+  .effect-slide b.is-visible,
+  .effect-clip b.is-visible,
+  .effect-fade b.is-visible {
+    /* Original animations work well on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .words-wrapper {
+    min-width: 150px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animated-headline *,
+  .animated-headline *::before,
+  .animated-headline *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .words-wrapper b.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Screen reader accessibility */
+.words-wrapper[aria-live="polite"] b:not(.is-visible) {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

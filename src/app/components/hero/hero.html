@@ -2,55 +2,43 @@
 
   <!-- ── Background layers ── -->
   <div class="hero-bg">
-    <!-- Background image -->
-    <img src="hero-bg.png" alt="SKF Fitness Gym" class="hero-video" />
-    <!-- Dark overlay -->
-    <div class="hero-video-overlay"></div>
-    <!-- Three.js particle canvas -->
-    <canvas #threeCanvas class="three-canvas"></canvas>
-    <!-- Bottom fade -->
-    <div class="hero-bg-overlay"></div>
+    <img src="hero-bg-new.jpg" alt="SKF Fitness Gym" class="hero-video" />
+    <div class="hero-light-overlay"></div>
   </div>
 
   <!-- ── Content ── -->
   <div class="hero-content">
     <div class="container">
-      <div class="hero-grid">
+      <div class="hero-layout">
+        
+        <!-- Left side: Main Headline, Description and CTA -->
         <div class="hero-left">
-
-          <!-- Headline -->
           <h1 class="hero-headline">
-            <span class="headline-line">TRAIN HARDER, GET STRONGER</span>
+            <span class="hero-headline-static">TRANSFORM</span><br>
+            <span class="hero-headline-static">YOUR</span>
+            <app-animated-headline
+              [words]="['BODY', 'STRENGTH', 'LIFE', 'MINDSET']"
+              effect="rotate"
+              [animationDelay]="2500"
+              staticTextClass="hero-headline-animated"
+              wrapperClass="hero-headline-animated">
+            </app-animated-headline>
           </h1>
-
-          <!-- Description -->
-          <p class="hero-para">
-            Expert coaching, premium equipment, and personalized programs —<br class="desktop-break">
-            everything you need to reach your peak performance.
+          <p class="hero-description">
+            Training should meet you where you are. We combine expert coaching, intelligent movement and thoughtful recovery to build strength that lasts.
           </p>
-
-          <!-- CTAs -->
-          <div class="hero-actions">
-            <a class="btn-neon-render" (click)="openAuthModal()" style="cursor:pointer">
-              Join Now
-            </a>
-            <a href="#services" class="btn-text-link">
-              Explore Programs
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-
+          <a class="btn-hero-primary" (click)="openAuthModal()" style="cursor:pointer">
+            Find Your Membership
+          </a>
         </div>
+
+        <!-- Right side: Empty or can add image/visual -->
+        <div class="hero-right">
+          <!-- Can add complementary visual here if needed -->
+        </div>
+
       </div>
     </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="hero-scroll" aria-hidden="true">
-    <div class="hero-scroll-line"></div>
   </div>
 
 </section>

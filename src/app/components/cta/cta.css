@@ -1,61 +1,88 @@
-.cta-section { padding: 0 0 120px; }
+/* ════════════════════════════
+   CTA SECTION — BOLD ATHLETIC
+   Dark banner · Red submit button
+   ════════════════════════════ */
+.cta-section { padding: 0 0 100px; }
 
 .cta-box {
-  border-radius: 24px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
   text-align: center;
-  min-height: 480px;
+  min-height: 460px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 32px 80px rgba(52, 152, 219, 0.15);
-  border: 1px solid rgba(52, 152, 219, 0.2);
+  border: none;
+  box-shadow: none;
 }
 
+/* Dark background video */
 .cta-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block; z-index: 0;
-  filter: brightness(0.45) saturate(0.8);
+  filter: brightness(0.35) grayscale(0.4);
 }
 
+/* Heavy dark overlay with subtle red glow */
 .cta-overlay {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(135deg,
-    rgba(10, 20, 40, 0.75) 0%,
-    rgba(10, 15, 30, 0.70) 100%);
+  background:
+    radial-gradient(ellipse 50% 70% at 50% 50%, rgba(37,99,235,0.08) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(4,0,1,0.85) 100%);
+}
+
+/* Dotted texture overlay */
+.cta-box::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background-image: radial-gradient(circle, rgba(37,99,235,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Red triangle corner */
+.cta-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 100px;
+  border-color: transparent transparent #2563EB transparent;
+  z-index: 3;
 }
 
 .cta-content {
-  position: relative; z-index: 2;
+  position: relative; z-index: 4;
   padding: 80px 60px;
-  max-width: 700px;
+  max-width: 660px;
 }
 
+/* Eyebrow pill */
 .cta-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #64B5F6;
-  background: rgba(52, 152, 219, 0.12);
-  border: 1px solid rgba(52, 152, 219, 0.4);
-  padding: 8px 18px;
-  border-radius: 50px;
-  margin-bottom: 24px;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 7px 18px;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
 }
 
 .cta-tag::before {
   content: '';
-  width: 7px; height: 7px;
-  background: #3498DB;
+  width: 6px; height: 6px;
+  background: #2563EB;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(52, 152, 219, 0.8);
+  box-shadow: 0 0 8px rgba(37,99,235,0.9);
   animation: ctaPulse 1.8s ease-in-out infinite;
 }
 
@@ -64,60 +91,169 @@
   50%       { opacity: 0.5; transform: scale(1.5); }
 }
 
+/* Headline */
 .cta-content h2 {
-  font-size: clamp(36px, 5.5vw, 60px);
-  color: #FFFFFF;
-  line-height: 1.05;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 900;
+  color: #ffffff;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
 }
 
+/* Description */
 .cta-content p {
-  color: rgba(200, 220, 255, 0.75);
-  max-width: 440px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  max-width: 420px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.72;
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
+/* Red CTA button */
 .btn-white {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 17px 40px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #3498DB, #2E86C1);
-  color: #FFFFFF;
-  font-weight: 800;
-  font-size: 16px;
+  padding: 16px 40px;
+  border-radius: 100px;
+  background: #2563EB;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
   border: none;
   cursor: pointer;
-  transition: transform .25s, box-shadow .25s;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
-  letter-spacing: 0.5px;
-  box-shadow: 0 8px 24px rgba(52, 152, 219, 0.35);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(37,99,235,0.35);
 }
-
-.btn-white::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-white:hover::before { left: 100%; }
 
 .btn-white:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(52, 152, 219, 0.5);
+  background: #1d4ed8;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(37,99,235,0.5);
 }
 
+/* ── Responsive ── */
 @media (max-width: 700px) {
-  .cta-content { padding: 50px 24px; }
-  .cta-box { min-height: 360px; border-radius: 16px; }
+  .cta-content { padding: 48px 24px; }
+  .cta-box { min-height: 360px; }
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATED HEADLINE INTEGRATION
+   ═══════════════════════════════════════════ */
+
+.cta-headline {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.5rem;
+  color: #ffffff;
+}
+
+.cta-headline-line {
+  display: block;
+  margin-bottom: 0.15em;
+}
+
+.cta-headline app-animated-headline {
+  display: block;
+}
+
+.cta-headline ::ng-deep .animated-headline {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.cta-headline ::ng-deep .words-wrapper {
+  min-width: 400px;
+  height: 1.2em;
+  display: inline-block;
+}
+
+.cta-headline ::ng-deep .words-wrapper b {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+/* Dramatic clip reveal with intense red glow for urgency */
+.cta-headline ::ng-deep .words-wrapper b.is-visible {
+  color: #e8400c !important;
+  font-weight: 700 !important;
+  text-shadow: 
+    0 0 35px rgba(232, 64, 12, 0.9),
+    0 0 70px rgba(232, 64, 12, 0.6),
+    0 0 100px rgba(232, 64, 12, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  animation: urgentReveal 0.6s ease-out;
+}
+
+@keyframes urgentReveal {
+  0% {
+    opacity: 0;
+    text-shadow: 
+      0 0 10px rgba(232, 64, 12, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  40% {
+    opacity: 0.6;
+    text-shadow: 
+      0 0 40px rgba(232, 64, 12, 1),
+      0 0 80px rgba(232, 64, 12, 0.7),
+      0 0 120px rgba(232, 64, 12, 0.4),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 
+      0 0 30px rgba(232, 64, 12, 0.8),
+      0 0 60px rgba(232, 64, 12, 0.5),
+      0 0 90px rgba(232, 64, 12, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .cta-headline {
+    font-size: 2.5rem;
+  }
+  
+  .cta-headline ::ng-deep .words-wrapper {
+    min-width: 350px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .cta-headline {
+    font-size: 2rem;
+  }
+  
+  .cta-headline ::ng-deep .words-wrapper {
+    min-width: 280px;
+  }
+  
+  .cta-headline-line {
+    margin-bottom: 0.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-headline {
+    font-size: 1.75rem;
+  }
+  
+  .cta-headline ::ng-deep .words-wrapper {
+    min-width: 220px;
+  }
 }

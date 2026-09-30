@@ -1,0 +1,11 @@
+<div class="animated-headline" [class]="getEffectClass()">
+  @if (staticText) {
+    <span [class]="staticTextClass">{{ staticText }}</span>
+  }
+  
+  <span class="words-wrapper" [class]="wrapperClass">
+    @for (word of words; track $index) {
+      <b [class]="getWordClass($index)">{{ word }}</b>
+    }
+  </span>
+</div>

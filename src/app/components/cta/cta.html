@@ -9,7 +9,15 @@
 
       <div class="cta-content">
         <div class="cta-tag">Join SKF Fitness Today</div>
-        <h2>Start Your SKF<br>Fitness Journey</h2>
+        <h2 class="cta-headline">
+          <span class="cta-headline-line">Start Your</span>
+          <app-animated-headline
+            [words]="['TRANSFORMATION', 'JOURNEY', 'SUCCESS STORY', 'NEW CHAPTER']"
+            effect="clip"
+            [animationDelay]="2700"
+            wrapperClass="cta-animated-wrapper">
+          </app-animated-headline>
+        </h2>
         <p>Take the first step toward your transformation. Our certified coaches are ready to help you build a personalized plan and achieve real results.</p>
         <a href="#pricing" class="btn-white">View Membership Plans &rarr;</a>
       </div>

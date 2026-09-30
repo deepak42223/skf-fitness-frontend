@@ -3,11 +3,12 @@ import {
   ViewChild, ElementRef, HostListener
 } from '@angular/core';
 import * as THREE from 'three';
+import { AnimatedHeadlineComponent } from '../animated-headline/animated-headline.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [AnimatedHeadlineComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })
@@ -65,8 +66,8 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     this.camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
     this.camera.position.z = 5;
 
-    // Particle geometry — 2000 random points in 3D space
-    const COUNT = 2000;
+    // Particle geometry — 1200 random points in 3D space (reduced for subtlety)
+    const COUNT = 1200;
     const positions = new Float32Array(COUNT * 3);
     const colors    = new Float32Array(COUNT * 3);
     const sizes     = new Float32Array(COUNT);
@@ -114,14 +115,14 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     ctx.fillRect(0, 0, 64, 64);
     const texture = new THREE.CanvasTexture(texCanvas);
 
-    // Material — vertex colors, additive blending for glow
+    // Material — vertex colors, additive blending for glow (more subtle)
     const material = new THREE.PointsMaterial({
-      size: 0.08,
+      size: 0.06,
       map: texture,
       vertexColors: true,
       blending: THREE.AdditiveBlending,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.5,
       depthWrite: false,
       sizeAttenuation: true,
     });

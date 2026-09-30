@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { AnimatedHeadlineComponent } from '../animated-headline/animated-headline.component';
 
 interface WorkoutFormat {
   id: string;
@@ -19,7 +20,7 @@ interface FAQ {
 @Component({
   selector: 'app-workout-format',
   standalone: true,
-  imports: [],
+  imports: [AnimatedHeadlineComponent],
   templateUrl: './workout-format.html',
   styleUrl: './workout-format.css'
 })
