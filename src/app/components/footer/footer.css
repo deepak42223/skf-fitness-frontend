@@ -1,17 +1,17 @@
 /* ════════════════════════════
    FOOTER — BOLD ATHLETIC
-   Dark bg · Dotted-square icon frames
-   3-col contact block · Red top border
+   Blue-Gold Gradient · Dotted-square icon frames
+   3-col contact block · Blue top border
    ════════════════════════════ */
 footer {
-  background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #d97706 75%, #f59e0b 100%);
   border-top: 3px solid #2563EB;
   padding: 72px 0 32px;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle red glow bottom-right */
+/* Subtle glow bottom-right */
 footer::after {
   content: '';
   position: absolute;
@@ -19,7 +19,7 @@ footer::after {
   right: -5%;
   width: 40%;
   height: 60%;
-  background: radial-gradient(ellipse, rgba(37,99,235,0.07) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(251, 191, 36, 0.15) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
