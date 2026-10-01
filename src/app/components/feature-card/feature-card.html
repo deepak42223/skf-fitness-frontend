@@ -1,0 +1,26 @@
+<div class="feature-card">
+  <!-- Logo/Icon -->
+  <img [src]="logo" [alt]="title + ' icon'" class="feature-logo" />
+
+  <!-- Title -->
+  <h3 class="feature-title">{{ title }}</h3>
+
+  <!-- Description -->
+  <p class="feature-description">{{ description }}</p>
+
+  <!-- Corner Stars (only shown if isStarred is true) -->
+  <svg 
+    *ngFor="let position of cornerPositions"
+    [class]="'corner-star ' + position"
+    [class.visible]="isStarred"
+    width="23" 
+    height="23" 
+    viewBox="0 0 23 23" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <path 
+      opacity="0.5" 
+      d="M11.5 0C11.5 0 11.3776 6.44974 13.9639 9.03606C16.5503 11.6224 23 11.5 23 11.5C23 11.5 16.5503 11.3776 13.9639 13.9639C11.3776 16.5503 11.5 23 11.5 23C11.5 23 11.6224 16.5503 9.03606 13.9639C6.44974 11.3776 0 11.5 0 11.5C0 11.5 6.44974 11.6224 9.03606 9.03606C11.6224 6.44974 11.5 0 11.5 0Z" 
+      fill="var(--color-text-light)" />
+  </svg>
+</div>

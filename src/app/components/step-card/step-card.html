@@ -1,0 +1,22 @@
+<div class="step-card" [attr.data-step-number]="number">
+  <div class="step-card-inner">
+    <!-- Image -->
+    <div class="step-image-wrapper">
+      <img [src]="image" [alt]="title + ' icon'" class="step-image" />
+    </div>
+
+    <!-- Number with Title Overlay -->
+    <div class="step-number-container">
+      <div class="step-number-stroke">{{ number }}</div>
+      <h3 class="step-title">{{ title }}</h3>
+    </div>
+
+    <!-- Content -->
+    <p class="step-content">{{ content }}</p>
+  </div>
+
+  <!-- 3D Perspective Background -->
+  <div class="step-card-background">
+    <div class="step-card-bg-inner corner-squircle"></div>
+  </div>
+</div>
