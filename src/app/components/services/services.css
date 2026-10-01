@@ -43,7 +43,7 @@
 }
 
 .services-wrap .section-head p  { 
-  color: #a0a0a0 !important;
+  color: #e0e0e0 !important;
   font-size: 1rem;
   line-height: 1.6;
   max-width: 580px;
@@ -51,7 +51,7 @@
 
 /* Section tag styled for dark bg */
 .services-wrap .section-tag {
-  color: #3498DB !important;
+  color: #60a5fa !important;
   letter-spacing: 2px;
   font-size: 0.75rem;
   font-weight: 800;
@@ -99,12 +99,12 @@
 
 .service-row:hover {
   padding-left: 1.5rem;
-  background: rgba(52, 152, 219, 0.05);
+  background: rgba(96, 165, 250, 0.08);
   border-radius: 4px;
 }
 
 .service-row:hover h3 { 
-  color: #3498DB !important;
+  color: #60a5fa !important;
   transform: translateX(2px);
 }
 
@@ -115,10 +115,10 @@
 /* Index number — minimal style */
 .service-row .idx {
   font-family: var(--font-body);
-  color: #3498DB !important;
+  color: #60a5fa !important;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   font-weight: 600;
-  opacity: 0.6;
+  opacity: 0.8;
   transition: all 0.3s ease;
 }
 
@@ -138,7 +138,7 @@
 }
 
 .service-row .desc {
-  color: #a0a0a0 !important;
+  color: #d0d0d0 !important;
   font-size: clamp(0.9rem, 1vw, 1rem);
   max-width: none;
   display: block;
@@ -165,11 +165,11 @@
 }
 
 .service-row:hover .arrow {
-  background: #3498DB;
-  border-color: #3498DB;
+  background: #60a5fa;
+  border-color: #60a5fa;
   color: #ffffff;
   transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.4);
 }
 
 /* ── Responsive ── */
