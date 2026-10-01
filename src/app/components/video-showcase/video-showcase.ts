@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-video-showcase',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './video-showcase.html',
   styleUrls: ['./video-showcase.css']
