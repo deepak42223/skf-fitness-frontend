@@ -12,17 +12,17 @@
   --color-primary-light-automark: #4D36D0;
   --color-secondary-automark: #FF5353;
   
-  /* PRIMARY COLORS - Automark Purple (Site-Wide) */
-  --color-primary: #937AFF;
-  --color-primary-light: #4D36D0;
+  /* PRIMARY COLORS - Original SKF Blue (Site-Wide) */
+  --color-primary: #2563EB;
+  --color-primary-light: #1d4ed8;
   --color-secondary: #FF5353;
-  --color-body: #03010E;
-  --color-border: #202128;
-  --color-light: #0B0C17;
-  --color-dark: #040404;
-  --color-text: #DAD4DE;
-  --color-text-dark: #817E84;
-  --color-text-light: #E5E5E5;
+  --color-body: #FFFFFF;
+  --color-border: #E0E0E0;
+  --color-light: #F5F5F5;
+  --color-dark: #1A1A1A;
+  --color-text: #4A4A4A;
+  --color-text-dark: #9A9A9A;
+  --color-text-light: #1A1A1A;
 
   /* Automark Font Families */
   --font-primary: 'Inter Tight', sans-serif;
