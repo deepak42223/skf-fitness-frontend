@@ -541,28 +541,28 @@
   letter-spacing: inherit;
 }
 
-/* Energetic zoom effect with golden accent */
+/* Energetic zoom effect with blue accent */
 .wf-title ::ng-deep .words-wrapper b.is-visible {
-  color: #d4af37 !important;
+  color: #2563EB !important;
   font-weight: 700 !important;
   text-shadow: 
-    0 0 30px rgba(212, 175, 55, 0.8),
-    0 0 60px rgba(212, 175, 55, 0.5),
-    0 2px 8px rgba(212, 175, 55, 0.4);
+    0 0 30px rgba(37, 99, 235, 0.8),
+    0 0 60px rgba(37, 99, 235, 0.5),
+    0 2px 8px rgba(37, 99, 235, 0.4);
   animation: energyPulse 0.6s ease-out;
 }
 
 @keyframes energyPulse {
   0%, 100% {
     text-shadow: 
-      0 0 25px rgba(212, 175, 55, 0.6),
-      0 0 50px rgba(212, 175, 55, 0.3);
+      0 0 25px rgba(37, 99, 235, 0.6),
+      0 0 50px rgba(37, 99, 235, 0.3);
   }
   50% {
     text-shadow: 
-      0 0 35px rgba(212, 175, 55, 0.8),
-      0 0 70px rgba(212, 175, 55, 0.5),
-      0 0 100px rgba(212, 175, 55, 0.2);
+      0 0 35px rgba(37, 99, 235, 0.8),
+      0 0 70px rgba(37, 99, 235, 0.5),
+      0 0 100px rgba(37, 99, 235, 0.2);
   }
 }
 

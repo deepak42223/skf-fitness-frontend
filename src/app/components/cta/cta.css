@@ -185,14 +185,14 @@
   letter-spacing: inherit;
 }
 
-/* Dramatic clip reveal with intense golden glow for urgency */
+/* Dramatic clip reveal with intense blue glow for urgency */
 .cta-headline ::ng-deep .words-wrapper b.is-visible {
-  color: #d4af37 !important;
+  color: #2563EB !important;
   font-weight: 700 !important;
   text-shadow: 
-    0 0 35px rgba(212, 175, 55, 0.9),
-    0 0 70px rgba(212, 175, 55, 0.6),
-    0 0 100px rgba(212, 175, 55, 0.3),
+    0 0 35px rgba(37, 99, 235, 0.9),
+    0 0 70px rgba(37, 99, 235, 0.6),
+    0 0 100px rgba(37, 99, 235, 0.3),
     0 4px 8px rgba(0, 0, 0, 0.5);
   animation: urgentReveal 0.6s ease-out;
 }
@@ -201,23 +201,23 @@
   0% {
     opacity: 0;
     text-shadow: 
-      0 0 10px rgba(212, 175, 55, 0.3),
+      0 0 10px rgba(37, 99, 235, 0.3),
       0 4px 8px rgba(0, 0, 0, 0.5);
   }
   40% {
     opacity: 0.6;
     text-shadow: 
-      0 0 40px rgba(212, 175, 55, 1),
-      0 0 80px rgba(212, 175, 55, 0.7),
-      0 0 120px rgba(212, 175, 55, 0.4),
+      0 0 40px rgba(37, 99, 235, 1),
+      0 0 80px rgba(37, 99, 235, 0.7),
+      0 0 120px rgba(37, 99, 235, 0.4),
       0 4px 8px rgba(0, 0, 0, 0.5);
   }
   100% {
     opacity: 1;
     text-shadow: 
-      0 0 30px rgba(212, 175, 55, 0.8),
-      0 0 60px rgba(212, 175, 55, 0.5),
-      0 0 90px rgba(212, 175, 55, 0.3),
+      0 0 30px rgba(37, 99, 235, 0.8),
+      0 0 60px rgba(37, 99, 235, 0.5),
+      0 0 90px rgba(37, 99, 235, 0.3),
       0 4px 8px rgba(0, 0, 0, 0.5);
   }
 }

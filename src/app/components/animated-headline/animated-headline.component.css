@@ -25,7 +25,7 @@
   left: 0;
   top: 0;
   opacity: 0;
-  color: #d4af37; /* Golden color instead of SKF Red */
+  color: #2563EB; /* Blue color */
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -34,7 +34,7 @@
   position: relative;
   opacity: 1;
   animation: none;
-  color: #d4af37 !important; /* Force golden color */
+  color: #2563EB !important; /* Force blue color */
   font-weight: 700 !important;
 }
 
@@ -243,12 +243,12 @@
    SKF FITNESS BRAND CUSTOMIZATION
    ============================================ */
 
-/* Add golden glow effect to visible words */
+/* Add blue glow effect to visible words */
 .words-wrapper b.is-visible {
-  color: #d4af37 !important;
+  color: #2563EB !important;
   font-weight: 700 !important;
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.6),
-               0 0 40px rgba(212, 175, 55, 0.3);
+  text-shadow: 0 0 20px rgba(37, 99, 235, 0.6),
+               0 0 40px rgba(37, 99, 235, 0.3);
 }
 
 /* Ensure proper width for wrapper */

@@ -508,11 +508,11 @@
 
 /* Ensure animated words match hero styling */
 .hero-headline ::ng-deep .words-wrapper b.is-visible {
-  color: #d4af37 !important; /* Golden color for animated word */
+  color: #2563EB !important; /* Blue color for animated word */
   font-weight: 700 !important;
   text-shadow: 
-    0 0 30px rgba(212, 175, 55, 0.6),
-    0 0 60px rgba(212, 175, 55, 0.4),
+    0 0 30px rgba(37, 99, 235, 0.6),
+    0 0 60px rgba(37, 99, 235, 0.4),
     0 2px 4px rgba(0, 0, 0, 0.5);
 }
 

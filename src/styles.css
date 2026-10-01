@@ -6,8 +6,13 @@
    Blue #2563EB · Black #000–#040001 · White #FFF
    ════════════════════════════════════════════ */
 :root {
-  /* ═══ AUTOMARK DESIGN SYSTEM ═══ */
-  /* Automark Colors */
+  /* ═══ AUTOMARK DESIGN SYSTEM (Original Colors) ═══ */
+  /* Automark Colors - Original Purple Theme */
+  --color-primary-automark: #937AFF;
+  --color-primary-light-automark: #4D36D0;
+  --color-secondary-automark: #FF5353;
+  
+  /* SKF Adapted - Using Blue Instead of Purple */
   --color-primary: #2563EB;
   --color-primary-light: #1d4ed8;
   --color-secondary: #FF5353;
@@ -1112,4 +1117,78 @@ ul.green-tick-list li::before {
   .container-automark {
     max-width: 1540px;
   }
+}
+
+
+/* ════════════════════════════════════════════
+   AUTOMARK ORIGINAL THEME - Purple Variant
+   (For showcasing exact Automark design)
+   ════════════════════════════════════════════ */
+
+.automark-original-theme {
+  --color-primary: #937AFF !important;
+  --color-primary-light: #4D36D0 !important;
+}
+
+.automark-original-theme .btn-automark-primary,
+.automark-original-theme .ec-cta {
+  background: linear-gradient(0deg, #4D36D0 0%, #937AFF 100%) !important;
+}
+
+.automark-original-theme .btn-automark-primary:hover,
+.automark-original-theme .ec-cta:hover {
+  box-shadow: 0px 0px 20px #4D36D0 !important;
+}
+
+.automark-original-theme .ec-check {
+  background: #937AFF !important;
+  box-shadow: 0 2px 8px rgba(147, 122, 255, 0.25) !important;
+}
+
+.automark-original-theme .badge-content {
+  color: #937AFF !important;
+}
+
+.automark-original-theme .feature-card:hover {
+  background: rgba(147, 122, 255, 0.08) !important;
+  border-top-color: rgba(147, 122, 255, 0.2) !important;
+  border-left-color: rgba(147, 122, 255, 0.2) !important;
+}
+
+.automark-original-theme .feature-card:hover .feature-title {
+  color: #937AFF !important;
+}
+
+.automark-original-theme .step-card:hover .step-card-bg-inner {
+  background: rgba(147, 122, 255, 0.08) !important;
+  border-color: rgba(147, 122, 255, 0.3) !important;
+}
+
+.automark-original-theme .step-card:hover .step-number-stroke {
+  -webkit-text-stroke: 1px color-mix(in srgb, #937AFF 40%, transparent 60%) !important;
+  text-stroke: 1px color-mix(in srgb, #937AFF 40%, transparent 60%) !important;
+}
+
+.automark-original-theme .step-card:hover .step-title {
+  color: #937AFF !important;
+}
+
+.automark-original-theme .play-button-inner {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.automark-original-theme .play-button-inner:hover {
+  background: white;
+}
+
+.automark-original-theme .play-button-spinner {
+  border-color: #937AFF transparent transparent transparent !important;
+}
+
+.automark-original-theme .play-icon stop:first-child {
+  stop-color: #4D36D0 !important;
+}
+
+.automark-original-theme .play-icon stop:last-child {
+  stop-color: #937AFF !important;
 }

@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { BadgeComponent } from '../badge/badge';
+import { StepCardComponent } from '../step-card/step-card';
+import { FeatureCardComponent } from '../feature-card/feature-card';
+import { TestimonialCardComponent } from '../testimonial-card/testimonial-card';
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [BadgeComponent, StepCardComponent, FeatureCardComponent, TestimonialCardComponent],
   templateUrl: './about.html',
   styleUrl: './about.css'
 })
