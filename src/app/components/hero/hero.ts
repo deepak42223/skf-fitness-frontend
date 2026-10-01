@@ -4,11 +4,12 @@ import {
 } from '@angular/core';
 import * as THREE from 'three';
 import { AnimatedHeadlineComponent } from '../animated-headline/animated-headline.component';
+import { VideoShowcaseComponent } from '../video-showcase/video-showcase';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [AnimatedHeadlineComponent],
+  imports: [AnimatedHeadlineComponent, VideoShowcaseComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })

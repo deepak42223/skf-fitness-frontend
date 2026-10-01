@@ -528,3 +528,23 @@
     min-width: 150px;
   }
 }
+
+/* ── Video Showcase Section ── */
+.hero-video-showcase {
+  margin-top: 4rem;
+  position: relative;
+  z-index: 3;
+  perspective: 2000px;
+}
+
+@media (max-width: 768px) {
+  .hero-video-showcase {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video-showcase {
+    margin-top: 2rem;
+  }
+}

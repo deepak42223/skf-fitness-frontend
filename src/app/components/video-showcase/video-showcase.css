@@ -1,0 +1,182 @@
+/* Video Showcase Component - Automark Style */
+
+.video-showcase-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  perspective: 2000px;
+}
+
+.video-showcase {
+  position: relative;
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sound toggle overlay - centered play button */
+.sound-toggle {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.sound-toggle.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sound-toggle:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Play button with spinning ring */
+.play-button {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.sound-toggle:hover .play-button {
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Spinning ring around button */
+.spinning-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #2563EB;
+  border-bottom-color: #60a5fa;
+  transform: scale(0.9);
+  animation: spin 3s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+.sound-toggle:hover .spinning-ring {
+  transform: scale(0.95);
+  animation-duration: 2s;
+}
+
+@keyframes spin {
+  from {
+    transform: scale(0.9) rotate(0deg);
+  }
+  to {
+    transform: scale(0.9) rotate(360deg);
+  }
+}
+
+/* Play icon */
+.play-icon {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Mute button (top right corner when video is playing) */
+.mute-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.mute-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.mute-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-showcase-wrapper {
+    perspective: 1500px;
+  }
+
+  .video-showcase {
+    border-radius: 20px;
+  }
+
+  .play-button {
+    width: 80px;
+    height: 80px;
+  }
+
+  .play-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mute-button {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mute-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-showcase {
+    border-radius: 16px;
+  }
+
+  .play-button {
+    width: 64px;
+    height: 64px;
+  }
+
+  .play-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
