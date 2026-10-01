@@ -1,36 +1,38 @@
 /* ════════════════════════════
-   SERVICES — DARK THEME
-   Dark bg · White text · Minimal styling · Serif typography
+   SERVICES — BLUE-GOLD GRADIENT THEME
+   Gradient bg · White text · Minimal styling · Serif typography
    ════════════════════════════ */
 .services-wrap {
   position: relative;
   overflow: hidden;
   border-radius: 0;
   margin: 0;
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #d97706 75%, #f59e0b 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #d97706 75%, #f59e0b 100%) !important;
+  min-height: 600px;
 }
 
 .services-bg {
-  display: none;
+  display: none !important;
 }
 
 .services-bg video,
 .services-bg img {
-  display: none;
+  display: none !important;
 }
 
 .services-overlay {
-  display: none;
+  display: none !important;
 }
 
 .services-wrap::after {
-  display: none;
+  display: none !important;
 }
 
 .services-wrap section {
   position: relative;
   z-index: 2;
   padding: 80px 0;
+  background: transparent !important;
 }
 
 .services-wrap .section-head h2 { 
@@ -43,20 +45,22 @@
 }
 
 .services-wrap .section-head p  { 
-  color: #e0e0e0 !important;
+  color: #ffffff !important;
   font-size: 1rem;
   line-height: 1.6;
   max-width: 580px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Section tag styled for dark bg */
+/* Section tag styled for gradient bg */
 .services-wrap .section-tag {
-  color: #60a5fa !important;
+  color: #ffffff !important;
   letter-spacing: 2px;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .services-wrap .red-line { 
@@ -77,7 +81,7 @@
   align-items: center;
   gap: 2rem;
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
@@ -99,27 +103,29 @@
 
 .service-row:hover {
   padding-left: 1.5rem;
-  background: rgba(96, 165, 250, 0.08);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
 }
 
 .service-row:hover h3 { 
-  color: #60a5fa !important;
+  color: #ffffff !important;
   transform: translateX(2px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .service-row:hover .desc {
   color: #ffffff !important;
 }
 
-/* Index number — minimal style */
+/* Index number — bright for gradient bg */
 .service-row .idx {
   font-family: var(--font-body);
-  color: #60a5fa !important;
+  color: #ffffff !important;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  font-weight: 600;
-  opacity: 0.8;
+  font-weight: 700;
+  opacity: 0.9;
   transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .service-row:hover .idx {
@@ -138,7 +144,7 @@
 }
 
 .service-row .desc {
-  color: #d0d0d0 !important;
+  color: #ffffff !important;
   font-size: clamp(0.9rem, 1vw, 1rem);
   max-width: none;
   display: block;
@@ -146,6 +152,7 @@
   font-weight: 400;
   transition: color 0.3s ease;
   text-align: left;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Arrow circle — minimal */
@@ -153,7 +160,7 @@
   width: 44px; 
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,11 +172,11 @@
 }
 
 .service-row:hover .arrow {
-  background: #60a5fa;
-  border-color: #60a5fa;
-  color: #ffffff;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #1e3a8a;
   transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Responsive ── */
