@@ -1,158 +1,197 @@
 /* ═══════════════════════════════════════════
-   APPROACH SECTION
-   Centered · Serif headline · Minimal
+   APPROACH SECTION - AUTOMARK DARK THEME
+   Centered · Urbanist headline · Premium Purple
    ═══════════════════════════════════════════ */
 
 .approach {
   position: relative;
-  padding: 120px 0;
-  background: linear-gradient(180deg, #f8f8f6 0%, #ffffff 100%);
+  padding: 140px 0;
+  background: var(--color-body);
   overflow: hidden;
 }
 
+/* Add subtle radial gradient glow */
+.approach::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(147, 122, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .approach-content {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Icon Badge ── */
+/* ── Icon Badge with Purple Border ── */
 .approach-icon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid rgba(0,0,0,0.15);
+  background: rgba(147, 122, 255, 0.08);
+  border: 1.5px solid rgba(147, 122, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0,0,0,0.6);
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
-  animation: approachFadeIn 0.8s ease-out both;
+  animation: approachFadeIn 0.8s ease-out both, iconPulse 3s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(147, 122, 255, 0.15);
 }
 
-/* ── Eyebrow ── */
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ── Eyebrow with Purple Accent ── */
 .approach-eyebrow {
-  font-family: var(--font-body);
+  font-family: var(--font-primary);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: none;
-  color: #2563EB;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-primary);
   margin: 0;
   animation: approachFadeIn 0.8s ease-out 0.1s both;
 }
 
-/* ── Headline with serif font ── */
+/* ── Headline with Urbanist Font & Light Color ── */
 .approach-headline {
-  font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 400;
-  line-height: 1.25;
-  letter-spacing: -0.5px;
-  color: #1a1a1a;
+  font-family: var(--font-secondary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-light);
   margin: 0;
   animation: approachFadeIn 0.8s ease-out 0.2s both;
 }
 
 .approach-highlight {
   font-style: italic;
-  color: #2563EB;
+  color: var(--color-primary);
   position: relative;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(147, 122, 255, 0.5));
 }
 
-/* ── Description ── */
+/* ── Description with Better Readability ── */
 .approach-description {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(0,0,0,0.65);
-  max-width: 580px;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  max-width: 620px;
   margin: 0.5rem 0 0;
   animation: approachFadeIn 0.8s ease-out 0.3s both;
 }
 
-/* ── CTA Button ── */
+/* ── CTA Button with Purple Gradient ── */
 .approach-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
-  border-radius: 100px;
-  font-family: var(--font-body);
+  padding: 14px 36px;
+  border-radius: 9999px;
+  font-family: var(--font-primary);
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-  text-transform: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  text-transform: capitalize;
   color: #fff;
-  background: #2563EB;
+  background: linear-gradient(0deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
   border: none;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 8px 24px rgba(147, 122, 255, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   animation: approachFadeIn 0.8s ease-out 0.4s both;
 }
 
 .approach-btn:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+  filter: brightness(1.25);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(147, 122, 255, 0.45), 0 0 40px rgba(147, 122, 255, 0.3);
+}
+
+.approach-btn:active {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
 }
 
 /* ── Animations ── */
 @keyframes approachFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .approach {
-    padding: 80px 0;
+    padding: 100px 0;
   }
 
   .approach-headline {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .approach-description {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   .approach-icon {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
   }
 }
 
 @media (max-width: 480px) {
   .approach {
-    padding: 60px 0;
+    padding: 80px 0;
   }
 
   .approach-content {
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .approach-eyebrow {
     font-size: 0.65rem;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
   }
 
   .approach-btn {
-    padding: 11px 24px;
-    font-size: 0.68rem;
+    padding: 12px 28px;
+    font-size: 0.8rem;
+  }
+  
+  .approach-headline {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
   }
 }
