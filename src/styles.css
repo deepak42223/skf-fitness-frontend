@@ -7,14 +7,14 @@
    ════════════════════════════════════════════ */
 :root {
   /* ═══ AUTOMARK DESIGN SYSTEM (Original Colors) ═══ */
-  /* Automark Colors - Original Purple Theme */
+  /* Automark Colors - Original Purple Theme (NOW SITE-WIDE) */
   --color-primary-automark: #937AFF;
   --color-primary-light-automark: #4D36D0;
   --color-secondary-automark: #FF5353;
   
-  /* SKF Adapted - Using Blue Instead of Purple */
-  --color-primary: #2563EB;
-  --color-primary-light: #1d4ed8;
+  /* PRIMARY COLORS - Automark Purple (Site-Wide) */
+  --color-primary: #937AFF;
+  --color-primary-light: #4D36D0;
   --color-secondary: #FF5353;
   --color-body: #03010E;
   --color-border: #202128;
@@ -115,8 +115,8 @@ html {
 }
 
 body {
-  background: var(--white);
-  color: var(--charcoal);
+  background: var(--color-body);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.65;
@@ -125,17 +125,17 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-::selection { background: #2563EB; color: #fff; }
+::selection { background: var(--color-primary); color: #fff; }
 
 /* ════════════════════════════
    TYPOGRAPHY — Playfair Display for headings
    ════════════════════════════ */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', 'Georgia', serif;
-  color: var(--charcoal);
+  font-family: var(--font-secondary);
+  color: var(--color-text-light);
   margin: 0;
   line-height: 1.2;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.5px;
 }
 
@@ -145,7 +145,7 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
 h4 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
 
 p {
-  color: var(--gray-dark);
+  color: var(--color-text);
   font-size: 1rem;
   line-height: 1.7;
   font-weight: 400;
@@ -170,23 +170,23 @@ section#home { padding: 0 !important; }
 section:not(#home) { scroll-margin-top: 80px; }
 
 /* ════════════════════════════
-   SECTION BACKGROUNDS
+   SECTION BACKGROUNDS - AUTOMARK DARK THEME
    ════════════════════════════ */
-#home           { background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%); }
-#method         { background: linear-gradient(135deg, #ffffff 0%, #f8f8ff 70%, #ede8ff 100%); }
-#philosophy     { background: #d4e4d8; }
-#about          { background: linear-gradient(135deg, #ffffff 0%, #f8f8ff 70%, #ede8ff 100%); }
-#features       { background: linear-gradient(135deg, #ffffff 0%, #f8f8ff 70%, #ede8ff 100%); }
-#programs       { background: linear-gradient(180deg, #ffffff 0%, #f8f8f6 50%, #ffffff 100%); }
-#services       { background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%); }
-#approach       { background: linear-gradient(180deg, #f8f8f6 0%, #ffffff 100%); }
-#workout-formats{ background: linear-gradient(135deg, #ffffff 0%, #fafafe 70%, #f0ebff 100%); }
-#pricing        { background: linear-gradient(135deg, #ffffff 0%, #fafafe 70%, #f0ebff 100%); }
-#trainers       { background: linear-gradient(135deg, #ffffff 0%, #fcfcff 70%, #f5f0ff 100%); }
-#exercise       { background: var(--off-white); }
-#testimonials   { background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #2a1a00 75%, #3d2a00 100%); }
-#contact        { background: linear-gradient(135deg, #ffffff 0%, #fcfcff 70%, #f5f0ff 100%); }
-#faq            { background: linear-gradient(135deg, #ffffff 0%, #fafafe 70%, #f0ebff 100%); }
+#home           { background: var(--color-body); }
+#method         { background: var(--color-light); }
+#philosophy     { background: var(--color-body); }
+#about          { background: var(--color-light); }
+#features       { background: var(--color-body); }
+#programs       { background: var(--color-light); }
+#services       { background: var(--color-body); }
+#approach       { background: var(--color-light); }
+#workout-formats{ background: var(--color-body); }
+#pricing        { background: var(--color-light); }
+#trainers       { background: var(--color-body); }
+#exercise       { background: var(--color-light); }
+#testimonials   { background: var(--color-body); }
+#contact        { background: var(--color-light); }
+#faq            { background: var(--color-body); }
 
 /* ════════════════════════════
    SHARED SECTION HEADER HELPERS
@@ -198,7 +198,7 @@ section:not(#home) { scroll-margin-top: 80px; }
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #2563EB;
+  color: var(--color-primary);
   margin-bottom: 0.75rem;
 }
 
@@ -208,7 +208,7 @@ section:not(#home) { scroll-margin-top: 80px; }
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #2563EB;
+  color: var(--color-primary);
   margin-bottom: 0.75rem;
   padding: 0;
   background: none;
