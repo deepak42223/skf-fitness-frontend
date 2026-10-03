@@ -2,23 +2,20 @@
   <div class="container">
     <div class="nav-content">
 
-      <!-- Logo — bold black wordmark -->
+      <!-- Logo: SKF.FITNESS -->
       <a class="nav-logo" routerLink="/" style="cursor:pointer">
-        <img src="skf-logo-new.jpg" alt="SKF Fitness" class="logo-img" width="38" height="38" />
+        SKF.FITNESS
       </a>
 
-      <!-- Desktop nav links — all-caps, red active -->
+      <!-- Desktop nav links -->
       <ul class="nav-links">
-        <li><a class="nav-link" routerLink="/" [class.active]="isActive('home')" style="cursor:pointer">Home</a></li>
-        <li><a class="nav-link" (click)="navigate('about')"          [class.active]="isActive('about')"          style="cursor:pointer">About</a></li>
-        <li><a class="nav-link" (click)="navigate('services')"       [class.active]="isActive('services')"       style="cursor:pointer">Services</a></li>
         <li><a class="nav-link" (click)="navigate('workout-format')" [class.active]="isActive('workout-format')" style="cursor:pointer">Programs</a></li>
-        <li><a class="nav-link" (click)="navigate('pricing')"        [class.active]="isActive('pricing')"        style="cursor:pointer">Pricing</a></li>
-        <li><a class="nav-link" routerLink="/trainers"   routerLinkActive="active">Trainers</a></li>
-        <li><a class="nav-link" routerLink="/contact"    routerLinkActive="active">Contact</a></li>
+        <li><a class="nav-link" routerLink="/trainers" routerLinkActive="active">Trainers</a></li>
+        <li><a class="nav-link" (click)="navigate('pricing')" [class.active]="isActive('pricing')" style="cursor:pointer">Membership</a></li>
+        <li><a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
 
-      <!-- Right: JOIN NOW red pill -->
+      <!-- Right: Join Now Button -->
       <div class="nav-right">
         @if (isLoggedIn()) {
           <button class="nav-cta" (click)="goToProfile()">
@@ -26,7 +23,7 @@
           </button>
         } @else {
           <button class="nav-cta" (click)="openAuthModal()">
-            Join Now <span class="cta-arrow">→</span>
+            Join now
           </button>
         }
         <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()" aria-label="Menu">
@@ -41,14 +38,12 @@
   <div class="mobile-menu" [class.open]="menuOpen()">
     <ul class="mobile-nav-links">
       <li><a routerLink="/" (click)="closeMenu()" style="cursor:pointer">Home</a></li>
-      <li><a (click)="navigate('about');   closeMenu()" style="cursor:pointer">About</a></li>
-      <li><a (click)="navigate('services');closeMenu()" style="cursor:pointer">Services</a></li>
-      <li><a (click)="navigate('workout-format');closeMenu()" style="cursor:pointer">Programs</a></li>
-      <li><a (click)="navigate('pricing'); closeMenu()" style="cursor:pointer">Pricing</a></li>
+      <li><a (click)="navigate('workout-format'); closeMenu()" style="cursor:pointer">Programs</a></li>
       <li><a routerLink="/trainers" (click)="closeMenu()">Trainers</a></li>
-      <li><a routerLink="/contact"  (click)="closeMenu()">Contact</a></li>
+      <li><a (click)="navigate('pricing'); closeMenu()" style="cursor:pointer">Membership</a></li>
+      <li><a routerLink="/contact" (click)="closeMenu()">Contact</a></li>
       @if (!isLoggedIn()) {
-        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#2563EB;font-weight:800">Join Now →</a></li>
+        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#E23B2E;font-weight:700">Join now →</a></li>
       }
     </ul>
   </div>

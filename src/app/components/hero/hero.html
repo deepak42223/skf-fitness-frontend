@@ -1,88 +1,71 @@
-<section class="hero" id="home" role="banner" aria-label="Hero section - Transform your fitness journey">
-
-  <!-- ── Background layers ── -->
-  <div class="hero-bg" role="img" aria-label="Fitness training background">
-    <img src="hero-bg-new.jpg" alt="Athletes training at SKF Fitness Gym" class="hero-video" />
-    <div class="hero-light-overlay"></div>
+<section class="hero" id="home">
+  
+  <!-- Background Video/Image -->
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="skf-hero.mp4" type="video/mp4">
+    </video>
+    <img src="hero-gym-bg.jpg" alt="SKF Fitness Gym Interior" class="hero-fallback-img">
+    <div class="hero-overlay"></div>
   </div>
 
-  <!-- ── Content ── -->
+  <!-- Main Content -->
   <div class="hero-content">
-    <div class="container">
-      <div class="hero-layout">
-        
-        <!-- Left side: Main Headline, Description and CTA -->
-        <div class="hero-left">
-          <h1 class="hero-headline" itemprop="headline">
-            <span class="hero-headline-static">TRANSFORM</span><br>
-            <span class="hero-headline-static">YOUR</span>
-            <app-animated-headline
-              [words]="['BODY', 'STRENGTH', 'LIFE', 'MINDSET']"
-              effect="rotate"
-              [animationDelay]="2500"
-              staticTextClass="hero-headline-animated"
-              wrapperClass="hero-headline-animated"
-              role="text"
-              aria-live="polite">
-            </app-animated-headline>
+    <div class="hero-container">
+      
+      <!-- Left: Headline with Curved Line -->
+      <div class="hero-left">
+        <div class="hero-headline-wrapper">
+          <svg class="hero-curved-line" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 200 Q 300 50, 550 250" stroke="#F1EEE7" stroke-width="1" fill="none" opacity="0.3"/>
+          </svg>
+          
+          <h1 class="hero-headline">
+            <span class="hero-line" data-delay="0">BUILD THE</span>
+            <span class="hero-line" data-delay="1">STRONGEST</span>
+            <span class="hero-line hero-line-outline" data-delay="2">YOU.</span>
           </h1>
-          <p class="hero-description" itemprop="description">
-            Training should meet you where you are. We combine expert coaching, intelligent movement and thoughtful recovery to build strength that lasts.
-          </p>
-          <a class="btn-hero-primary" (click)="openAuthModal()" style="cursor:pointer" role="button" aria-label="Find your membership plan">
-            Find Your Membership
-          </a>
         </div>
-
-        <!-- Right side: Stats & Social Proof -->
-        <div class="hero-right">
-          <div class="hero-stats" role="group" aria-label="Gym statistics">
-            <div class="stat-card" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-              <div class="stat-number" itemprop="ratingCount">500+</div>
-              <div class="stat-label">Active Members</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">50+</div>
-              <div class="stat-label">Expert Trainers</div>
-            </div>
-            <div class="stat-card" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-              <div class="stat-number"><span itemprop="ratingValue">4.8</span>★</div>
-              <div class="stat-label">Google Rating</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">10+</div>
-              <div class="stat-label">Years Experience</div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Video Showcase below the hero content -->
-      <div class="hero-video-showcase">
-        <app-video-showcase></app-video-showcase>
+      <!-- Right: Description & CTAs -->
+      <div class="hero-right">
+        <p class="hero-description">
+          Heavy iron, expert trainers and a floor built for serious training, in the heart of Hyderabad.
+        </p>
+        <div class="hero-cta-group">
+          <button class="hero-btn hero-btn-primary" (click)="openAuthModal()">
+            Book a free trial
+          </button>
+          <button class="hero-btn hero-btn-secondary">
+            Tour the gym
+          </button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- Structured Data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HealthAndBeautyBusiness",
-    "name": "SKF Fitness",
-    "description": "Transform your body with expert coaching, intelligent movement and thoughtful recovery",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "500"
-    },
-    "numberOfEmployees": {
-      "@type": "QuantitativeValue",
-      "value": "50"
-    }
-  }
-  </script>
+  <!-- Bottom Ticker -->
+  <div class="hero-ticker">
+    <div class="hero-ticker-track">
+      <span>STRENGTH</span>
+      <span>•</span>
+      <span>CARDIO</span>
+      <span>•</span>
+      <span>PERSONAL TRAINING</span>
+      <span>•</span>
+      <span>HYDERABAD</span>
+      <span>•</span>
+      <span>STRENGTH</span>
+      <span>•</span>
+      <span>CARDIO</span>
+      <span>•</span>
+      <span>PERSONAL TRAINING</span>
+      <span>•</span>
+      <span>HYDERABAD</span>
+      <span>•</span>
+    </div>
+  </div>
 
 </section>
