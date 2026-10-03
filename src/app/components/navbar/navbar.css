@@ -40,6 +40,7 @@
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -49,6 +50,14 @@
   width: auto;
   display: block;
   object-fit: contain;
+}
+
+.nav-logo-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: #1c1917;
 }
 
 .nav-logo:hover {
@@ -242,8 +251,16 @@
     height: 64px;
   }
 
+  .nav-logo {
+    gap: 0.5rem;
+  }
+
   .nav-logo-img {
     height: 32px;
+  }
+
+  .nav-logo-text {
+    font-size: 1rem;
   }
 
   .nav-cta {
