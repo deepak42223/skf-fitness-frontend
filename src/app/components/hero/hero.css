@@ -74,7 +74,7 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #78716c;
+  color: #292524;
   margin: 0;
   opacity: 0;
   animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
@@ -87,7 +87,7 @@
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  color: #1c1917;
+  color: #0c0a09;
   margin: 0;
   max-width: 800px;
   opacity: 0;
@@ -100,7 +100,7 @@
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #44403c;
+  color: #1c1917;
   margin: 0;
   max-width: 600px;
   opacity: 0;
@@ -153,9 +153,9 @@
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #1c1917;
+  color: #0c0a09;
   background: transparent;
-  border: 1.5px solid #d6d3d1;
+  border: 1.5px solid #292524;
   border-radius: 8px;
   padding: 0.875rem 1.75rem;
   cursor: pointer;
@@ -165,12 +165,12 @@
 }
 
 .btn-secondary:hover {
-  border-color: #a8a29e;
-  background: rgba(0, 0, 0, 0.02);
+  border-color: #0c0a09;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary:focus-visible {
-  outline: 2px solid #1c1917;
+  outline: 2px solid #0c0a09;
   outline-offset: 3px;
 }
 
@@ -184,7 +184,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: #78716c;
+  color: #292524;
   z-index: 10;
   opacity: 0;
   animation: fadeSlideUp 1s ease-out 1.2s forwards, bounce 2s ease-in-out 2s infinite;
