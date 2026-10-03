@@ -1,11 +1,8 @@
 <section class="hero" id="home">
   
-  <!-- Background Video/Image -->
+  <!-- Background Image (subtle, light) -->
   <div class="hero-bg">
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="skf-hero.mp4" type="video/mp4">
-    </video>
-    <img src="hero-gym-bg.jpg" alt="SKF Fitness Gym Interior" class="hero-fallback-img">
+    <img src="hero-gym-bg.jpg" alt="SKF Fitness Training Floor" class="hero-image">
     <div class="hero-overlay"></div>
   </div>
 
@@ -13,59 +10,44 @@
   <div class="hero-content">
     <div class="hero-container">
       
-      <!-- Left: Headline with Curved Line -->
-      <div class="hero-left">
-        <div class="hero-headline-wrapper">
-          <svg class="hero-curved-line" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 50 200 Q 300 50, 550 250" stroke="#F1EEE7" stroke-width="1" fill="none" opacity="0.3"/>
-          </svg>
-          
-          <h1 class="hero-headline">
-            <span class="hero-line" data-delay="0">BUILD THE</span>
-            <span class="hero-line" data-delay="1">STRONGEST</span>
-            <span class="hero-line hero-line-outline" data-delay="2">YOU.</span>
-          </h1>
-        </div>
-      </div>
-
-      <!-- Right: Description & CTAs -->
-      <div class="hero-right">
+      <!-- Centered Content -->
+      <div class="hero-center">
+        
+        <!-- Eyebrow Text -->
+        <p class="hero-eyebrow">SKF Fitness, Hyderabad</p>
+        
+        <!-- Main Headline -->
+        <h1 class="hero-headline">
+          Built for strength.<br>
+          Designed for you.
+        </h1>
+        
+        <!-- Description -->
         <p class="hero-description">
-          Heavy iron, expert trainers and a floor built for serious training, in the heart of Hyderabad.
+          Expert coaching, science-backed programs, and a training floor built for serious results.
         </p>
-        <div class="hero-cta-group">
-          <button class="hero-btn hero-btn-primary" (click)="openAuthModal()">
-            Book a free trial
+        
+        <!-- CTA Buttons -->
+        <div class="hero-cta">
+          <button class="btn-primary" (click)="openAuthModal()">
+            Book your free trial
           </button>
-          <button class="hero-btn hero-btn-secondary">
+          <a href="#contact" class="btn-secondary">
             Tour the gym
-          </button>
+          </a>
         </div>
+        
       </div>
 
     </div>
   </div>
 
-  <!-- Bottom Ticker -->
-  <div class="hero-ticker">
-    <div class="hero-ticker-track">
-      <span>STRENGTH</span>
-      <span>•</span>
-      <span>CARDIO</span>
-      <span>•</span>
-      <span>PERSONAL TRAINING</span>
-      <span>•</span>
-      <span>HYDERABAD</span>
-      <span>•</span>
-      <span>STRENGTH</span>
-      <span>•</span>
-      <span>CARDIO</span>
-      <span>•</span>
-      <span>PERSONAL TRAINING</span>
-      <span>•</span>
-      <span>HYDERABAD</span>
-      <span>•</span>
-    </div>
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll">
+    <span>Explore</span>
+    <svg width="12" height="24" viewBox="0 0 12 24" fill="none">
+      <path d="M6 4V20M6 20L2 16M6 20L10 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 
 </section>
