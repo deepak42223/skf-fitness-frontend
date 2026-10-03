@@ -8,17 +8,32 @@
         <span>MEMBER PROTOCOLS</span>
       </div>
       <h2 class="cls-title">HIGH-VELOCITY CLASSES</h2>
+      <p class="cls-subtitle">Choose from 17 world-class group fitness programs designed to transform your body</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="cls-filters reveal">
+      @for (filter of filterOptions; track filter.id) {
+        <button 
+          class="cls-filter-btn" 
+          [class.active]="activeFilter === filter.id"
+          (click)="setFilter(filter.id)">
+          <span class="cls-filter-label">{{ filter.label }}</span>
+          <span class="cls-filter-count">{{ filter.count }}</span>
+        </button>
+      }
     </div>
 
     <!-- Class Cards -->
     <div class="cls-grid">
-      @for (cls of classes; track cls.name; let i = $index) {
+      @for (cls of filteredClasses; track cls.id; let i = $index) {
         <div class="cls-card reveal" [style.transition-delay]="(i * 0.08) + 's'">
 
           <!-- Image -->
           <div class="cls-img-wrap">
             <img [src]="cls.image" [alt]="cls.name" class="cls-img" loading="lazy" />
             <div class="cls-img-overlay"></div>
+            
             <!-- Live badge -->
             @if (cls.isLive) {
               <span class="cls-live-badge">
@@ -26,36 +41,114 @@
                 LIVE
               </span>
             }
+
+            <!-- Intensity Badge -->
+            <div class="cls-intensity-badge" [attr.data-intensity]="cls.intensity">
+              {{ cls.intensity }}
+            </div>
           </div>
 
           <!-- Content -->
           <div class="cls-body">
             <div class="cls-meta-top">
-              <span class="cls-category">{{ cls.category }}</span>
+              <span class="cls-category" [style.background-color]="getCategoryColor(cls.category)">
+                {{ cls.category }}
+              </span>
               <span class="cls-level" [style.color]="getLevelColor(cls.level)">● {{ cls.level }}</span>
             </div>
+
             <h3 class="cls-name">{{ cls.name }}</h3>
-            <div class="cls-meta-row">
-              <span class="cls-trainer">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <p class="cls-description">{{ cls.description }}</p>
+
+            <!-- Rating -->
+            <div class="cls-rating">
+              <div class="cls-stars">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <svg 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    [attr.fill]="star <= cls.rating ? '#FFC107' : 'none'"
+                    [attr.stroke]="star <= cls.rating ? '#FFC107' : '#666'"
+                    stroke-width="1.5">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                }
+              </div>
+              <span class="cls-rating-text">{{ cls.rating }} ({{ cls.reviewCount }} reviews)</span>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="cls-info-grid">
+              <div class="cls-info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                   <circle cx="12" cy="7" r="4"/>
                 </svg>
-                {{ cls.trainer }}
-              </span>
-              <span class="cls-duration">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <span>{{ cls.trainer }}</span>
+              </div>
+              <div class="cls-info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                 </svg>
-                {{ cls.duration }}
-              </span>
+                <span>{{ cls.duration }}</span>
+              </div>
+              <div class="cls-info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>{{ cls.enrolled }}/{{ cls.capacity }}</span>
+              </div>
+              <div class="cls-info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                <span>{{ cls.caloriesBurn }} cal</span>
+              </div>
             </div>
-            <a href="#membership" class="cls-book-btn">BOOK →</a>
+
+            <!-- Schedule Info -->
+            <div class="cls-schedule">
+              <span class="cls-schedule-label">Schedule:</span>
+              <span class="cls-schedule-days">{{ cls.days.join(', ') }}</span>
+            </div>
+            <div class="cls-schedule-times">
+              @for (time of cls.times; track time) {
+                <span class="cls-time-chip">{{ time }}</span>
+              }
+            </div>
+
+            <!-- Footer -->
+            <div class="cls-card-footer">
+              <div class="cls-price">
+                <span class="cls-price-amount">₹{{ cls.price }}</span>
+                <span class="cls-price-label">per session</span>
+              </div>
+              <button class="cls-book-btn" (click)="bookClass(cls)">
+                BOOK NOW →
+              </button>
+            </div>
+
           </div>
 
         </div>
       }
     </div>
+
+    <!-- Empty State -->
+    @if (filteredClasses.length === 0) {
+      <div class="cls-empty-state reveal">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <h3>No classes found</h3>
+        <p>Try selecting a different category</p>
+      </div>
+    }
 
   </div>
 </section>

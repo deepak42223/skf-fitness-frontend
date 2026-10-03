@@ -12,6 +12,11 @@ export const routes: Routes = [
     title: 'Trainers — SKF Fitness' 
   },
   { 
+    path: 'trainers/:id', 
+    loadComponent: () => import('./pages/trainer-detail/trainer-detail').then(m => m.TrainerDetailComponent),
+    title: 'Trainer Profile — SKF Fitness' 
+  },
+  { 
     path: 'programs', 
     loadComponent: () => import('./pages/workouts-page/workouts-page').then(m => m.WorkoutsPageComponent),
     title: 'Programs — SKF Fitness' 

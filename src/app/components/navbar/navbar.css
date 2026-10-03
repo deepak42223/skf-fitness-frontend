@@ -114,7 +114,7 @@
   font-weight: 500;
   font-size: 0.9375rem;
   color: #fafaf9;
-  background: #e11d48;
+  background: #2563eb;
   border: none;
   padding: 0.625rem 1.25rem;
   border-radius: 6px;
@@ -124,11 +124,11 @@
 }
 
 .nav-cta:hover {
-  background: #be123c;
+  background: #1d4ed8;
 }
 
 .nav-cta:focus-visible {
-  outline: 2px solid #e11d48;
+  outline: 2px solid #2563eb;
   outline-offset: 3px;
 }
 

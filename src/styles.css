@@ -10,12 +10,12 @@
   /* Automark Colors - Original Purple Theme (NOW SITE-WIDE) */
   --color-primary-automark: #937AFF;
   --color-primary-light-automark: #4D36D0;
-  --color-secondary-automark: #FF5353;
+  --color-secondary-automark: #2563EB;
   
   /* PRIMARY COLORS - Original SKF Blue (Site-Wide) */
   --color-primary: #2563EB;
-  --color-primary-light: #1d4ed8;
-  --color-secondary: #FF5353;
+  --color-primary-light: #60a5fa;
+  --color-secondary: #2563EB;
   --color-body: #FFFFFF;
   --color-border: #E0E0E0;
   --color-light: #F5F5F5;
@@ -416,10 +416,10 @@ section:not(#home) { scroll-margin-top: 80px; }
 .btn-hero-primary,
 .btn-neon-render,
 .btn-hero-green {
-  background: linear-gradient(135deg, #2980B9, #3498DB);
+  background: linear-gradient(135deg, #1d4ed8, #2563EB);
   color: #fff;
   border-radius: 100px;
-  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
 }
 
 .btn-primary:hover,
@@ -428,9 +428,9 @@ section:not(#home) { scroll-margin-top: 80px; }
 .btn-hero-primary:hover,
 .btn-neon-render:hover,
 .btn-hero-green:hover {
-  background: linear-gradient(135deg, #1d4ed8, #2980B9);
+  background: linear-gradient(135deg, #1d4ed8, #1d4ed8);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.35);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
 }
 
 /* 2. SECONDARY BUTTON - Alternative actions (White/Light filled) */
@@ -454,14 +454,14 @@ section:not(#home) { scroll-margin-top: 80px; }
 .btn-outline-red,
 .btn-outline-white {
   background: transparent;
-  color: #3498DB;
-  border: 2px solid #3498DB;
+  color: #2563EB;
+  border: 2px solid #2563EB;
   border-radius: 100px;
 }
 
 .btn-outline:hover,
 .btn-outline-red:hover {
-  background: #3498DB;
+  background: #2563EB;
   color: #fff;
   transform: translateY(-2px);
 }
@@ -500,12 +500,12 @@ section:not(#home) { scroll-margin-top: 80px; }
   height: 44px;
   border-radius: 50%;
   background: transparent;
-  border: 2px solid #3498DB;
-  color: #3498DB;
+  border: 2px solid #2563EB;
+  color: #2563EB;
 }
 
 .btn-icon:hover {
-  background: #3498DB;
+  background: #2563EB;
   color: #fff;
   transform: translateY(-2px);
 }

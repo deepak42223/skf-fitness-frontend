@@ -1,5 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { AnimatedHeadlineComponent } from '../animated-headline/animated-headline.component';
+import { PaymentService } from '../../services/payment.service';
+import { AuthService } from '../../services/auth.service';
 
 interface Plan {
   id: string;
@@ -20,6 +22,12 @@ interface Plan {
 })
 export class MembershipComponent implements OnInit {
   loading = signal(true);
+  paymentLoading = signal(false);
+
+  constructor(
+    private paymentService: PaymentService,
+    private authService: AuthService
+  ) {}
 
   plans: Plan[] = [
     {
@@ -34,7 +42,7 @@ export class MembershipComponent implements OnInit {
         'Free fitness assessment'
       ],
       featured: false,
-      cta: 'Start Basic'
+      cta: 'Get Membership'
     },
     {
       id: 'pro',
@@ -49,7 +57,7 @@ export class MembershipComponent implements OnInit {
         'Nutrition consultation'
       ],
       featured: true,
-      cta: 'Get Started'
+      cta: 'Get Membership'
     },
     {
       id: 'elite',
@@ -64,7 +72,7 @@ export class MembershipComponent implements OnInit {
         'Priority class booking'
       ],
       featured: false,
-      cta: 'Go Elite'
+      cta: 'Get Membership'
     }
   ];
 
@@ -76,8 +84,48 @@ export class MembershipComponent implements OnInit {
   }
 
   selectPlan(planId: string) {
-    window.dispatchEvent(new CustomEvent('open-auth-modal', {
-      detail: { tab: 'register', plan: planId }
-    }));
+    const plan = this.plans.find(p => p.id === planId);
+    if (!plan) return;
+
+    // Check if user is logged in
+    if (!this.authService.isLoggedIn()) {
+      // Open auth modal with plan pre-selected
+      window.dispatchEvent(new CustomEvent('open-auth-modal', {
+        detail: { tab: 'register', plan: planId }
+      }));
+      return;
+    }
+
+    // User is logged in, proceed to payment
+    const user = this.authService.getUser();
+    if (!user) return;
+
+    this.paymentLoading.set(true);
+
+    const paymentData = {
+      amount: plan.price,
+      purpose: 'membership' as const,
+      metadata: {
+        planId: plan.id,
+        planName: plan.name,
+      },
+    };
+
+    this.paymentService.processPayment(
+      paymentData,
+      user.email,
+      user.name
+    ).subscribe({
+      next: (result) => {
+        this.paymentLoading.set(false);
+        alert(`✅ Payment successful! Your ${plan.name} membership is now active.`);
+        // TODO: Redirect to profile or show confirmation page
+      },
+      error: (err) => {
+        this.paymentLoading.set(false);
+        const errorMsg = err?.message || 'Payment failed. Please try again.';
+        alert(`❌ ${errorMsg}`);
+      }
+    });
   }
 }

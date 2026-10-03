@@ -1,0 +1,745 @@
+/* ══════════════════════════════════════════
+   TRAINER DETAIL PAGE
+   ══════════════════════════════════════════ */
+
+.trainer-detail-page {
+  padding-top: 60px;
+  background: #ffffff;
+}
+
+/* ── Hero Section ── */
+.trainer-hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  padding: 3rem 0 4rem;
+  position: relative;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 20px;
+  background: #ffffff;
+  color: #666666;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.back-btn:hover {
+  background: #2563EB;
+  color: #ffffff;
+  border-color: #2563EB;
+  transform: translateX(-4px);
+}
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.trainer-image-large {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trainer-image-large .availability-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.availability-badge.available {
+  background: #27AE60;
+  color: #fff;
+}
+
+.availability-badge.busy {
+  background: #F39C12;
+  color: #fff;
+}
+
+/* ── Hero Right ── */
+.trainer-header {
+  padding: 1rem 0;
+}
+
+.trainer-name-large {
+  font-family: var(--font-secondary);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.trainer-specialty-large {
+  font-size: 1.25rem;
+  color: #2563EB;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.trainer-rating-large {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.stars-large {
+  display: flex;
+  gap: 4px;
+  font-size: 1.5rem;
+}
+
+.stars-large .star.filled {
+  color: #F4A623;
+}
+
+.stars-large .star.empty {
+  color: #E0E0E0;
+}
+
+.rating-text-large {
+  font-size: 1.1rem;
+  color: #666666;
+  font-weight: 600;
+}
+
+/* ── Stats ── */
+.trainer-stats-large {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666666;
+  font-weight: 500;
+}
+
+/* ── CTAs ── */
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-book-large {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #1d4ed8, #2563EB);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+}
+
+.btn-book-large:hover {
+  background: linear-gradient(135deg, #2563EB, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
+}
+
+.btn-book-large svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-whatsapp-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 16px 32px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp-large:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp-large svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Social Links ── */
+.social-links-large {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  color: #666666;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.social-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT SECTION
+   ══════════════════════════════════════════ */
+
+.trainer-about {
+  padding: 4rem 0;
+  background: #ffffff;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.5rem;
+}
+
+.full-bio {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333333;
+  margin-bottom: 2rem;
+}
+
+.certifications-box,
+.languages-box {
+  background: #f5f7fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.certifications-box h3,
+.languages-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.75rem;
+}
+
+.cert-text,
+.exp-text {
+  font-size: 0.95rem;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.language-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.language-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #333333;
+  font-weight: 600;
+}
+
+/* ── Achievements ── */
+.achievements-card {
+  background: linear-gradient(135deg, #2563EB, #1d4ed8);
+  padding: 2rem;
+  border-radius: 16px;
+  color: #ffffff;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.25);
+}
+
+.achievements-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.achievements-list li:last-child {
+  margin-bottom: 0;
+}
+
+.achievements-list svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════
+   GALLERY SECTION
+   ══════════════════════════════════════════ */
+
+.trainer-gallery {
+  padding: 4rem 0;
+  background: #f5f7fa;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay svg {
+  width: 48px;
+  height: 48px;
+  color: #ffffff;
+}
+
+/* Gallery Lightbox */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.gallery-lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* ══════════════════════════════════════════
+   REVIEWS SECTION
+   ══════════════════════════════════════════ */
+
+.trainer-reviews {
+  padding: 4rem 0;
+  background: #ffffff;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.reviews-summary {
+  text-align: right;
+}
+
+.summary-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.big-rating {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2563EB;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stars-small {
+  display: flex;
+  gap: 2px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-count-text {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+/* Review Cards */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.review-card {
+  background: #f5f7fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.reviewer-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.reviewer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563EB, #1d4ed8);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.reviewer-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #27AE60;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+  font-size: 1rem;
+}
+
+.review-rating .star.filled {
+  color: #F4A623;
+}
+
+.review-rating .star.empty {
+  color: #E0E0E0;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333333;
+}
+
+/* ══════════════════════════════════════════
+   BOTTOM CTA
+   ══════════════════════════════════════════ */
+
+.bottom-cta {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+}
+
+.cta-box {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.cta-box h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.cta-box p {
+  font-size: 1.05rem;
+  color: #666666;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .trainer-image-large {
+    height: 400px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .trainer-hero {
+    padding: 2rem 0 3rem;
+  }
+
+  .trainer-name-large {
+    font-size: 2rem;
+  }
+
+  .trainer-stats-large {
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .btn-book-large,
+  .btn-whatsapp-large {
+    width: 100%;
+  }
+
+  .reviews-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .reviews-summary {
+    text-align: left;
+  }
+
+  .summary-rating {
+    align-items: flex-start;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item {
+    height: 250px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .btn-book-large,
+  .btn-whatsapp-large {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .trainer-image-large {
+    height: 300px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .trainer-stats-large {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cta-box {
+    padding: 2rem 1.5rem;
+  }
+}

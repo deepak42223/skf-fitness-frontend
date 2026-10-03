@@ -1,0 +1,255 @@
+<app-navbar></app-navbar>
+
+<div class="trainer-detail-page" *ngIf="trainer">
+  
+  <!-- Hero Section -->
+  <section class="trainer-hero">
+    <div class="container">
+      <button class="back-btn" (click)="goBack()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Trainers
+      </button>
+
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="trainer-image-large">
+            <img [src]="trainer.image" [alt]="trainer.name">
+            @if (trainer.available) {
+              <div class="availability-badge available">Available Now</div>
+            } @else {
+              <div class="availability-badge busy">Next: {{ trainer.nextAvailable }}</div>
+            }
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="trainer-header">
+            <h1 class="trainer-name-large">{{ trainer.name }}</h1>
+            <p class="trainer-specialty-large">{{ trainer.specialty }}</p>
+            
+            <!-- Rating -->
+            <div class="trainer-rating-large">
+              <div class="stars-large">
+                @for (star of [1,2,3,4,5]; track star) {
+                  @if (star <= trainer.rating) {
+                    <span class="star filled">★</span>
+                  } @else {
+                    <span class="star empty">☆</span>
+                  }
+                }
+              </div>
+              <span class="rating-text-large">{{ trainer.rating }} ({{ trainer.reviewCount }} reviews)</span>
+            </div>
+
+            <!-- Stats -->
+            <div class="trainer-stats-large">
+              <div class="stat-box">
+                <div class="stat-value">{{ trainer.experience }}</div>
+                <div class="stat-label">Experience</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">₹{{ trainer.hourlyRate }}</div>
+                <div class="stat-label">Per Hour</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">{{ trainer.reviewCount }}</div>
+                <div class="stat-label">Reviews</div>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-ctas">
+              <button class="btn-book-large" (click)="bookSession()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Book Training Session
+              </button>
+              @if (trainer.whatsapp) {
+                <button class="btn-whatsapp-large" (click)="contactWhatsApp()">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  Contact on WhatsApp
+                </button>
+              }
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links-large">
+              @if (trainer.instagram) {
+                <a [href]="trainer.instagram" target="_blank" class="social-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                </a>
+              }
+              @if (trainer.facebook) {
+                <a [href]="trainer.facebook" target="_blank" class="social-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="trainer-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-main">
+          <h2 class="section-title">About {{ trainer.name }}</h2>
+          <p class="full-bio">{{ trainer.fullBio }}</p>
+
+          <!-- Certifications -->
+          <div class="certifications-box">
+            <h3>Certifications & Experience</h3>
+            <p class="cert-text">{{ trainer.certifications }}</p>
+            <p class="exp-text">{{ trainer.experience }} of professional training experience</p>
+          </div>
+
+          <!-- Languages -->
+          <div class="languages-box">
+            <h3>Languages</h3>
+            <div class="language-tags">
+              @for (lang of trainer.languages; track lang) {
+                <span class="language-tag">{{ lang }}</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="about-sidebar">
+          <!-- Achievements -->
+          <div class="achievements-card">
+            <h3>Key Achievements</h3>
+            <ul class="achievements-list">
+              @for (achievement of trainer.achievements; track achievement) {
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  {{ achievement }}
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="trainer-gallery" *ngIf="trainer.gallery && trainer.gallery.length > 0">
+    <div class="container">
+      <h2 class="section-title">Training Gallery</h2>
+      <div class="gallery-grid">
+        @for (image of trainer.gallery; track image) {
+          <div class="gallery-item" (click)="openGalleryImage(image)">
+            <img [src]="image" [alt]="trainer.name + ' training'">
+            <div class="gallery-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="trainer-reviews" *ngIf="reviews.length > 0">
+    <div class="container">
+      <div class="reviews-header">
+        <h2 class="section-title">Client Reviews</h2>
+        <div class="reviews-summary">
+          <div class="summary-rating">
+            <span class="big-rating">{{ trainer.rating }}</span>
+            <div class="stars-small">
+              @for (star of [1,2,3,4,5]; track star) {
+                @if (star <= trainer.rating) {
+                  <span class="star filled">★</span>
+                } @else {
+                  <span class="star empty">☆</span>
+                }
+              }
+            </div>
+            <p class="review-count-text">Based on {{ trainer.reviewCount }} reviews</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        @for (review of reviews; track review.id) {
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">{{ review.memberName.charAt(0) }}</div>
+                <div>
+                  <h4 class="reviewer-name">
+                    {{ review.memberName }}
+                    @if (review.verified) {
+                      <span class="verified-badge">✓ Verified</span>
+                    }
+                  </h4>
+                  <p class="review-date">{{ review.date }}</p>
+                </div>
+              </div>
+              <div class="review-rating">
+                @for (star of [1,2,3,4,5]; track star) {
+                  @if (star <= review.rating) {
+                    <span class="star filled">★</span>
+                  } @else {
+                    <span class="star empty">☆</span>
+                  }
+                }
+              </div>
+            </div>
+            <p class="review-comment">{{ review.comment }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to Start Training with {{ trainer.name }}?</h2>
+        <p>Book your first session today and take the first step towards your fitness goals.</p>
+        <div class="cta-buttons">
+          <button class="btn-book-large" (click)="bookSession()">
+            Book Training Session
+          </button>
+          @if (trainer.whatsapp) {
+            <button class="btn-whatsapp-large" (click)="contactWhatsApp()">
+              Contact on WhatsApp
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Gallery Lightbox -->
+@if (selectedGalleryImage) {
+  <div class="gallery-lightbox" (click)="closeGallery()">
+    <button class="lightbox-close">×</button>
+    <img [src]="selectedGalleryImage" [alt]="trainer?.name">
+  </div>
+}
+
+<app-footer></app-footer>

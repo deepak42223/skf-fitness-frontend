@@ -124,7 +124,7 @@
   font-size: 1rem;
   font-weight: 500;
   color: #fafaf9;
-  background: #e11d48;
+  background: #2563eb;
   border: none;
   border-radius: 8px;
   padding: 0.875rem 1.75rem;
@@ -135,7 +135,7 @@
 }
 
 .btn-primary:hover {
-  background: #be123c;
+  background: #1d4ed8;
   transform: translateY(-1px);
 }
 
@@ -144,7 +144,7 @@
 }
 
 .btn-primary:focus-visible {
-  outline: 2px solid #e11d48;
+  outline: 2px solid #2563eb;
   outline-offset: 3px;
 }
 
