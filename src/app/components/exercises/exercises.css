@@ -54,13 +54,13 @@
   border-color: rgba(37,99,235,0.35);
 }
 
-/* Strength card — gold accent */
+/* Strength card — blue accent */
 .ex-card:nth-child(1) {
-  border-color: rgba(244,166,35,0.18);
+  border-color: rgba(96,165,250,0.18);
 }
 .ex-card:nth-child(1):hover {
-  border-color: rgba(244,166,35,0.45);
-  box-shadow: 0 16px 40px rgba(244,166,35,0.12);
+  border-color: rgba(96,165,250,0.45);
+  box-shadow: 0 16px 40px rgba(96,165,250,0.12);
 }
 
 /* ── Image ── */
@@ -149,7 +149,7 @@
 
 .diff-beginner    { background: #12E0C4; }
 .diff-intermediate { background: #F4A623; }
-.diff-advanced    { background: #EF4444; }
+.diff-advanced    { background: #2563EB; }
 
 .ex-diff-label {
   font-family: var(--font-family-body);
@@ -172,8 +172,8 @@
   line-height: 1.15;
 }
 
-/* Strength card title — gold */
-.ex-card:nth-child(1) .ex-workout-title { color: #F4A623; }
+/* Strength card title — blue */
+.ex-card:nth-child(1) .ex-workout-title { color: #60a5fa; }
 
 /* Sets · Duration */
 .ex-meta {
@@ -244,14 +244,14 @@
 .ex-cta svg { transition: transform 0.2s ease; }
 .ex-cta:hover svg { transform: translateX(3px); }
 
-/* Strength card CTA — gold */
+/* Strength card CTA — blue */
 .ex-card:nth-child(1) .ex-cta {
-  color: #F4A623;
-  border-color: rgba(244,166,35,0.3);
+  color: #60a5fa;
+  border-color: rgba(96,165,250,0.3);
 }
 .ex-card:nth-child(1) .ex-cta:hover {
-  color: #F7C948;
-  border-color: #F4A623;
+  color: #93c5fd;
+  border-color: #60a5fa;
 }
 
 /* ── Photo Banner ── */
@@ -299,7 +299,7 @@
 .photo-overlay span {
   font-family: var(--font-family-display);
   font-size: 1.15rem;
-  color: #F4A623;
+  color: #60a5fa;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
