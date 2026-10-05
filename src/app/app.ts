@@ -8,9 +8,9 @@ import { NavbarComponent }        from './components/navbar/navbar';
 import { HeroComponent }          from './components/hero/hero';
 import { TaglineComponent }       from './components/tagline/tagline';
 import { CategoriesComponent }    from './components/categories/categories';
-import { CtaBannerComponent }    from './components/cta-banner/cta-banner';
 import { PhilosophyComponent }    from './components/philosophy/philosophy';
 import { MethodComponent }        from './components/method/method';
+import { WhySkfComponent }       from './components/why-skf/why-skf';
 import { ApproachComponent }      from './components/approach/approach';
 import { ServicesComponent }      from './components/services/services';
 import { WorkoutFormatComponent } from './components/workout-format/workout-format';
@@ -40,6 +40,7 @@ import { TextRevealService }      from './services/text-reveal.service';
     TaglineComponent,
     CategoriesComponent,
     MethodComponent,
+    WhySkfComponent,
     PhilosophyComponent,
     ApproachComponent,
     ServicesComponent,
@@ -61,8 +62,10 @@ import { TextRevealService }      from './services/text-reveal.service';
     <!-- Loading screen -->
     @if (showLoader()) {
       <app-loader (done)="onLoaderDone()"></app-loader>
-    <app-toast-container></app-toast-container>
     }
+
+    <!-- Toast notifications — always mounted so they work after loader dismisses -->
+    <app-toast-container></app-toast-container>
 
     <app-navbar></app-navbar>
 
@@ -76,19 +79,20 @@ import { TextRevealService }      from './services/text-reveal.service';
         <app-user-profile (onLogout)="handleLogout()"></app-user-profile>
       } @else {
         <app-hero></app-hero>
-        <app-method></app-method>
         <app-philosophy></app-philosophy>
-        <app-tagline></app-tagline>
+        <app-method></app-method>
+        <app-why-skf></app-why-skf>
         <app-categories></app-categories>
         <app-approach></app-approach>
         <app-workout-format></app-workout-format>
-        <app-membership></app-membership>
         <app-services></app-services>
-        <app-testimonials></app-testimonials>
         <app-trainers></app-trainers>
+        <app-testimonials></app-testimonials>
+        <app-membership></app-membership>
+        <app-tagline></app-tagline>
+        <app-faq></app-faq>
         <app-contact></app-contact>
         <app-cta></app-cta>
-        <app-faq></app-faq>
         <app-footer></app-footer>
       }
     }
@@ -522,10 +526,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.routerSub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((e: any) => {
-        const homeRoutes = ['', '/'];
-        this.isHomePage.set(homeRoutes.includes(e.urlAfterRedirects));
+        const url: string = e.urlAfterRedirects;
+        this.isHomePage.set(url === '/' || url === '');
         window.scrollTo({ top: 0 });
       });
+
+    // Set initial value based on current URL (before any NavigationEnd fires)
+    const currentUrl = this.router.url;
+    this.isHomePage.set(currentUrl === '/' || currentUrl === '');
 
     // Remove any stale listeners before adding new ones (hot-reload safety)
     if (this.boundOpenModal)   window.removeEventListener('open-auth-modal', this.boundOpenModal);

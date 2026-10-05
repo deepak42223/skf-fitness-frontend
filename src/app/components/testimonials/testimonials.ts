@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 interface Testimonial {
   id: string;
@@ -15,7 +15,7 @@ interface Testimonial {
   templateUrl: './testimonials.html',
   styleUrl: './testimonials.css'
 })
-export class TestimonialsComponent {
+export class TestimonialsComponent implements OnInit, OnDestroy {
   testimonials: Testimonial[] = [
     {
       id: 't1',
@@ -41,20 +41,64 @@ export class TestimonialsComponent {
   ];
 
   currentIndex = 0;
+  private intervalId: any = null;
+  isFading = false;
 
   get currentTestimonial() {
     return this.testimonials[this.currentIndex];
   }
 
+  ngOnInit() {
+    this.startAutoPlay();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoPlay();
+  }
+
+  private startAutoPlay() {
+    this.intervalId = setInterval(() => {
+      this.nextTestimonial();
+    }, 5000);
+  }
+
+  private stopAutoPlay() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  private resetAutoPlay() {
+    this.stopAutoPlay();
+    this.startAutoPlay();
+  }
+
   nextTestimonial() {
-    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+    this.isFading = true;
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+      this.isFading = false;
+    }, 150);
   }
 
   previousTestimonial() {
-    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    this.isFading = true;
+    this.resetAutoPlay();
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+      this.isFading = false;
+    }, 150);
   }
 
   goToTestimonial(index: number) {
-    this.currentIndex = index;
+    if (index !== this.currentIndex) {
+      this.isFading = true;
+      this.resetAutoPlay();
+      setTimeout(() => {
+        this.currentIndex = index;
+        this.isFading = false;
+      }, 150);
+    }
   }
 }

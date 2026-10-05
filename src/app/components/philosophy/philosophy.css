@@ -20,6 +20,17 @@
   gap: 1.5rem;
 }
 
+/* ── Eyebrow ── */
+.philosophy-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2563EB;
+  margin-bottom: -0.5rem;
+}
+
 /* ── Quote mark ── */
 .philosophy-quote-mark {
   font-family: 'Playfair Display', 'Georgia', serif;
@@ -46,6 +57,15 @@
 .philosophy-highlight {
   font-style: italic;
   color: #3D9970;
+}
+
+/* ── Subtitle ── */
+.philosophy-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.5rem;
 }
 
 /* ── Attribution ── */
