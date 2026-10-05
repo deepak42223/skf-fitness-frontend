@@ -9,7 +9,7 @@ import { ToastService } from '../services/toast.service';
   template: `
     <div class="toast-container">
       @for (toast of toastService.toasts(); track toast.id) {
-        <div class="toast toast-{{ toast.type }}" [@slideIn]>
+        <div class="toast toast-{{ toast.type }}">
           <div class="toast-icon">
             @switch (toast.type) {
               @case ('success') { ✓ }

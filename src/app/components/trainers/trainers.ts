@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,12 +19,15 @@ interface Trainer {
   facebook?: string;
   whatsapp?: string;
   hourlyRate?: number;
+  category: string[];
+  clientsCount: number;
+  quote?: string;
 }
 
 @Component({
   selector: 'app-trainers',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './trainers.html',
   styleUrl: './trainers.css'
 })
@@ -33,8 +36,8 @@ export class TrainersComponent {
     {
       id: 'sarah',
       name: 'Sarah Khan',
-      specialty: 'HIIT & Strength Training',
-      experience: '6+ yrs',
+      specialty: 'Strength Coach',
+      experience: '8 Years',
       certifications: 'NASM-CPT, ACSM',
       image: 'samuel-girven-VJ2s0c20qCo-unsplash.jpg',
       bio: 'Passionate about helping clients achieve their peak performance through science-backed training methods.',
@@ -44,13 +47,16 @@ export class TrainersComponent {
       hourlyRate: 1500,
       instagram: 'https://instagram.com/sarahfitness',
       facebook: 'https://facebook.com/sarahfitness',
-      whatsapp: '919876543210'
+      whatsapp: '919876543210',
+      category: ['strength', 'hiit'],
+      clientsCount: 120,
+      quote: 'Your strongest version starts with your next workout.'
     },
     {
       id: 'mike',
       name: 'Mike Rodriguez',
-      specialty: 'Powerlifting & Conditioning',
-      experience: '8+ yrs',
+      specialty: 'HIIT Specialist',
+      experience: '6 Years',
       certifications: 'NSCA-CSCS, USA-PL',
       image: 'spencer-davis-0ShTs8iPY28-unsplash.jpg',
       bio: 'Former competitive powerlifter dedicated to building strength and mental resilience in every athlete.',
@@ -60,13 +66,16 @@ export class TrainersComponent {
       hourlyRate: 2000,
       instagram: 'https://instagram.com/mikelifts',
       facebook: 'https://facebook.com/mikelifts',
-      whatsapp: '919876543211'
+      whatsapp: '919876543211',
+      category: ['hiit', 'strength', 'weight-loss'],
+      clientsCount: 95,
+      quote: 'Push your limits, discover your strength.'
     },
     {
       id: 'lisa',
       name: 'Lisa Patel',
-      specialty: 'Yoga & Mobility',
-      experience: '5+ yrs',
+      specialty: 'Yoga Instructor',
+      experience: '5 Years',
       certifications: 'RYT-500, FMS',
       image: 'charles-gaudreault-xXofYCc3hqc-unsplash.jpg',
       bio: 'Helping clients find balance, flexibility, and inner strength through mindful movement practices.',
@@ -77,13 +86,16 @@ export class TrainersComponent {
       hourlyRate: 1200,
       instagram: 'https://instagram.com/lisayoga',
       facebook: 'https://facebook.com/lisayoga',
-      whatsapp: '919876543212'
+      whatsapp: '919876543212',
+      category: ['yoga'],
+      clientsCount: 80,
+      quote: 'Find your balance, find your power.'
     },
     {
       id: 'tony',
       name: 'Tony Martinez',
-      specialty: 'Boxing & Combat Sports',
-      experience: '10+ yrs',
+      specialty: 'Fitness Coach',
+      experience: '7 Years',
       certifications: 'USA Boxing, NASM',
       image: 'edgar-chaparro-sHfo3WOgGTU-unsplash.jpg',
       bio: 'Professional boxing coach who combines technical precision with intense conditioning for real results.',
@@ -93,7 +105,10 @@ export class TrainersComponent {
       hourlyRate: 1800,
       instagram: 'https://instagram.com/tonyboxing',
       facebook: 'https://facebook.com/tonyboxing',
-      whatsapp: '919876543213'
+      whatsapp: '919876543213',
+      category: ['strength', 'hiit', 'weight-loss'],
+      clientsCount: 110,
+      quote: 'Train like a champion, feel like a champion.'
     }
   ];
 
@@ -159,31 +174,49 @@ export class TrainersComponent {
   // Filtering functionality
   activeFilter: string = 'all';
   
+  get featuredTrainer(): Trainer {
+    return this.trainers[0]; // First trainer is featured
+  }
+  
+  get regularTrainers(): Trainer[] {
+    // Return remaining trainers after featured
+    return this.filteredTrainers.filter(t => t.id !== this.featuredTrainer.id);
+  }
+  
   get filteredTrainers(): Trainer[] {
     if (this.activeFilter === 'all') {
       return this.trainers;
     }
-    if (this.activeFilter === 'available') {
-      return this.trainers.filter(t => t.available);
-    }
     return this.trainers.filter(t => 
-      t.specialty.toLowerCase().includes(this.activeFilter.toLowerCase())
+      t.category.includes(this.activeFilter)
     );
   }
 
   get filterOptions() {
     return [
-      { id: 'all', label: 'All Trainers', count: this.trainers.length },
-      { id: 'strength', label: 'Strength', count: this.trainers.filter(t => t.specialty.toLowerCase().includes('strength')).length },
-      { id: 'hiit', label: 'HIIT', count: this.trainers.filter(t => t.specialty.toLowerCase().includes('hiit')).length },
-      { id: 'yoga', label: 'Yoga', count: this.trainers.filter(t => t.specialty.toLowerCase().includes('yoga')).length },
-      { id: 'boxing', label: 'Boxing', count: this.trainers.filter(t => t.specialty.toLowerCase().includes('boxing')).length },
-      { id: 'available', label: 'Available Now', count: this.trainers.filter(t => t.available).length }
+      { id: 'all', label: 'ALL' },
+      { id: 'strength', label: 'STRENGTH' },
+      { id: 'hiit', label: 'HIIT' },
+      { id: 'yoga', label: 'YOGA' },
+      { id: 'weight-loss', label: 'WEIGHT LOSS' }
     ];
   }
 
   setFilter(filter: string) {
     this.activeFilter = filter;
+  }
+  
+  get totalCoaches(): number {
+    return this.trainers.length;
+  }
+  
+  get totalMembersTrained(): number {
+    return this.trainers.reduce((sum, t) => sum + t.clientsCount, 0);
+  }
+  
+  get averageRating(): number {
+    const avg = this.trainers.reduce((sum, t) => sum + t.rating, 0) / this.trainers.length;
+    return Math.round(avg * 10) / 10;
   }
 
   viewTrainerProfile(trainerId: string) {

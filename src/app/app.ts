@@ -576,6 +576,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showLoader.set(false);
     this.smoothScroll.init();
     this.textReveal.init();
+    // Initialize scroll reveal animations after loader
+    setTimeout(() => this.initScrollReveal(), 100);
   }
 
   openModal(tab: 'login' | 'register' = 'login') {

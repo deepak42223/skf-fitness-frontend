@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  // Explicit home route so isHomePage() matches both '' and '/'
+  {
+    path: '',
+    pathMatch: 'full',
+    children: [],
+  },
   { 
     path: 'services', 
     loadComponent: () => import('./pages/services-page/services-page').then(m => m.ServicesPageComponent),

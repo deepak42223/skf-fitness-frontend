@@ -308,6 +308,14 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  
+  .contact-form-section {
+    order: 1;
+  }
+  
+  .contact-map-section {
+    order: 2;
+  }
 }
 
 @media (max-width: 640px) {

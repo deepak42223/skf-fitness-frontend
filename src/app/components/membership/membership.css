@@ -355,6 +355,64 @@
 @media (max-width: 1100px) { .ec-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
 @media (max-width: 700px)  { .ec-grid { grid-template-columns: 1fr; } #pricing { padding: 60px 0; } }
 
+@media (max-width: 480px) {
+  #pricing {
+    padding: 50px 0;
+  }
+  
+  .section-header {
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+  
+  .ec-wrapper {
+    border-radius: 10px;
+  }
+  
+  .ec-photo-header,
+  .ec-photo-placeholder {
+    height: 160px;
+  }
+  
+  .ec-content-header {
+    padding: 1.25rem 1.25rem 0;
+  }
+  
+  .ec-features {
+    min-height: auto;
+    gap: 0.5rem;
+  }
+  
+  .ec-feat {
+    font-size: 0.85rem;
+  }
+  
+  .ec-content-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .ec-price {
+    width: 100%;
+  }
+  
+  .ec-cta {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .pricing-note {
+    margin-top: 2rem;
+    padding: 0.75rem;
+  }
+  
+  .pricing-note p {
+    font-size: 0.85rem;
+  }
+}
+
 /* ═══════════════════════════════════════════
    ANIMATED HEADLINE INTEGRATION
    ═══════════════════════════════════════════ */

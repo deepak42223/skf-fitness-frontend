@@ -1,8 +1,19 @@
 <section class="hero" id="home">
   
-  <!-- Background Image (subtle, light) -->
+  <!-- Background Video with Fallback Image -->
   <div class="hero-bg">
-    <img src="hero-gym-bg.jpg" alt="SKF Fitness Training Floor" class="hero-image">
+    <video 
+      class="hero-video" 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      poster="hero-gym-bg.jpg"
+      aria-hidden="true">
+      <source src="hero-homepage.mp4" type="video/mp4">
+      <!-- Fallback to image if video doesn't load -->
+      <img src="hero-gym-bg.jpg" alt="SKF Fitness Training Floor" class="hero-image">
+    </video>
     <div class="hero-overlay"></div>
   </div>
 
@@ -30,10 +41,10 @@
         <!-- CTA Buttons -->
         <div class="hero-cta">
           <button class="btn-primary" (click)="openAuthModal()">
-            Book your free trial
+            Start Your Journey
           </button>
-          <a href="#pricing" class="btn-secondary">
-            Membership
+          <a routerLink="/programs" class="btn-secondary">
+            Explore Programs
           </a>
         </div>
         

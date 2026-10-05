@@ -10,8 +10,10 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isLoggedIn()) {
       return true;
     }
-    // Dispatch open-auth-modal event so the login modal appears
-    window.dispatchEvent(new CustomEvent('open-auth-modal', { detail: { tab: 'login' } }));
+    // Navigate home then open login modal
+    this.router.navigate(['/']).then(() => {
+      window.dispatchEvent(new CustomEvent('open-auth-modal', { detail: { tab: 'login' } }));
+    });
     return false;
   }
 }

@@ -2,49 +2,70 @@
   <div class="container">
     <div class="nav-content">
 
-      <!-- Logo: SKF.FITNESS -->
-      <a class="nav-logo" routerLink="/" style="cursor:pointer">
-        <img src="skf-logo.jpg" alt="SKF FITNESS" class="nav-logo-img">
+      <!-- Logo & Brand -->
+      <a class="nav-logo" routerLink="/" aria-label="SKF FITNESS Home">
+        <img src="skf-logo.jpg" alt="SKF FITNESS Logo" class="nav-logo-img">
         <span class="nav-logo-text">SKF FITNESS</span>
       </a>
 
-      <!-- Desktop nav links -->
+      <!-- Desktop Navigation Links -->
       <ul class="nav-links">
-        <li><a class="nav-link" (click)="navigate('workout-format')" [class.active]="isActive('workout-format')" style="cursor:pointer">Programs</a></li>
+        <li><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a class="nav-link" routerLink="/programs" routerLinkActive="active">Programs</a></li>
         <li><a class="nav-link" routerLink="/trainers" routerLinkActive="active">Trainers</a></li>
-        <li><a class="nav-link" (click)="navigate('pricing')" [class.active]="isActive('pricing')" style="cursor:pointer">Membership</a></li>
+        <li><a class="nav-link" routerLink="/about" routerLinkActive="active">Membership</a></li>
+        <li><a class="nav-link" routerLink="/about" routerLinkActive="active">About</a></li>
         <li><a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
 
-      <!-- Right: Join Now Button -->
+      <!-- Right Side: CTA & Mobile Menu -->
       <div class="nav-right">
         @if (isLoggedIn()) {
           <button class="nav-cta" (click)="goToProfile()">
-            👤 {{ userName() }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            {{ userName() }}
           </button>
         } @else {
           <button class="nav-cta" (click)="openAuthModal()">
-            Join now
+            Join Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </button>
         }
-        <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()" aria-label="Menu">
-          <span></span><span></span><span></span>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="menuOpen()" aria-label="Toggle Menu" aria-expanded="menuOpen()">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- Mobile Dropdown -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu" [class.open]="menuOpen()">
     <ul class="mobile-nav-links">
-      <li><a routerLink="/" (click)="closeMenu()" style="cursor:pointer">Home</a></li>
-      <li><a (click)="navigate('workout-format'); closeMenu()" style="cursor:pointer">Programs</a></li>
-      <li><a routerLink="/trainers" (click)="closeMenu()">Trainers</a></li>
-      <li><a (click)="navigate('pricing'); closeMenu()" style="cursor:pointer">Membership</a></li>
-      <li><a routerLink="/contact" (click)="closeMenu()">Contact</a></li>
+      <li><a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a routerLink="/programs" (click)="closeMenu()" routerLinkActive="active">Programs</a></li>
+      <li><a routerLink="/trainers" (click)="closeMenu()" routerLinkActive="active">Trainers</a></li>
+      <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">Membership</a></li>
+      <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/contact" (click)="closeMenu()" routerLinkActive="active">Contact</a></li>
       @if (!isLoggedIn()) {
-        <li><a (click)="openAuthModal(); closeMenu()" style="cursor:pointer;color:#E23B2E;font-weight:700">Join now →</a></li>
+        <li class="mobile-cta-wrapper">
+          <button class="mobile-cta" (click)="openAuthModal(); closeMenu()">
+            Join Now
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </li>
       }
     </ul>
   </div>

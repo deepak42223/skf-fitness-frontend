@@ -54,7 +54,7 @@ export class ContactComponent {
     });
   }
 
-  get isLoading() { return () => this.status() === 'loading'; }
-  get isSuccess() { return () => this.status() === 'success'; }
-  get isError()   { return () => this.status() === 'error'; }
+  isLoading() { return this.status() === 'loading'; }
+  isSuccess() { return this.status() === 'success'; }
+  isError()   { return this.status() === 'error'; }
 }

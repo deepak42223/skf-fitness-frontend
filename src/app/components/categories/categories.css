@@ -69,6 +69,74 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
+  margin-bottom: 3rem;
+}
+
+/* ── CTA Section ── */
+.programs-cta-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 4rem;
+}
+
+.programs-cta-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fafaf9;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.programs-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.programs-cta-btn:hover::before {
+  left: 100%;
+}
+
+.programs-cta-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+  gap: 1rem;
+}
+
+.programs-cta-btn:active {
+  transform: translateY(0);
+}
+
+.programs-cta-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 4px;
+}
+
+.programs-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.programs-cta-btn:hover svg {
+  transform: translateX(4px);
 }
 
 /* ── Single card ── */
@@ -254,6 +322,10 @@
   .prog-description {
     font-size: 0.82rem;
   }
+  
+  .programs-cta-section {
+    padding: 1.5rem 0 3rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -272,6 +344,7 @@
   .programs-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+    margin-bottom: 2rem;
   }
   
   .prog-content {
@@ -296,6 +369,17 @@
   .prog-explore {
     font-size: 0.7rem;
     padding: 0.6rem 1rem;
+  }
+  
+  .programs-cta-section {
+    padding: 1rem 0 2.5rem;
+  }
+  
+  .programs-cta-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 1rem 1.5rem;
   }
 }
 

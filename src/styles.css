@@ -100,6 +100,18 @@
 }
 
 /* ════════════════════════════
+   ACCESSIBILITY - REDUCED MOTION
+   ════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ════════════════════════════
    RESET & BASE
    ════════════════════════════ */
 *, *::before, *::after {
@@ -1191,4 +1203,45 @@ ul.green-tick-list li::before {
 
 .automark-original-theme .play-icon stop:last-child {
   stop-color: #937AFF !important;
+}
+
+/* ════════════════════════════
+   SHARED SECTION CTA BUTTON
+   ════════════════════════════ */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.btn-section-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--text-primary, #fff);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-section-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-section-cta:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+.btn-section-cta:hover svg {
+  transform: translateX(4px);
 }

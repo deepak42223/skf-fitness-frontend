@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import * as THREE from 'three';
 
 interface Program {
@@ -10,7 +11,7 @@ interface Program {
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './categories.html',
   styleUrl: './categories.css'
 })

@@ -42,11 +42,25 @@ export class AuthService {
   }
 
   private restoreSession() {
-    const token = localStorage.getItem('skf-auth-token');
-    const user  = localStorage.getItem('skf-user');
-    if (token && user) {
-      this.currentUser.set(JSON.parse(user));
-      this.isLoggedIn.set(true);
+    try {
+      const token = localStorage.getItem('skf-auth-token');
+      const user  = localStorage.getItem('skf-user');
+      if (token && user) {
+        const parsed = JSON.parse(user);
+        // Basic shape check before trusting the data
+        if (parsed && typeof parsed === 'object' && parsed.id && parsed.email) {
+          this.currentUser.set(parsed);
+          this.isLoggedIn.set(true);
+        } else {
+          // Stale or malformed data — clear it
+          localStorage.removeItem('skf-auth-token');
+          localStorage.removeItem('skf-user');
+        }
+      }
+    } catch {
+      // Corrupted localStorage data — clear and start fresh
+      localStorage.removeItem('skf-auth-token');
+      localStorage.removeItem('skf-user');
     }
   }
 
