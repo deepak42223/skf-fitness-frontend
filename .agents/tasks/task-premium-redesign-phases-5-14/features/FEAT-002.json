@@ -1,0 +1,40 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Membership dark theme upgrade and About section cleanup. Transform membership pricing from light theme to consistent dark premium theme matching rest of site. Clean up about section by removing automark demo components showcase and keeping only the 4 value cards + banner image.",
+  "status": "completed",
+  "steps": [
+    "INSPECT membership component thoroughly: Read membership.ts, membership.html, membership.css. Document ALL functionality: plans[] array (Basic/Pro/Elite with id, name, price, description, features[], featured, cta), loading signal (initialized true, set false after 1200ms in ngOnInit), selectPlan(planId) method, AuthService.isLoggedIn() check, open-auth-modal custom event dispatch, PaymentService.processPayment() call with amount/purpose/metadata, paymentLoading signal, AnimatedHeadlineComponent usage. CRITICAL: DO NOT modify any TypeScript logic in membership.ts - only CSS changes allowed.",
+    "VERIFY dependencies: Check imports in membership.ts - AnimatedHeadlineComponent, PaymentService, AuthService. Check membership.html - uses @for loop for plans, [class.loading-skeleton], (click)=\"selectPlan(plan.id)\", app-animated-headline component. ALL of this MUST remain unchanged.",
+    "CSS-ONLY changes to membership.css - PHASE 1 (Section background): In #pricing selector, change background from 'linear-gradient(rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.50)), url('/pricing-bg.jpg')' to dark: 'background: linear-gradient(180deg, #0A0A0A 0%, #040001 100%)' OR 'background: #0A0A0A'. Remove or darken the background image overlay. Save file, run 'npx ng build --configuration development', check for CSS parse errors.",
+    "CSS-ONLY changes to membership.css - PHASE 2 (Section header): In .section-header, change 'background: rgba(255, 255, 255, 0.85)' to 'background: rgba(10, 10, 10, 0.75)', keep 'backdrop-filter: blur(10px)'. In .section-title, change 'color: #0D0D0D !important' to 'color: #FFFFFF !important', keep or adjust 'text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3)' for dark background. In .section-subtitle, change 'color: #1A1A1A !important' to 'color: rgba(255, 255, 255, 0.75) !important'. Save, build, check terminal.",
+    "CSS-ONLY changes to membership.css - PHASE 3 (Pricing cards): In .ec-wrapper, change 'background: #ffffff' to 'background: rgba(26, 26, 26, 0.95)' or '#1a1a1a', change 'border: 1px solid rgba(37, 99, 235, 0.1)' to 'border: 1px solid rgba(37, 99, 235, 0.2)', change 'box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08)' to 'box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5)'. In .ec-desc, change 'color: var(--color-text)' to 'color: rgba(255, 255, 255, 0.7)'. In .ec-feat, change 'color: var(--color-text)' to 'color: rgba(255, 255, 255, 0.75)'. Save, build, check.",
+    "CSS-ONLY changes to membership.css - PHASE 4 (Price and footer): In .ec-amount, change 'color: var(--color-text-light)' to 'color: #FFFFFF'. In .ec-period, change 'color: var(--color-text-dark)' to 'color: rgba(255, 255, 255, 0.5)'. In .pricing-note p, change 'color: var(--color-text) !important' to 'color: rgba(255, 255, 255, 0.65) !important'. LEAVE .ec-cta button styling unchanged (already has blue gradient). LEAVE .ec-wrapper-2::before (MOST POPULAR badge) unchanged. Save, build, check.",
+    "VERIFY membership styling: Start dev server, navigate to membership section. Check: dark background visible, section header readable on dark, all 3 pricing cards visible with dark backgrounds, all text readable (white/light gray), prices clearly visible in white, MOST POPULAR badge still visible on Pro card, blue gradient CTA buttons prominent. Test hover states on cards and buttons. Check responsive: resize browser to 768px and 480px, verify cards stack properly.",
+    "INSPECT about component: Read about.html in full. Identify: section eyebrow, red-bar, about-title, 4 about-cards (Expert Coaching, Performance Tracking, Flexible Schedules, Strong Community) with icon-badge, about-banner with bracket-frame and image, LARGE automark-original-theme div block starting at line ~40 containing: app-badge, app-step-card (3 instances), app-feature-card (3 instances), app-testimonial-card (1 instance), Automark button showcase. This entire automark-original-theme block is demo/development content and should be removed.",
+    "REMOVE automark demo block from about.html: In about.html, locate the opening tag '<div class=\"automark-original-theme\"' (around line 40-50). Find its matching closing '</div>' tag (near end of file). Delete the ENTIRE block including opening and closing tags and all content between. Save file. Verify in browser that about section now ends with the banner image and no longer shows purple-themed demo components.",
+    "VERIFY about section: Check about.css for any styles specific to removed components (.automark-original-theme). If found, can be left as-is (unused CSS doesn't break anything) or removed for cleanup. Build project, check for template errors related to removed components. Start dev server, scroll to about section, verify: 4 value cards visible, banner image visible, no automark demo components below banner.",
+    "FINAL BUILD VERIFICATION: Run 'npx ng build --configuration development'. Terminal should show successful build, no TypeScript errors, no template errors. Check bundle size warnings if any. Start dev server, test: membership section displays correctly with dark theme, click a membership CTA and verify auth modal opens (tests preserved selectPlan logic), submit form to verify PaymentService integration preserved (will fail without backend, but modal should open and code should execute). Test about section, verify content cleanup successful."
+  ],
+  "acceptance_criteria": [
+    "Membership section has dark background (#0A0A0A or similar)",
+    "All membership cards have dark backgrounds with good contrast",
+    "All text in membership section is readable on dark background (white/light gray)",
+    "Prices (₹999, ₹1,799, ₹2,999) are clearly visible in white",
+    "MOST POPULAR badge remains on Pro card unchanged",
+    "Blue gradient CTA buttons remain unchanged and prominent",
+    "All existing TypeScript logic (selectPlan, payment integration) remains unchanged",
+    "About section no longer contains automark-original-theme demo block",
+    "About section shows only: eyebrow, title, 4 value cards, banner image",
+    "Build completes with no errors"
+  ],
+  "verification": [
+    "cd 'c:\\Users\\deepak gome\\OneDrive\\Music\\Desktop\\gym doc for this\\fitusion' && npx ng build",
+    "Inspect membership section: verify dark background, readable text, visible prices",
+    "Click a membership CTA to verify payment flow still works",
+    "Inspect about section: verify automark demo components are removed",
+    "Test responsive: verify membership cards stack properly on mobile"
+  ],
+  "blocked_reason": null,
+  "findings": "FEAT-002 completed successfully. Membership section transformed to dark theme with CSS-only changes: dark background (#0A0A0A gradient), dark card backgrounds (rgba(26, 26, 26, 0.95)), white text for prices and headings, light gray for descriptions. All existing TypeScript logic preserved including selectPlan(), PaymentService integration, and AuthService checks. About section cleaned up by removing entire automark-original-theme demo block containing Badge, StepCard, FeatureCard, and TestimonialCard showcases. About section now shows only: eyebrow, title, 4 value cards, and banner image. Build completed successfully with minor warning about unused imports in about.ts (components no longer needed after demo removal). No errors, all functionality preserved."
+}
