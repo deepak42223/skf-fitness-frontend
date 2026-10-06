@@ -1,8 +1,8 @@
 /* ════════════════════════════
-   PRICING — DARK THEME
+   PRICING — SERVICES-STYLE BACKGROUND
    ════════════════════════════ */
 #pricing {
-  background: linear-gradient(180deg, #0A0A0A 0%, #040001 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #d97706 75%, #f59e0b 100%);
   padding: 100px 0;
   position: relative;
 }
@@ -11,11 +11,11 @@
 .section-header {
   text-align: left;
   margin-bottom: 4rem;
-  background: rgba(10, 10, 10, 0.75);
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  padding: 0 0 2rem 0;
+  border-radius: 0;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .section-title {
@@ -23,19 +23,19 @@
   font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
   font-weight: 700 !important;
   color: #FFFFFF !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
   margin-bottom: 0.75rem;
   line-height: 1.2;
 }
 
 .section-subtitle {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   font-size: 1rem;
   max-width: 580px;
   margin: 0;
   line-height: 1.6;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
 }
 
 #pricing .section-badge {
@@ -57,10 +57,10 @@
   align-items: stretch;
 }
 
-/* ── Card with Clean Design - DARK THEME ── */
+/* ── Card with Clean Design - GRADIENT BG ── */
 .ec-wrapper {
-  background: rgba(26, 26, 26, 0.95);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -68,13 +68,14 @@
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
 }
 
 .ec-wrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.15);
-  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 /* Featured (middle) card — Blue highlight */
@@ -174,7 +175,7 @@
 .ec-desc {
   font-size: 0.9rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   font-weight: 400;
 }
@@ -195,7 +196,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
 }
 
@@ -220,7 +221,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-top: 1px solid rgba(229, 229, 229, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   gap: 0.75rem;
   margin-top: auto;
 }
@@ -229,7 +230,7 @@
 .ec-price { display: flex; align-items: baseline; gap: 1px; }
 .ec-currency { font-size: 14px; font-weight: 700; color: #FFFFFF; }
 .ec-amount   { font-size: 2.2rem; font-weight: 700; color: #FFFFFF; line-height: 1; font-family: var(--font-body); }
-.ec-period   { font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-left: 2px; }
+.ec-period   { font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-left: 2px; }
 
 /* Blue CTA button - Automark gradient style */
 .ec-cta {
@@ -336,7 +337,7 @@
   padding: 1rem;
 }
 .pricing-note p { 
-  color: rgba(255, 255, 255, 0.65) !important; 
+  color: rgba(255, 255, 255, 0.75) !important; 
   font-size: 0.9rem; 
   margin: 0; 
 }

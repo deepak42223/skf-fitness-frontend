@@ -12,17 +12,6 @@
 
   <section>
     <div class="container">
-      <!-- Stats Row -->
-      <div #statsRow class="stats-row">
-        @for (stat of stats; track stat.label) {
-          <div class="stat-card reveal">
-            <div class="stat-number">
-              {{ formatStatValue(stat) }}{{ stat.suffix }}
-            </div>
-            <div class="stat-label">{{ stat.label }}</div>
-          </div>
-        }
-      </div>
 
       <div class="section-head">
         <div>

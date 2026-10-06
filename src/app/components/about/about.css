@@ -65,17 +65,26 @@
   transform: translateY(-4px);
 }
 
-/* Red circular icon badge — signature motif */
-.about-card .icon-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #2563EB;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+/* ── Card photo image ── */
+.about-card-img-wrap {
+  width: 100%;
+  height: 200px;
+  border-radius: 6px;
+  overflow: hidden;
   flex-shrink: 0;
-  color: #fff;
+}
+
+.about-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-card:hover .about-card-img {
+  transform: scale(1.05);
 }
 
 .about-card-title {

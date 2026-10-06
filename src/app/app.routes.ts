@@ -38,6 +38,11 @@ export const routes: Routes = [
     title: 'About Us — SKF Fitness' 
   },
   { 
+    path: 'membership', 
+    loadComponent: () => import('./pages/membership-page/membership-page').then(m => m.MembershipPageComponent),
+    title: 'Membership — SKF Fitness' 
+  },
+  { 
     path: 'generator', 
     loadComponent: () => import('./components/workout-generator/workout-generator').then(m => m.WorkoutGeneratorComponent),
     title: 'Workout Generator — SKF Fitness' 

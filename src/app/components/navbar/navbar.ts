@@ -1,6 +1,7 @@
 import { Component, HostListener, signal, OnInit, computed } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent implements OnInit {
   menuOpen      = signal(false);
   activeSection = signal('home');
   isDark        = signal(true);
+  isHomePage    = signal(true);
 
   isLoggedIn = computed(() => this.authService.isLoggedIn());
   userName   = computed(() => {
@@ -23,7 +25,7 @@ export class NavbarComponent implements OnInit {
 
   private sections = ['home','programs','about','services','workout-format','pricing','trainers','contact'];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     const saved = localStorage.getItem('skf-theme');
@@ -34,6 +36,16 @@ export class NavbarComponent implements OnInit {
       this.isDark.set(true);
       document.body.classList.remove('light-mode');
     }
+
+    // Set initial value
+    this.isHomePage.set(this.router.url === '/' || this.router.url === '');
+
+    // Update on every navigation
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: any) => {
+        this.isHomePage.set(e.urlAfterRedirects === '/' || e.urlAfterRedirects === '');
+      });
   }
 
   @HostListener('window:scroll')

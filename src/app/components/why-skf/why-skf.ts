@@ -12,24 +12,28 @@ export class WhySkfComponent {
     {
       number: '01',
       icon: 'dumbbell',
+      image: 'about-coaching.jpg',
       title: 'Expert Coaching',
       description: 'Personalized guidance from certified coaches who understand your goals.'
     },
     {
       number: '02',
       icon: 'activity',
+      image: 'about-tracking.jpg',
       title: 'Science-Backed Training',
       description: 'Programs designed around individual goals with proven methodologies.'
     },
     {
       number: '03',
       icon: 'users',
+      image: 'about-community.jpg',
       title: 'Real Community',
       description: 'A supportive environment that keeps members accountable and motivated.'
     },
     {
       number: '04',
       icon: 'trending-up',
+      image: 'about-progress.jpg',
       title: 'Track Your Progress',
       description: 'Measure progress and stay consistent with data-driven insights.'
     }

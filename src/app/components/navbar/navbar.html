@@ -1,4 +1,4 @@
-<nav class="navbar" [class.scrolled]="isScrolled()">
+<nav class="navbar" [class.scrolled]="isScrolled()" [class.transparent]="isHomePage() && !isScrolled()">
   <div class="container">
     <div class="nav-content">
 
@@ -13,7 +13,7 @@
         <li><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
         <li><a class="nav-link" routerLink="/programs" routerLinkActive="active">Programs</a></li>
         <li><a class="nav-link" routerLink="/trainers" routerLinkActive="active">Trainers</a></li>
-        <li><a class="nav-link" routerLink="/about" routerLinkActive="active">Membership</a></li>
+        <li><a class="nav-link" routerLink="/membership" routerLinkActive="active">Membership</a></li>
         <li><a class="nav-link" routerLink="/about" routerLinkActive="active">About</a></li>
         <li><a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
@@ -54,7 +54,7 @@
       <li><a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
       <li><a routerLink="/programs" (click)="closeMenu()" routerLinkActive="active">Programs</a></li>
       <li><a routerLink="/trainers" (click)="closeMenu()" routerLinkActive="active">Trainers</a></li>
-      <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">Membership</a></li>
+      <li><a routerLink="/membership" (click)="closeMenu()" routerLinkActive="active">Membership</a></li>
       <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">About</a></li>
       <li><a routerLink="/contact" (click)="closeMenu()" routerLinkActive="active">Contact</a></li>
       @if (!isLoggedIn()) {
