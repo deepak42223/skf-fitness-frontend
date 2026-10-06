@@ -1,6 +1,5 @@
 /* ═══════════════════════════════════════════
-   SKF FITNESS — APPLE-INSPIRED CLEAN HERO
-   Light, minimal, restrained, product-focused
+   SKF FITNESS HERO — NEON RIBBON CANVAS
    ═══════════════════════════════════════════ */
 
 /* ── Hero Container ── */
@@ -11,49 +10,26 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: #111;
+  background: #000;
   overflow: hidden;
 }
 
-/* ── Background Video & Image ── */
+/* ── Neon Ribbon Canvas Background ── */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.hero-video {
+.ribbon-canvas {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.9;
-}
-
-.hero-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  opacity: 1;
-  filter: grayscale(100%) brightness(0.85) contrast(1.1);
-}
-
-/* Dark overlay — heavier on left so text is readable */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.50) 40%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
-  z-index: 1;
+  display: block;
+  cursor: crosshair;
+  touch-action: none;
 }
 
 /* ── Content Layout ── */
@@ -84,11 +60,10 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
   opacity: 0;
   animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Main Headline ── */
@@ -103,7 +78,7 @@
   max-width: 800px;
   opacity: 0;
   animation: fadeSlideUp 0.8s ease-out 0.4s forwards;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* ── Description ── */
@@ -112,12 +87,11 @@
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   max-width: 600px;
   opacity: 0;
   animation: fadeSlideUp 0.8s ease-out 0.6s forwards;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ── CTA Buttons ── */
@@ -136,7 +110,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #fafaf9;
+  color: #ffffff;
   background: #2563eb;
   border: none;
   border-radius: 8px;
@@ -152,15 +126,6 @@
   transform: translateY(-1px);
 }
 
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-primary:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 3px;
-}
-
 /* Secondary Button */
 .btn-secondary {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -168,7 +133,7 @@
   font-weight: 500;
   color: #ffffff;
   background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   padding: 0.875rem 1.75rem;
   cursor: pointer;
@@ -179,12 +144,7 @@
 
 .btn-secondary:hover {
   border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.btn-secondary:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 3px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* ── Scroll Indicator ── */
@@ -204,118 +164,46 @@
 }
 
 .hero-scroll span {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Animations ── */
 @keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(8px);
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
 }
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow,
-  .hero-headline,
-  .hero-description,
-  .hero-cta,
-  .hero-scroll {
+  .hero-eyebrow, .hero-headline, .hero-description, .hero-cta, .hero-scroll {
     animation: none;
     opacity: 1;
-    transform: none;
-  }
-
-  .btn-primary:hover,
-  .btn-secondary:hover {
     transform: none;
   }
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .hero {
-    min-height: 90vh;
-  }
-
-  .hero-content {
-    padding: 0 1.5rem;
-  }
-
-  .hero-container {
-    text-align: left;
-  }
-
-  .hero-center {
-    align-items: flex-start;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.75rem;
-  }
-
-  .hero-headline {
-    font-size: clamp(2rem, 8vw, 3rem);
-  }
-
-  .hero-description {
-    font-size: 1rem;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    text-align: center;
-    padding: 1rem 1.5rem;
-  }
-
-  .hero-scroll {
-    bottom: 2rem;
-  }
+  .hero { min-height: 90vh; }
+  .hero-content { padding: 0 1.5rem; }
+  .hero-headline { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero-description { font-size: 1rem; }
+  .hero-cta { flex-direction: column; width: 100%; max-width: 320px; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 1rem 1.5rem; }
+  .hero-scroll { bottom: 2rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-content {
-    padding: 0 1.25rem;
-  }
-
-  .hero-headline {
-    font-size: 1.875rem;
-    letter-spacing: -0.015em;
-  }
-
-  .hero-description {
-    font-size: 0.9375rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    font-size: 0.9375rem;
-    padding: 0.875rem 1.25rem;
-  }
+  .hero-content { padding: 0 1.25rem; }
+  .hero-headline { font-size: 1.875rem; letter-spacing: -0.015em; }
+  .hero-description { font-size: 0.9375rem; }
+  .btn-primary, .btn-secondary { font-size: 0.9375rem; padding: 0.875rem 1.25rem; }
 }
