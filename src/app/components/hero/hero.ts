@@ -34,7 +34,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Use rAF so the canvas has been painted and has real dimensions
+    // rAF ensures canvas has real dimensions after first paint
     requestAnimationFrame(() => this.initCanvas());
   }
 
@@ -43,11 +43,9 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     const ctx = canvas.getContext('2d')!;
 
     const resize = () => {
-      // Fallback to window size when offsetWidth is 0 (SSR-like paint timing)
       canvas.width  = canvas.offsetWidth  || window.innerWidth;
       canvas.height = canvas.offsetHeight || window.innerHeight;
     };
-
     resize();
     window.addEventListener('resize', resize);
 
@@ -59,14 +57,12 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
       this.mouse.x = e.clientX - rect.left;
       this.mouse.y = e.clientY - rect.top;
     };
-
     const onTouch = (e: TouchEvent) => {
       e.preventDefault();
       const rect = canvas.getBoundingClientRect();
       this.mouse.x = e.touches[0].clientX - rect.left;
       this.mouse.y = e.touches[0].clientY - rect.top;
     };
-
     window.addEventListener('mousemove', onMove);
     canvas.addEventListener('touchmove', onTouch, { passive: false });
 
