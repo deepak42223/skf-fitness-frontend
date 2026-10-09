@@ -1,23 +1,52 @@
 /* ═══════════════════════════════════════════
-   APPROACH SECTION - ORIGINAL LIGHT THEME
-   Centered · Clean typography · SKF Blue
+   APPROACH SECTION - TWO COLUMN LAYOUT
+   Image left · Content right · Clean typography
    ═══════════════════════════════════════════ */
 
 .approach {
   position: relative;
-  padding: 140px 0;
+  padding: 100px 0;
   background: var(--color-body);
   overflow: hidden;
 }
 
+/* ── Two-column grid ── */
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* ── Left: Image ── */
+.approach-image-wrap {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.approach-img {
+  width: 100%;
+  height: 540px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.approach-image-wrap:hover .approach-img {
+  transform: scale(1.03);
+}
+
+/* ── Right: Content ── */
 .approach-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
   position: relative;
   z-index: 1;
 }
@@ -133,9 +162,29 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 968px) {
+  .approach-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .approach-img {
+    height: 400px;
+  }
+
+  .approach-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .approach-description {
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .approach {
-    padding: 100px 0;
+    padding: 80px 0;
   }
 
   .approach-headline {
@@ -151,15 +200,19 @@
     width: 48px;
     height: 48px;
   }
+
+  .approach-img {
+    height: 320px;
+  }
 }
 
 @media (max-width: 480px) {
   .approach {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 
   .approach-content {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .approach-eyebrow {
@@ -171,8 +224,12 @@
     padding: 12px 28px;
     font-size: 0.8rem;
   }
-  
+
   .approach-headline {
     font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .approach-img {
+    height: 260px;
   }
 }

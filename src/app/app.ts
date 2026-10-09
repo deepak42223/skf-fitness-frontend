@@ -23,6 +23,7 @@ import { CtaComponent }           from './components/cta/cta';
 import { FooterComponent }        from './components/footer/footer';
 import { UserProfileComponent }   from './components/user-profile/user-profile';
 import { AuthService }            from './services/auth.service';
+import { PaymentService }         from './services/payment.service';
 import { LoaderComponent }        from './components/loader/loader';
 import { ToastContainerComponent } from './shared/toast-container.component';
 import { SmoothScrollService }    from './services/smooth-scroll.service';
@@ -191,6 +192,34 @@ import { TextRevealService }      from './services/text-reveal.service';
                 </button>
               </form>
               <div class="signup-link"><a (click)="authTab.set('login')" style="cursor:pointer">Already a member? Login</a></div>
+            }
+
+            @if (authTab() === 'payment') {
+              <!-- ── Payment Step ── -->
+              <div class="payment-step">
+                <div class="payment-success-badge">✓ Account Created!</div>
+                <h3 class="payment-plan-title">Complete Your Membership</h3>
+
+                <!-- Plan Summary -->
+                <div class="payment-plan-box">
+                  <div class="payment-plan-name">{{ getPlanLabel() }} Plan</div>
+                  <div class="payment-plan-price">₹{{ getPlanPrice() }}<span>/month</span></div>
+                </div>
+
+                @if (paymentError()) {
+                  <div class="auth-error">{{ paymentError() }}</div>
+                }
+
+                <!-- Pay Now -->
+                <button class="login-btn" (click)="payNow()" [disabled]="paymentLoading()">
+                  {{ paymentLoading() ? 'PROCESSING...' : 'PAY ₹' + getPlanPrice() + ' NOW' }}
+                </button>
+
+                <!-- Skip -->
+                <button class="skip-payment-btn" (click)="skipPayment()">
+                  Skip for now — Pay later from profile
+                </button>
+              </div>
             }
 
           </div>
@@ -473,6 +502,80 @@ import { TextRevealService }      from './services/text-reveal.service';
       color: #27AE60; padding: 0.75rem; border-radius: 8px;
       font-size: 0.82rem;
     }
+
+    /* ── Payment Step ── */
+    .payment-step {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.5rem 0 0.5rem;
+      text-align: center;
+    }
+
+    .payment-success-badge {
+      display: inline-block;
+      background: rgba(39, 174, 96, 0.15);
+      border: 1px solid rgba(39, 174, 96, 0.4);
+      color: #27AE60;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 1.25rem;
+      border-radius: 25px;
+      margin: 0 auto;
+    }
+
+    .payment-plan-title {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.3px;
+    }
+
+    .payment-plan-box {
+      background: rgba(46, 155, 255, 0.1);
+      border: 1px solid rgba(46, 155, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .payment-plan-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .payment-plan-price {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: #2E9BFF;
+      line-height: 1;
+    }
+
+    .payment-plan-price span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .skip-payment-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0.25rem;
+      transition: color 0.2s;
+      font-family: inherit;
+    }
+
+    .skip-payment-btn:hover { color: rgba(255,255,255,0.7); }
   `]
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -484,10 +587,12 @@ export class AppComponent implements OnInit, OnDestroy {
   isHomePage     = signal(true);
 
   private routerSub!: Subscription;
-  authTab        = signal<'login' | 'register' | 'forgot'>('login');
+  authTab        = signal<'login' | 'register' | 'forgot' | 'payment'>('login');
   authLoading    = signal(false);
   authError      = signal('');
   authSuccess    = signal('');
+  paymentLoading = signal(false);
+  paymentError   = signal('');
 
   // Login animation bars
   animBars: { angle: number; active: boolean }[] = [];
@@ -513,6 +618,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private smoothScroll: SmoothScrollService,
     private textReveal: TextRevealService,
     private router: Router,
+    private paymentService: PaymentService,
   ) {}
 
   private boundOpenModal:   EventListener | null = null;
@@ -639,15 +745,78 @@ export class AppComponent implements OnInit, OnDestroy {
       membershipPlan: this.regPlan,
     }).subscribe({
       next: () => {
-        this.authLoading.set(false);
-        this.authSuccess.set('Account created! Please login now.');
-        setTimeout(() => this.authTab.set('login'), 1500);
+        // Auto-login after registration then show payment step
+        this.authService.login({ email: this.regEmail, password: this.regPassword }).subscribe({
+          next: () => {
+            this.authLoading.set(false);
+            this.authTab.set('payment');
+            this.authError.set('');
+          },
+          error: () => {
+            // Login failed but account was created — ask them to login manually
+            this.authLoading.set(false);
+            this.authSuccess.set('Account created! Please login to complete payment.');
+            setTimeout(() => this.authTab.set('login'), 1500);
+          }
+        });
       },
       error: (err) => {
         this.authLoading.set(false);
         this.authError.set(err?.error?.message || 'Registration failed. Try again.');
       }
     });
+  }
+
+  // Plan helpers for payment step
+  getPlanPrice(): number {
+    const prices: Record<string, number> = { basic: 999, pro: 1799, elite: 2999 };
+    return prices[this.regPlan] || 999;
+  }
+
+  getPlanLabel(): string {
+    const labels: Record<string, string> = { basic: 'Basic', pro: 'Pro', elite: 'Elite' };
+    return labels[this.regPlan] || 'Basic';
+  }
+
+  payNow() {
+    const user = this.authService.getUser();
+    if (!user) return;
+
+    this.paymentLoading.set(true);
+    this.paymentError.set('');
+
+    this.paymentService.processPayment(
+      {
+        amount: this.getPlanPrice(),
+        purpose: 'membership',
+        metadata: {
+          planId: this.regPlan,
+          memberName: user.name,
+          memberEmail: user.email,
+        }
+      },
+      user.email,
+      user.name,
+    ).subscribe({
+      next: () => {
+        this.paymentLoading.set(false);
+        this.closeModal();
+        this.showProfile.set(true);
+      },
+      error: (err) => {
+        this.paymentLoading.set(false);
+        if (err?.message === 'Payment cancelled by user') {
+          this.paymentError.set('Payment cancelled. You can pay later from your profile.');
+        } else {
+          this.paymentError.set(err?.error?.message || 'Payment failed. Please try again.');
+        }
+      }
+    });
+  }
+
+  skipPayment() {
+    this.closeModal();
+    this.showProfile.set(true);
   }
 
   forgotPassword() {

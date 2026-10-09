@@ -51,8 +51,9 @@ export class PaymentService {
   /**
    * Verify payment
    */
-  verifyPayment(razorpayOrderId: string, razorpayPaymentId: string, razorpaySignature: string): Observable<{ success: boolean; message: string }> {
+  verifyPayment(orderId: string, razorpayOrderId: string, razorpayPaymentId: string, razorpaySignature: string): Observable<{ success: boolean; message: string }> {
     return this.api.post('payments/verify', {
+      orderId,
       razorpayOrderId,
       razorpayPaymentId,
       razorpaySignature
@@ -76,22 +77,48 @@ export class PaymentService {
   ): Observable<{ success: boolean; message: string }> {
     return new Observable((observer) => {
       const options = {
-        key: order.keyId, // Use keyId from the order response
-        amount: order.amount * 100, // Convert to paise
+        key: order.keyId,
+        amount: order.amount * 100, // paise
         currency: order.currency,
         name: 'SKF Fitness',
-        description: 'Payment for SKF Fitness services',
-        order_id: order.razorpayOrderId, // Use razorpayOrderId from backend
+        description: 'Membership Payment',
+        image: '/skf-logo.jpg',
+        order_id: order.razorpayOrderId,
         prefill: {
           email: userEmail,
           name: userName,
+        },
+        config: {
+          display: {
+            blocks: {
+              upi: {
+                name: 'Pay via UPI',
+                instruments: [
+                  { method: 'upi' },
+                ],
+              },
+              other: {
+                name: 'Other Payment Methods',
+                instruments: [
+                  { method: 'card' },
+                  { method: 'netbanking' },
+                  { method: 'wallet' },
+                ],
+              },
+            },
+            sequence: ['block.upi', 'block.other'],
+            preferences: {
+              show_default_blocks: false,
+            },
+          },
         },
         theme: {
           color: '#2563EB',
         },
         handler: (response: any) => {
-          // Payment successful
+          // Payment successful — verify with backend using orderId from our order
           this.verifyPayment(
+            order.orderId,
             response.razorpay_order_id,
             response.razorpay_payment_id,
             response.razorpay_signature
