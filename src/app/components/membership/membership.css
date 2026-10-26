@@ -2,7 +2,9 @@
    PRICING — SERVICES-STYLE BACKGROUND
    ════════════════════════════ */
 #pricing {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #d97706 75%, #f59e0b 100%);
+  background:
+    linear-gradient(rgba(0, 0, 30, 0.50), rgba(0, 0, 30, 0.55)),
+    url('/workout-format-bg.jpg') center center / cover no-repeat !important;
   padding: 100px 0;
   position: relative;
 }
@@ -57,36 +59,67 @@
   align-items: stretch;
 }
 
-/* ── Card with Clean Design - GRADIENT BG ── */
+/* ── Card with Solid White Background ── */
 .ec-wrapper {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
+}
+
+.ec-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    rgba(37, 99, 235, 1) 0%,
+    rgba(100, 149, 237, 0.8) 100%
+  );
 }
 
 .ec-wrapper:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-  border-color: rgba(255, 255, 255, 0.45);
+  background: #ffffff;
+  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: 
+    0 12px 48px rgba(37, 99, 235, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+  transform: translateY(-8px) scale(1.02);
 }
 
-/* Featured (middle) card — Blue highlight */
+/* Featured (middle) card — White with Strong Blue Accent */
 .ec-wrapper-2 {
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
-  border-color: rgba(37, 99, 235, 0.25);
+  background: #ffffff;
+  box-shadow: 
+    0 12px 48px rgba(37, 99, 235, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 0 60px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.4);
   position: relative;
   overflow: visible;
 }
 
+/* Featured card top line - thicker blue gradient */
 .ec-wrapper-2::before {
+  background: linear-gradient(90deg, 
+    rgba(37, 99, 235, 1) 0%,
+    rgba(100, 149, 237, 1) 100%
+  );
+  height: 4px;
+}
+
+/* "MOST POPULAR" badge - use ::after instead */
+.ec-wrapper-2::after {
   content: 'MOST POPULAR';
   position: absolute;
   top: 1.25rem;
@@ -95,11 +128,23 @@
   color: #fff;
   font-size: 0.5rem;
   font-weight: 800;
+  box-shadow: 
+    0 4px 12px rgba(37, 99, 235, 0.6),
+    0 0 20px rgba(37, 99, 235, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
   letter-spacing: 1.5px;
   padding: 6px 12px;
   border-radius: 8px;
   z-index: 2;
-  box-shadow: 0px 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.ec-wrapper-2:hover {
+  background: #ffffff;
+  box-shadow: 
+    0 16px 64px rgba(37, 99, 235, 0.45),
+    0 6px 24px rgba(0, 0, 0, 0.15),
+    0 0 80px rgba(37, 99, 235, 0.3),
+    0 0 0 2px rgba(37, 99, 235, 0.5);
 }
 
 /* ── Photo header image ── */
@@ -175,7 +220,7 @@
 .ec-desc {
   font-size: 0.9rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.7);
   margin: 0;
   font-weight: 400;
 }
@@ -196,7 +241,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 400;
 }
 
@@ -221,18 +266,18 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   gap: 0.75rem;
   margin-top: auto;
 }
 
 /* Price */
 .ec-price { display: flex; align-items: baseline; gap: 1px; }
-.ec-currency { font-size: 14px; font-weight: 700; color: #FFFFFF; }
-.ec-amount   { font-size: 2.2rem; font-weight: 700; color: #FFFFFF; line-height: 1; font-family: var(--font-body); }
-.ec-period   { font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-left: 2px; }
+.ec-currency { font-size: 14px; font-weight: 700; color: #000000; }
+.ec-amount   { font-size: 2.2rem; font-weight: 700; color: #000000; line-height: 1; font-family: var(--font-body); }
+.ec-period   { font-size: 12px; color: rgba(0, 0, 0, 0.6); margin-left: 2px; }
 
-/* Blue CTA button - Automark gradient style */
+/* Glass Morphism CTA Button */
 .ec-cta {
   position: relative;
   display: inline-flex;
@@ -241,56 +286,103 @@
   min-width: 140px;
   height: 48px;
   padding: 0 2rem;
-  background: linear-gradient(0deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
-  color: #fff;
-  border: none;
-  border-radius: 9999px; /* Full rounded pill */
+  background: rgba(37, 99, 235, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #2563eb;
+  border: 1.5px solid rgba(37, 99, 235, 0.4);
+  border-radius: 9999px;
   font-family: var(--font-primary);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: capitalize;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(37, 99, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Shimmer Effect */
+.ec-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(37, 99, 235, 0.3) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shimmer-cta 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-cta {
+  0%, 100% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 
 .ec-cta:hover {
-  filter: brightness(1.25);
-  transform: translateY(-2px);
-  box-shadow: 0px 0px 20px var(--color-primary-light);
+  background: rgba(37, 99, 235, 0.3);
+  border-color: rgba(37, 99, 235, 0.6);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 24px rgba(37, 99, 235, 0.35),
+    0 0 40px rgba(37, 99, 235, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .ec-cta:active {
-  transform: translateY(0);
-  filter: brightness(1.15);
+  transform: translateY(-1px) scale(0.98);
 }
 
-/* Pro card — featured CTA with enhanced Automark styling */
+/* Pro card — Enhanced glass effect */
 .ec-wrapper-2 .ec-cta,
 .ec-cta-featured {
-  background: linear-gradient(0deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
-  transform: scale(1.05);
-  font-weight: 700;
+  background: rgba(37, 99, 235, 0.25);
+  border: 2px solid rgba(37, 99, 235, 0.5);
+  box-shadow: 
+    0 6px 20px rgba(37, 99, 235, 0.3),
+    0 0 30px rgba(37, 99, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  font-weight: 800;
 }
 
 .ec-wrapper-2 .ec-cta:hover,
 .ec-cta-featured:hover {
-  filter: brightness(1.3);
-  box-shadow: 0px 0px 24px var(--color-primary);
-  transform: scale(1.08) translateY(-2px);
+  background: rgba(37, 99, 235, 0.35);
+  border-color: rgba(37, 99, 235, 0.7);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 10px 32px rgba(37, 99, 235, 0.45),
+    0 0 50px rgba(37, 99, 235, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-/* Elite CTA — consistent gradient style */
+/* Elite CTA — Consistent glass style */
 .ec-cta-elite { 
-  background: linear-gradient(0deg, var(--color-primary-light) 0%, var(--color-primary) 100%) !important;
+  background: rgba(37, 99, 235, 0.2) !important;
+  border: 1.5px solid rgba(37, 99, 235, 0.4) !important;
 }
 .ec-cta-elite:hover { 
-  filter: brightness(1.25) !important;
-  box-shadow: 0px 0px 20px var(--color-primary-light) !important;
+  background: rgba(37, 99, 235, 0.3) !important;
+  border-color: rgba(37, 99, 235, 0.6) !important;
+  box-shadow: 
+    0 8px 24px rgba(37, 99, 235, 0.35) !important,
+    0 0 40px rgba(37, 99, 235, 0.3) !important;
 }
 
 /* CTA inner wrapper - simplified */
@@ -497,4 +589,76 @@
   .membership-title-line {
     margin-bottom: 0.05em;
   }
+}
+
+
+
+
+
+/* ════════════════════════════
+   ANIMATIONS
+   ════════════════════════════ */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(37, 99, 235, 0.6),
+      0 0 20px rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 4px 16px rgba(37, 99, 235, 0.8),
+      0 0 30px rgba(37, 99, 235, 0.6);
+  }
+}
+
+
+/* ════════════════════════════
+   WHITE CARD TEXT OVERRIDES
+   Pricing cards have white backgrounds, so text must be dark
+   ════════════════════════════ */
+
+/* Use ::ng-deep to break through Angular view encapsulation */
+
+/* Badge/Label at top of card - Force dark blue */
+::ng-deep #pricing .ec-wrapper .glass-badge,
+::ng-deep #pricing .ec-wrapper .ec-top-row .glass-badge {
+  color: #1e40af !important; /* Dark blue */
+  font-weight: 800 !important;
+  text-transform: uppercase;
+}
+
+/* Card descriptions - Force dark gray */
+::ng-deep #pricing .ec-wrapper .ec-desc,
+::ng-deep #pricing .ec-wrapper p.ec-desc {
+  color: rgba(0, 0, 0, 0.7) !important;
+  font-weight: 400 !important;
+}
+
+/* Feature list items - Force dark text */
+::ng-deep #pricing .ec-wrapper .ec-feat,
+::ng-deep #pricing .ec-wrapper .ec-feat span,
+::ng-deep #pricing .ec-wrapper .ec-features li,
+::ng-deep #pricing .ec-wrapper .ec-features li span {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Price display - Force black */
+::ng-deep #pricing .ec-wrapper .ec-price,
+::ng-deep #pricing .ec-wrapper .ec-price *,
+::ng-deep #pricing .ec-wrapper .ec-currency,
+::ng-deep #pricing .ec-wrapper .ec-amount,
+::ng-deep #pricing .ec-wrapper .ec-period {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Additional specificity for all card text */
+::ng-deep #pricing .ec-wrapper .ec-content-header,
+::ng-deep #pricing .ec-wrapper .ec-content-header * {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+::ng-deep #pricing .ec-wrapper .ec-content-footer,
+::ng-deep #pricing .ec-wrapper .ec-content-footer * {
+  color: rgba(0, 0, 0, 0.85);
 }

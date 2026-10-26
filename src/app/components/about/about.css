@@ -3,7 +3,7 @@
    White bg · Red circular icon badges
    ════════════════════════════ */
 #about {
-  background: var(--white);
+  background: #ffffff;
   padding: 100px 0;
 }
 
@@ -35,7 +35,7 @@
   flex-direction: column;
   gap: 1.1rem;
   padding: 2rem 1.5rem;
-  background: var(--white);
+  background: #ffffff;
   border: 1px solid var(--gray-light);
   border-top: 3px solid transparent;
   border-radius: 2px;
@@ -183,3 +183,8 @@
     line-height: 1.65;
   }
 }
+
+
+
+
+

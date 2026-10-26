@@ -1220,8 +1220,8 @@ ul.green-tick-list li::before {
   gap: 0.6rem;
   padding: 0.875rem 2rem;
   background: transparent;
-  color: var(--text-primary, #fff);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 700;
@@ -1245,3 +1245,81 @@ ul.green-tick-list li::before {
 .btn-section-cta:hover svg {
   transform: translateX(4px);
 }
+
+/* ── Method section background override ── */
+app-method .method,
+app-method section.method {
+  background: #ffffff !important;
+}
+
+/* ══════════════════════════════════════════
+   GLOBAL WHITE BACKGROUND TEXT OVERRIDES
+   All sections now have white backgrounds with dark text
+   EXCEPT Services and Categories which have dark background images
+   ══════════════════════════════════════════ */
+
+app-philosophy, app-approach,
+app-trainers, app-tagline,
+app-faq, app-contact, app-about {
+  color: #1a1a1a;
+}
+
+app-philosophy h1, app-philosophy h2, app-philosophy h3, app-philosophy p,
+app-approach h1, app-approach h2, app-approach h3, app-approach p,
+app-trainers h1, app-trainers h2, app-trainers h3, app-trainers p,
+app-tagline h1, app-tagline h2, app-tagline h3, app-tagline p,
+app-faq h1, app-faq h2, app-faq h3, app-faq p, app-faq button,
+app-contact h1, app-contact h2, app-contact h3, app-contact p,
+app-about h1, app-about h2, app-about h3, app-about p {
+  color: #1a1a1a !important;
+}
+
+/* Muted text */
+app-philosophy .section-subtitle, app-approach .approach-description,
+app-trainers .section-subtitle,
+app-tagline .tagline-desc, app-faq .faq-answer p,
+app-contact .info-card-value, app-about p {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Labels / eyebrows */
+app-philosophy .section-badge, app-approach .approach-eyebrow,
+app-trainers .section-badge,
+app-tagline .tagline-badge, app-contact .info-card-label,
+app-about .section-tag {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Services, Categories, Testimonials, Membership, Workout-Format, and Footer have dark backgrounds - use white text */
+app-services, app-categories, app-testimonials, app-membership, app-workout-format, app-footer {
+  color: #ffffff !important;
+}
+
+app-services h1, app-services h2, app-services h3, app-services p,
+app-services .section-title, app-services .section-subtitle,
+app-services .service-name, app-services .service-description,
+app-categories h1, app-categories h2, app-categories h3, app-categories p,
+app-categories .section-title, app-categories .section-subtitle,
+app-categories .prog-name, app-categories .prog-desc,
+app-testimonials h1, app-testimonials h2, app-testimonials h3, app-testimonials p,
+app-testimonials .testimonial-text, app-testimonials .testimonial-name,
+app-membership h1, app-membership h2, app-membership h3, app-membership p,
+app-membership .section-title, app-membership .section-subtitle,
+app-workout-format h1, app-workout-format h2, app-workout-format h3, app-workout-format p,
+app-workout-format .section-title, app-workout-format .section-subtitle,
+app-footer h1, app-footer h2, app-footer h3, app-footer h4, app-footer p,
+app-footer a, app-footer span {
+  color: #ffffff !important;
+}
+
+app-services .section-badge,
+app-categories .section-badge,
+app-testimonials .section-badge,
+app-membership .section-badge,
+app-workout-format .section-badge,
+app-footer .footer-brand p {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+
+

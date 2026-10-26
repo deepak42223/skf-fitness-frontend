@@ -6,7 +6,7 @@
 .philosophy {
   position: relative;
   padding: 100px 0;
-  background: #d4e4d8;
+  background: #ffffff;
   overflow: hidden;
 }
 
@@ -129,3 +129,8 @@
     font-size: clamp(1.35rem, 7vw, 1.75rem);
   }
 }
+
+
+
+
+

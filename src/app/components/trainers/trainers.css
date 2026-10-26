@@ -4,7 +4,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 #trainers {
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+  background: #ffffff;
   padding: 120px 0;
   position: relative;
   overflow: hidden;
@@ -827,3 +827,8 @@
     animation: none;
   }
 }
+
+
+
+
+

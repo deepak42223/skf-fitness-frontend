@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════ */
 
 #contact {
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 120px 0;
 }
 
@@ -28,7 +28,7 @@
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.5px;
-  color: #1A1A1A;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -94,7 +94,7 @@
 .form-textarea:focus {
   outline: none;
   border-color: #2563EB;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
@@ -110,7 +110,7 @@
 
 .form-textarea:focus {
   border-color: #2563EB;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
@@ -188,7 +188,7 @@
 }
 
 .map-card {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #E5E7EB;
   border-radius: 8px;
   overflow: hidden;
@@ -237,7 +237,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #E5E7EB;
   border-bottom: 1px solid #F3F4F6;
   transition: background 0.2s ease;
@@ -383,3 +383,9 @@
     font-size: 0.9rem;
   }
 }
+
+
+
+
+
+

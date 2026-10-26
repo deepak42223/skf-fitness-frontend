@@ -808,7 +808,7 @@ export class AppComponent implements OnInit, OnDestroy {
         if (err?.message === 'Payment cancelled by user') {
           this.paymentError.set('Payment cancelled. You can pay later from your profile.');
         } else {
-          this.paymentError.set(err?.error?.message || 'Payment failed. Please try again.');
+          this.paymentError.set(err?.message || err?.error?.message || 'Payment failed. Please try again.');
         }
       }
     });

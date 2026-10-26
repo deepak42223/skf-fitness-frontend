@@ -2,7 +2,7 @@
    TAGLINE SECTION
    ════════════════════════════ */
 .tagline-section {
-  background: linear-gradient(135deg, #ffffff 0%, #dbeafe 35%, #bfdbfe 65%, #fef3c7 100%);
+  background: #ffffff;
   padding: 5rem 0 0;
   overflow: hidden;
 }
@@ -178,3 +178,7 @@
     height: 280px;
   }
 }
+
+
+
+

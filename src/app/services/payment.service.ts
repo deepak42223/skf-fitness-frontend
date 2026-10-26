@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable, from } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 export interface CreateOrderData {
   amount: number;
@@ -12,9 +12,9 @@ export interface CreateOrderData {
 export interface PaymentOrder {
   orderId: string;
   razorpayOrderId: string;
+  keyId: string;
   amount: number;
   currency: string;
-  keyId: string;
 }
 
 export interface VerifyPaymentData {
@@ -34,42 +34,30 @@ export interface Payment {
   paidAt?: Date;
 }
 
-// Razorpay types
 declare var Razorpay: any;
 
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
   constructor(private api: ApiService) {}
 
-  /**
-   * Create payment order
-   */
   createOrder(data: CreateOrderData): Observable<PaymentOrder> {
     return this.api.post<PaymentOrder>('payments/create-order', data);
   }
 
-  /**
-   * Verify payment
-   */
-  verifyPayment(orderId: string, razorpayOrderId: string, razorpayPaymentId: string, razorpaySignature: string): Observable<{ success: boolean; message: string }> {
+  verifyPayment(
+    orderId: string,
+    razorpayOrderId: string,
+    razorpayPaymentId: string,
+    razorpaySignature: string,
+  ): Observable<{ success: boolean; message: string }> {
     return this.api.post('payments/verify', {
       orderId,
       razorpayOrderId,
       razorpayPaymentId,
-      razorpaySignature
+      razorpaySignature,
     });
   }
 
-  /**
-   * Get payment history
-   */
-  getPaymentHistory(): Observable<Payment[]> {
-    return this.api.get<Payment[]>('payments/my-payments');
-  }
-
-  /**
-   * Open Razorpay checkout
-   */
   openRazorpay(
     order: PaymentOrder,
     userEmail: string,
@@ -78,58 +66,33 @@ export class PaymentService {
     return new Observable((observer) => {
       const options = {
         key: order.keyId,
-        amount: order.amount * 100, // paise
+        amount: order.amount * 100,
         currency: order.currency,
         name: 'SKF Fitness',
         description: 'Membership Payment',
         image: '/skf-logo.jpg',
         order_id: order.razorpayOrderId,
-        prefill: {
-          email: userEmail,
-          name: userName,
-        },
+        prefill: { email: userEmail, name: userName },
         config: {
           display: {
             blocks: {
-              upi: {
-                name: 'Pay via UPI',
-                instruments: [
-                  { method: 'upi' },
-                ],
-              },
-              other: {
-                name: 'Other Payment Methods',
-                instruments: [
-                  { method: 'card' },
-                  { method: 'netbanking' },
-                  { method: 'wallet' },
-                ],
-              },
+              upi:   { name: 'Pay via UPI',   instruments: [{ method: 'upi' }] },
+              other: { name: 'Other Methods', instruments: [{ method: 'card' }, { method: 'netbanking' }, { method: 'wallet' }] },
             },
             sequence: ['block.upi', 'block.other'],
-            preferences: {
-              show_default_blocks: false,
-            },
+            preferences: { show_default_blocks: false },
           },
         },
-        theme: {
-          color: '#2563EB',
-        },
+        theme: { color: '#2563EB' },
         handler: (response: any) => {
-          // Payment successful — verify with backend using orderId from our order
           this.verifyPayment(
             order.orderId,
             response.razorpay_order_id,
             response.razorpay_payment_id,
-            response.razorpay_signature
+            response.razorpay_signature,
           ).subscribe({
-            next: (result) => {
-              observer.next(result);
-              observer.complete();
-            },
-            error: (err) => {
-              observer.error(err);
-            },
+            next: (res) => { observer.next(res); observer.complete(); },
+            error: (err) => observer.error(err),
           });
         },
         modal: {
@@ -139,14 +102,11 @@ export class PaymentService {
         },
       };
 
-      const razorpayInstance = new Razorpay(options);
-      razorpayInstance.open();
+      const rzp = new Razorpay(options);
+      rzp.open();
     });
   }
 
-  /**
-   * Complete payment flow: Create order + Open Razorpay + Verify
-   */
   processPayment(
     data: CreateOrderData,
     userEmail: string,
@@ -155,5 +115,9 @@ export class PaymentService {
     return this.createOrder(data).pipe(
       switchMap((order) => this.openRazorpay(order, userEmail, userName)),
     );
+  }
+
+  getPaymentHistory(): Observable<Payment[]> {
+    return this.api.get<Payment[]>('payments/my-payments');
   }
 }
