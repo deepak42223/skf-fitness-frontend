@@ -66,10 +66,10 @@ export class CategoriesComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.initThree();
 
-    // Simulate loading delay
+    // Simulate loading delay - reduced to 300ms for faster initial render
     setTimeout(() => {
       this.loading.set(false);
-    }, 1500);
+    }, 300);
 
     // Only animate when section is visible
     this.observer = new IntersectionObserver(entries => {
