@@ -1,10 +1,11 @@
 /* ════════════════════════════
    WORKOUT FORMATS — FORM STUDIO INSPIRED
-   Clean white bg · Minimal design · Serif typography
+   Clean grey bg · Minimal design · Serif typography
    ════════════════════════════ */
 #workout-formats {
-  background:
-    #FFFFFF;
+  background: 
+    linear-gradient(rgba(245, 245, 247, 0.95), rgba(245, 245, 247, 0.95)),
+    url('/workout-format-bg.jpg') center center / cover no-repeat;
   padding: 5rem 0 4rem;
 }
 
@@ -238,10 +239,11 @@
 }
 
 .goal-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0;
   padding: 2rem 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -294,12 +296,13 @@
   align-items: flex-end;
   justify-content: center;
   text-align: center;
-  background: #ffffff;
+  background: #FFFFFF;
   border-radius: 0;
   padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
   min-height: 340px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .cta-img {
@@ -550,7 +553,7 @@
   aspect-ratio: 3 / 4;
   border-radius: 0; /* Removed curve - sharp corners */
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -755,10 +758,11 @@
 }
 
 .goal-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0;
   padding: 2rem 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -827,12 +831,13 @@
 }
 
 .faq-item {
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0;
   margin-bottom: 0.75rem;
   overflow: hidden;
   transition: border-color 0.25s ease;
-  background: #ffffff;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .faq-item:hover,
@@ -842,7 +847,7 @@
 
 .faq-question {
   width: 100%;
-  background: #ffffff;
+  background: #FFFFFF;
   border: none;
   padding: 1.25rem 1.5rem;
   display: flex;
@@ -893,12 +898,13 @@
   align-items: flex-end;
   justify-content: center;
   text-align: center;
-  background: #ffffff;
+  background: #FFFFFF;
   border-radius: 0;
   padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
   min-height: 340px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .cta-img {
