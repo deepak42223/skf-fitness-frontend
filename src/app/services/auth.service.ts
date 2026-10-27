@@ -83,6 +83,18 @@ export class AuthService {
     return this.api.post<object>('auth/forgot-password', { email });
   }
 
+  sendOtp(email: string): Observable<object> {
+    return this.api.post<object>('auth/send-otp', { email, purpose: 'registration' });
+  }
+
+  verifyOtp(data: { email: string; otp: string }): Observable<object> {
+    return this.api.post<object>('auth/verify-otp', data);
+  }
+
+  resendOtp(email: string): Observable<object> {
+    return this.api.post<object>('auth/resend-otp', { email });
+  }
+
   logout() {
     localStorage.removeItem('skf-auth-token');
     localStorage.removeItem('skf-user');

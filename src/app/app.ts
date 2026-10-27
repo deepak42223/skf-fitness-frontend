@@ -194,6 +194,56 @@ import { TextRevealService }      from './services/text-reveal.service';
               <div class="signup-link"><a (click)="authTab.set('login')" style="cursor:pointer">Already a member? Login</a></div>
             }
 
+            @if (authTab() === 'verify-otp') {
+              <!-- ── OTP Verification Step ── -->
+              <div class="otp-step">
+                <div class="otp-header">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E9BFF" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <h3 class="otp-title">Verify Your Email</h3>
+                  <p class="otp-subtitle">We've sent a 6-digit code to<br><strong>{{ regEmail }}</strong></p>
+                </div>
+
+                <form class="auth-form" (ngSubmit)="verifyOtpAndRegister()">
+                  <div class="otp-input-group">
+                    <input
+                      type="text"
+                      [(ngModel)]="otpCode"
+                      name="otp"
+                      placeholder="Enter 6-digit OTP"
+                      maxlength="6"
+                      pattern="[0-9]*"
+                      class="otp-input"
+                      required
+                      autocomplete="one-time-code"
+                    />
+                  </div>
+
+                  @if (authError()) { <div class="auth-error">{{ authError() }}</div> }
+                  @if (authSuccess()) { <div class="auth-success">{{ authSuccess() }}</div> }
+
+                  <button type="submit" class="login-btn" [disabled]="authLoading()">
+                    {{ authLoading() ? 'VERIFYING...' : 'VERIFY & CREATE ACCOUNT' }}
+                  </button>
+                </form>
+
+                <div class="otp-actions">
+                  @if (otpTimer() > 0) {
+                    <p class="otp-timer">Resend OTP in {{ otpTimer() }}s</p>
+                  } @else {
+                    <button class="resend-otp-btn" (click)="resendOtp()" [disabled]="authLoading()">
+                      {{ authLoading() ? 'SENDING...' : 'Resend OTP' }}
+                    </button>
+                  }
+                  <button class="back-btn" (click)="authTab.set('register'); stopOtpTimer()">
+                    ← Back to Registration
+                  </button>
+                </div>
+              </div>
+            }
+
             @if (authTab() === 'payment') {
               <!-- ── Payment Step ── -->
               <div class="payment-step">
@@ -576,6 +626,131 @@ import { TextRevealService }      from './services/text-reveal.service';
     }
 
     .skip-payment-btn:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── OTP Verification Step ── */
+    .otp-step {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0.5rem 0;
+      text-align: center;
+    }
+
+    .otp-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .otp-header svg {
+      opacity: 0.9;
+    }
+
+    .otp-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: 0.3px;
+    }
+
+    .otp-subtitle {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .otp-subtitle strong {
+      color: #2E9BFF;
+      font-weight: 600;
+    }
+
+    .otp-input-group {
+      margin: 0.5rem 0;
+    }
+
+    .otp-input {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 2px solid rgba(46, 155, 255, 0.3);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.5rem;
+      outline: none;
+      transition: all 0.3s ease;
+      font-family: 'Courier New', monospace;
+    }
+
+    .otp-input:focus {
+      border-color: #2E9BFF;
+      box-shadow: 0 0 0 4px rgba(46, 155, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .otp-input::placeholder {
+      color: rgba(255,255,255,0.3);
+      letter-spacing: normal;
+      font-size: 0.875rem;
+      font-family: inherit;
+    }
+
+    .otp-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .otp-timer {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    .resend-otp-btn {
+      background: none;
+      border: none;
+      color: #2E9BFF;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0.25rem;
+      transition: color 0.2s;
+      font-family: inherit;
+    }
+
+    .resend-otp-btn:hover:not(:disabled) {
+      color: #64B5F6;
+    }
+
+    .resend-otp-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      transition: color 0.2s;
+      font-family: inherit;
+    }
+
+    .back-btn:hover {
+      color: rgba(255,255,255,0.7);
+    }
   `]
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -587,7 +762,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isHomePage     = signal(true);
 
   private routerSub!: Subscription;
-  authTab        = signal<'login' | 'register' | 'forgot' | 'payment'>('login');
+  authTab        = signal<'login' | 'register' | 'verify-otp' | 'forgot' | 'payment'>('login');
   authLoading    = signal(false);
   authError      = signal('');
   authSuccess    = signal('');
@@ -609,6 +784,11 @@ export class AppComponent implements OnInit, OnDestroy {
   regPhone    = '';
   regPassword = '';
   regPlan     = 'pro';
+  
+  // OTP fields
+  otpCode     = '';
+  otpTimer    = signal(0);
+  private otpInterval: any;
 
   // Forgot password
   forgotEmail = '';
@@ -676,6 +856,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.boundOpenModal)   window.removeEventListener('open-auth-modal', this.boundOpenModal);
     if (this.boundGoHome)      window.removeEventListener('go-home', this.boundGoHome);
     if (this.boundShowProfile) window.removeEventListener('show-profile', this.boundShowProfile);
+    this.stopOtpTimer();
   }
 
   onLoaderDone() {
@@ -733,38 +914,135 @@ export class AppComponent implements OnInit, OnDestroy {
       this.authError.set('Please fill all fields');
       return;
     }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.regEmail)) {
+      this.authError.set('Please enter a valid email address');
+      return;
+    }
+    
+    // Validate phone number
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(this.regPhone)) {
+      this.authError.set('Please enter a valid 10-digit phone number');
+      return;
+    }
+    
+    if (this.regPassword.length < 6) {
+      this.authError.set('Password must be at least 6 characters');
+      return;
+    }
+    
+    // Send OTP to email
     this.authLoading.set(true);
     this.authError.set('');
     this.authSuccess.set('');
 
-    this.authService.register({
-      name: this.regName,
-      email: this.regEmail,
-      password: this.regPassword,
-      phone: this.regPhone,
-      membershipPlan: this.regPlan,
-    }).subscribe({
+    this.authService.sendOtp(this.regEmail).subscribe({
       next: () => {
-        // Auto-login after registration then show payment step
-        this.authService.login({ email: this.regEmail, password: this.regPassword }).subscribe({
+        this.authLoading.set(false);
+        this.authSuccess.set('OTP sent to your email!');
+        this.authTab.set('verify-otp');
+        this.startOtpTimer();
+      },
+      error: (err) => {
+        this.authLoading.set(false);
+        this.authError.set(err?.error?.message || 'Failed to send OTP. Please try again.');
+      }
+    });
+  }
+  
+  verifyOtpAndRegister() {
+    if (!this.otpCode || this.otpCode.length !== 6) {
+      this.authError.set('Please enter the 6-digit OTP');
+      return;
+    }
+    
+    this.authLoading.set(true);
+    this.authError.set('');
+    this.authSuccess.set('');
+    
+    // First verify OTP
+    this.authService.verifyOtp({ email: this.regEmail, otp: this.otpCode }).subscribe({
+      next: () => {
+        // OTP verified, now create account
+        this.authService.register({
+          name: this.regName,
+          email: this.regEmail,
+          password: this.regPassword,
+          phone: this.regPhone,
+          membershipPlan: this.regPlan,
+        }).subscribe({
           next: () => {
-            this.authLoading.set(false);
-            this.authTab.set('payment');
-            this.authError.set('');
+            // Auto-login after registration then show payment step
+            this.authService.login({ email: this.regEmail, password: this.regPassword }).subscribe({
+              next: () => {
+                this.authLoading.set(false);
+                this.authTab.set('payment');
+                this.authError.set('');
+                this.stopOtpTimer();
+              },
+              error: () => {
+                // Login failed but account was created — ask them to login manually
+                this.authLoading.set(false);
+                this.authSuccess.set('Account created! Please login to complete payment.');
+                this.stopOtpTimer();
+                setTimeout(() => this.authTab.set('login'), 1500);
+              }
+            });
           },
-          error: () => {
-            // Login failed but account was created — ask them to login manually
+          error: (err) => {
             this.authLoading.set(false);
-            this.authSuccess.set('Account created! Please login to complete payment.');
-            setTimeout(() => this.authTab.set('login'), 1500);
+            this.authError.set(err?.error?.message || 'Registration failed. Try again.');
           }
         });
       },
       error: (err) => {
         this.authLoading.set(false);
-        this.authError.set(err?.error?.message || 'Registration failed. Try again.');
+        this.authError.set(err?.error?.message || 'Invalid OTP. Please try again.');
       }
     });
+  }
+  
+  resendOtp() {
+    this.authLoading.set(true);
+    this.authError.set('');
+    this.authSuccess.set('');
+    
+    this.authService.resendOtp(this.regEmail).subscribe({
+      next: () => {
+        this.authLoading.set(false);
+        this.authSuccess.set('OTP resent to your email!');
+        this.startOtpTimer();
+      },
+      error: (err) => {
+        this.authLoading.set(false);
+        this.authError.set(err?.error?.message || 'Failed to resend OTP.');
+      }
+    });
+  }
+  
+  startOtpTimer() {
+    this.otpTimer.set(60); // 60 seconds
+    if (this.otpInterval) clearInterval(this.otpInterval);
+    
+    this.otpInterval = setInterval(() => {
+      const current = this.otpTimer();
+      if (current > 0) {
+        this.otpTimer.set(current - 1);
+      } else {
+        this.stopOtpTimer();
+      }
+    }, 1000);
+  }
+  
+  stopOtpTimer() {
+    if (this.otpInterval) {
+      clearInterval(this.otpInterval);
+      this.otpInterval = null;
+    }
+    this.otpTimer.set(0);
   }
 
   // Plan helpers for payment step
