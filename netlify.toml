@@ -3,8 +3,8 @@
   publish = "dist/fitusion/browser"
 
 [build.environment]
-  NODE_VERSION = "20.11.0"
-  NPM_VERSION = "10.2.4"
+  NODE_VERSION = "22.12.0"
+  NPM_VERSION = "10.9.0"
 
 [[redirects]]
   from = "/*"
